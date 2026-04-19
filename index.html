@@ -30,6 +30,36 @@
       -webkit-font-smoothing: antialiased;
     }
 
+    /* Red en los márgenes laterales — visible solo fuera del contenido centrado */
+    body::before {
+      content: '';
+      position: fixed;
+      inset: 0;
+      z-index: 0;
+      pointer-events: none;
+      background-image:
+        linear-gradient(rgba(232,255,71,.07) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(232,255,71,.07) 1px, transparent 1px);
+      background-size: 44px 44px;
+      /* Mask: transparente en el centro (1100px), visible solo en los márgenes */
+      -webkit-mask-image: linear-gradient(to right,
+        black 0%,
+        black calc(50% - 590px),
+        transparent calc(50% - 540px),
+        transparent calc(50% + 540px),
+        black calc(50% + 590px),
+        black 100%
+      );
+      mask-image: linear-gradient(to right,
+        black 0%,
+        black calc(50% - 590px),
+        transparent calc(50% - 540px),
+        transparent calc(50% + 540px),
+        black calc(50% + 590px),
+        black 100%
+      );
+    }
+
     /* ── NAV ── */
     nav {
       padding: 1.25rem 2.5rem;
