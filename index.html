@@ -581,14 +581,70 @@
 
     /* ── RESPONSIVE ── */
     @media (max-width: 768px) {
-      .hero-bottom { flex-direction: column; align-items: flex-start; }
+      /* Nav */
+      nav { padding: 1rem 1.25rem; }
+
+      /* Hero */
+      .hero { padding: 3rem 1.25rem 2.5rem; }
+      h1 { font-size: clamp(2.2rem, 10vw, 3rem); margin-bottom: 1.5rem; }
+      .hero-bottom {
+        flex-direction: column;
+        align-items: flex-start;
+        padding-top: 2rem;
+        margin-top: 2rem;
+        gap: 1.5rem;
+      }
       .hero-price-block { text-align: left; }
-      .pricing-wrap { grid-template-columns: 1fr; }
+      .hero-price-big { font-size: 2.4rem; }
+      .hero-desc { max-width: 100%; font-size: .95rem; }
+      .cta-group { flex-direction: column; align-items: flex-start; gap: .75rem; }
+      .btn-primary { width: 100%; text-align: center; padding: .9rem 1.5rem; }
+
+      /* Hero image strip — single column on mobile */
+      .hero-img-strip {
+        grid-template-columns: 1fr;
+        padding: 0 1.25rem 2rem;
+        gap: .75rem;
+      }
+      .hero-img-main { height: 220px; }
+      .hero-img-side { flex-direction: row; }
+      .hero-img-side .img-card { height: 120px; flex: 1; }
+
+      /* Sections */
+      .section { padding: 3rem 1.25rem; }
+      h2 { font-size: clamp(1.5rem, 7vw, 2rem); margin-bottom: 2rem; }
+
+      /* Steps */
+      .step-row { grid-template-columns: 50px 1fr; gap: 1rem; padding: 1.5rem 0; }
+      .step-num { font-size: 2rem; }
+
+      /* Includes grid */
+      .includes-grid { grid-template-columns: 1fr; }
+      .include-item { padding: 1.25rem; }
+
+      /* Pricing */
+      .pricing-wrap { grid-template-columns: 1fr; gap: 2rem; }
+      .pricing-card { padding: 1.75rem 1.25rem; }
+      .price-big { font-size: 2.8rem; }
+
+      /* FAQ */
       .faq-item { grid-template-columns: 1fr; gap: .5rem; }
-      .cta-final { grid-template-columns: 1fr; }
+
+      /* Context strip */
+      .context-strip { padding: 0 1.25rem 3rem; }
+      .context-img { height: 200px; }
+      .context-img-text p { font-size: clamp(1.1rem, 5vw, 1.5rem); }
+
+      /* CTA final */
+      .cta-final { grid-template-columns: 1fr; padding: 4rem 1.25rem; gap: 2rem; }
+      .cta-final h2 { font-size: clamp(1.7rem, 7vw, 2.2rem); }
       .cta-final-right { text-align: left; }
-      nav { padding: 1rem 1.5rem; }
-      .hero, .section { padding-left: 1.5rem; padding-right: 1.5rem; }
+
+      /* Footer */
+      footer { flex-direction: column; gap: .75rem; text-align: center; padding: 1.5rem 1.25rem; }
+
+      /* Hide side grid pattern on mobile (full-width viewport = no margins) */
+      body::before { display: none; }
     }
   </style>
 </head>
