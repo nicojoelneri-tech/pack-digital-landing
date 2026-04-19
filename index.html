@@ -611,14 +611,21 @@
     /* ── FOOTER ── */
     footer {
       border-top: 1px solid var(--border);
-      padding: 1.5rem 2.5rem;
+      color: var(--muted);
+      font-size: .82rem;
+    }
+    .footer-row {
+      max-width: 1100px;
+      margin: 0 auto;
+      padding: 1.1rem 2.5rem;
       display: flex;
       justify-content: space-between;
       align-items: center;
-      color: var(--muted);
-      font-size: .82rem;
-      gap: 1rem;
+      gap: 1.5rem;
       flex-wrap: wrap;
+    }
+    .footer-row-clients {
+      border-bottom: 1px solid var(--border);
     }
     footer a { color: var(--muted); text-decoration: none; }
     footer a:hover { color: var(--text); }
@@ -631,10 +638,8 @@
       display: flex;
       align-items: center;
       gap: .4rem;
-      font-size: .82rem;
       transition: color .15s;
     }
-    .footer-social svg { flex-shrink: 0; }
     .footer-links {
       display: flex;
       align-items: center;
@@ -742,7 +747,8 @@
       .cta-final { grid-template-columns: 1fr; padding: 4rem 1.25rem; gap: 2rem; }
       .cta-final h2 { font-size: clamp(1.7rem, 7vw, 2.2rem); }
       .cta-final-right { text-align: left; }
-      footer { flex-direction: column; gap: 1rem; text-align: center; padding: 1.5rem 1.25rem; }
+      .footer-row { padding: 1rem 1.25rem; justify-content: center; gap: 1rem; }
+      .footer-row-clients { flex-direction: column; align-items: center; text-align: center; }
       .footer-social { justify-content: center; }
       .footer-links { justify-content: center; }
       body::before { display: none; }
@@ -1158,15 +1164,16 @@
 </div>
 
 <footer>
-  <span>[mitch] · Buenos Aires, Argentina</span>
-  <div class="footer-clients">
-    <span class="footer-clients-label">Clientes</span>
+  <div class="footer-row footer-row-clients">
+    <span class="footer-clients-label">Ya trabajan con nosotros</span>
     <div class="footer-clients-logos">
       <img src="img/caso_legal_logo.png" alt="Caso Legal" />
       <img src="img/MIR_logo.png" alt="Mir Soluciones" />
     </div>
   </div>
-  <div class="footer-social">
+  <div class="footer-row">
+    <span>[mitch] · Buenos Aires, Argentina</span>
+    <div class="footer-social">
     <a href="https://www.instagram.com/od.mitch/" target="_blank" rel="noopener">
       <svg width="15" height="15" viewBox="0 0 24 24" fill="currentColor"><path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zm0-2.163c-3.259 0-3.667.014-4.947.072-4.358.2-6.78 2.618-6.98 6.98-.059 1.281-.073 1.689-.073 4.948 0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98-1.281-.059-1.69-.073-4.949-.073zm0 5.838c-3.403 0-6.162 2.759-6.162 6.162s2.759 6.163 6.162 6.163 6.162-2.759 6.162-6.163c0-3.403-2.759-6.162-6.162-6.162zm0 10.162c-2.209 0-4-1.79-4-4 0-2.209 1.791-4 4-4s4 1.791 4 4c0 2.21-1.791 4-4 4zm6.406-11.845c-.796 0-1.441.645-1.441 1.44s.645 1.44 1.441 1.44c.795 0 1.439-.645 1.439-1.44s-.644-1.44-1.439-1.44z"/></svg>
       Instagram
@@ -1176,9 +1183,10 @@
       TikTok
     </a>
   </div>
-  <div class="footer-links">
-    <a href="mailto:hola@packdigital.ar">hola@packdigital.ar</a>
-    <a href="#legales" id="legales" title="Los servicios son prestados por [mitch], operador digital independiente, Buenos Aires, Argentina. Precios en ARS, sujetos a actualización.">Legales</a>
+    <div class="footer-links">
+      <a href="mailto:hola@packdigital.ar">hola@packdigital.ar</a>
+      <a href="#legales" id="legales" title="Los servicios son prestados por [mitch], operador digital independiente, Buenos Aires, Argentina. Precios en ARS, sujetos a actualización.">Legales</a>
+    </div>
   </div>
 </footer>
 
