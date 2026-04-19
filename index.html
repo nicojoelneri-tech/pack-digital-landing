@@ -3,263 +3,646 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Pack Digital — Contenido profesional para tu negocio</title>
-  <meta name="description" content="Reels, posts y publicidad en Meta para tu negocio. Todo hecho, todo listo, sin vueltas. $400.000/mes." />
+  <title>Pack Digital — Contenido para tu negocio</title>
+  <meta name="description" content="Reels, posts y publicidad en Meta para tu negocio. Todo hecho, todo listo. $400.000/mes." />
   <link rel="preconnect" href="https://fonts.googleapis.com" />
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet" />
+  <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;700&family=Syne:wght@700;800&display=swap" rel="stylesheet" />
   <style>
     *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
 
     :root {
-      --brand: #7c3aed;
-      --brand-light: #a78bfa;
-      --dark: #0f0f0f;
-      --card: #1a1a1a;
-      --border: #2a2a2a;
-      --text: #e5e5e5;
-      --muted: #888;
+      --bg: #0c0c0c;
+      --surface: #141414;
+      --border: #222;
+      --accent: #e8ff47;       /* amarillo limón */
+      --accent-dim: rgba(232,255,71,.12);
+      --text: #f0f0f0;
+      --muted: #666;
+      --green: #4ade80;
     }
 
-    body { font-family: 'Inter', sans-serif; background: var(--dark); color: var(--text); line-height: 1.6; }
+    html { scroll-behavior: smooth; }
+    body {
+      font-family: 'Space Grotesk', sans-serif;
+      background: var(--bg);
+      color: var(--text);
+      line-height: 1.6;
+      -webkit-font-smoothing: antialiased;
+    }
 
-    /* NAV */
-    nav { padding: 1rem 2rem; display: flex; justify-content: space-between; align-items: center; border-bottom: 1px solid var(--border); }
-    .logo { font-weight: 800; font-size: 1.1rem; color: #fff; }
-    .logo span { color: var(--brand-light); }
-    .nav-cta { background: var(--brand); color: #fff; padding: .5rem 1.2rem; border-radius: 8px; text-decoration: none; font-weight: 600; font-size: .9rem; }
+    /* ── NAV ── */
+    nav {
+      padding: 1.25rem 2.5rem;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      position: sticky;
+      top: 0;
+      z-index: 50;
+      background: rgba(12,12,12,.9);
+      backdrop-filter: blur(12px);
+      border-bottom: 1px solid var(--border);
+    }
+    .logo {
+      font-family: 'Syne', sans-serif;
+      font-weight: 800;
+      font-size: 1.2rem;
+      color: var(--text);
+      letter-spacing: -.02em;
+    }
+    .logo span { color: var(--accent); }
+    .nav-cta {
+      background: var(--accent);
+      color: #0c0c0c;
+      padding: .55rem 1.4rem;
+      border-radius: 6px;
+      text-decoration: none;
+      font-weight: 700;
+      font-size: .88rem;
+      letter-spacing: .01em;
+      transition: opacity .15s;
+    }
+    .nav-cta:hover { opacity: .85; }
 
-    /* HERO */
-    .hero { max-width: 780px; margin: 0 auto; padding: 5rem 2rem 4rem; text-align: center; }
-    .badge { display: inline-block; background: rgba(124,58,237,.15); color: var(--brand-light); border: 1px solid rgba(124,58,237,.3); padding: .35rem 1rem; border-radius: 999px; font-size: .8rem; font-weight: 600; margin-bottom: 1.5rem; letter-spacing: .05em; text-transform: uppercase; }
-    h1 { font-size: clamp(2rem, 5vw, 3.2rem); font-weight: 800; line-height: 1.2; color: #fff; margin-bottom: 1.2rem; }
-    h1 em { color: var(--brand-light); font-style: normal; }
-    .hero-sub { font-size: 1.15rem; color: var(--muted); max-width: 560px; margin: 0 auto 2.5rem; }
-    .hero-price { font-size: 1rem; color: var(--muted); margin-bottom: .5rem; }
-    .hero-price strong { color: #fff; font-size: 2rem; }
-    .hero-price span { font-size: .9rem; }
-
-    .cta-group { display: flex; gap: 1rem; justify-content: center; flex-wrap: wrap; margin-top: 2rem; }
-    .btn-primary { background: var(--brand); color: #fff; padding: .85rem 2rem; border-radius: 10px; text-decoration: none; font-weight: 700; font-size: 1rem; transition: opacity .2s; }
+    /* ── HERO ── */
+    .hero {
+      padding: 5rem 2.5rem 4rem;
+      max-width: 1100px;
+      margin: 0 auto;
+    }
+    .hero-label {
+      display: inline-flex;
+      align-items: center;
+      gap: .5rem;
+      color: var(--accent);
+      font-size: .8rem;
+      font-weight: 700;
+      letter-spacing: .12em;
+      text-transform: uppercase;
+      margin-bottom: 2rem;
+    }
+    .hero-label::before {
+      content: '';
+      display: block;
+      width: 24px;
+      height: 2px;
+      background: var(--accent);
+    }
+    h1 {
+      font-family: 'Syne', sans-serif;
+      font-size: clamp(2.8rem, 7vw, 5.5rem);
+      font-weight: 800;
+      line-height: 1.0;
+      color: var(--text);
+      letter-spacing: -.03em;
+      margin-bottom: 2rem;
+    }
+    h1 .highlight {
+      color: var(--accent);
+      display: block;
+    }
+    .hero-bottom {
+      display: flex;
+      align-items: flex-end;
+      justify-content: space-between;
+      gap: 2rem;
+      flex-wrap: wrap;
+      padding-top: 3rem;
+      border-top: 1px solid var(--border);
+      margin-top: 3rem;
+    }
+    .hero-desc {
+      color: var(--muted);
+      font-size: 1.05rem;
+      max-width: 460px;
+    }
+    .hero-price-block { text-align: right; }
+    .hero-price-big {
+      font-family: 'Syne', sans-serif;
+      font-size: clamp(2.4rem, 5vw, 3.8rem);
+      font-weight: 800;
+      color: var(--text);
+      letter-spacing: -.04em;
+      line-height: 1;
+    }
+    .hero-price-sub {
+      color: var(--muted);
+      font-size: .85rem;
+      margin-top: .3rem;
+    }
+    .cta-group {
+      display: flex;
+      gap: 1rem;
+      align-items: center;
+      flex-wrap: wrap;
+      margin-top: 2rem;
+    }
+    .btn-primary {
+      background: var(--accent);
+      color: #0c0c0c;
+      padding: .9rem 2.2rem;
+      border-radius: 8px;
+      text-decoration: none;
+      font-weight: 700;
+      font-size: 1rem;
+      letter-spacing: .01em;
+      transition: opacity .15s;
+      white-space: nowrap;
+    }
     .btn-primary:hover { opacity: .85; }
-    .btn-secondary { background: transparent; color: var(--text); padding: .85rem 2rem; border-radius: 10px; text-decoration: none; font-weight: 600; font-size: 1rem; border: 1px solid var(--border); }
+    .btn-ghost {
+      color: var(--muted);
+      text-decoration: none;
+      font-size: .9rem;
+      display: flex;
+      align-items: center;
+      gap: .4rem;
+      transition: color .15s;
+    }
+    .btn-ghost:hover { color: var(--text); }
 
-    /* SOCIAL PROOF */
-    .proof { text-align: center; padding: 2rem; border-top: 1px solid var(--border); border-bottom: 1px solid var(--border); color: var(--muted); font-size: .9rem; }
-    .proof strong { color: #fff; }
+    /* ── TICKER ── */
+    .ticker {
+      border-top: 1px solid var(--border);
+      border-bottom: 1px solid var(--border);
+      padding: .85rem 0;
+      overflow: hidden;
+      white-space: nowrap;
+    }
+    .ticker-inner {
+      display: inline-flex;
+      gap: 3rem;
+      animation: scroll 20s linear infinite;
+      color: var(--muted);
+      font-size: .82rem;
+      font-weight: 500;
+      letter-spacing: .04em;
+      text-transform: uppercase;
+    }
+    .ticker-inner span { color: var(--accent); }
+    @keyframes scroll {
+      0% { transform: translateX(0); }
+      100% { transform: translateX(-50%); }
+    }
 
-    /* COMO FUNCIONA */
-    section { max-width: 900px; margin: 0 auto; padding: 4rem 2rem; }
-    h2 { font-size: 1.8rem; font-weight: 800; color: #fff; text-align: center; margin-bottom: .5rem; }
-    .section-sub { text-align: center; color: var(--muted); margin-bottom: 3rem; }
+    /* ── SECCIONES ── */
+    .section {
+      max-width: 1100px;
+      margin: 0 auto;
+      padding: 5rem 2.5rem;
+      border-top: 1px solid var(--border);
+    }
+    .section-label {
+      color: var(--muted);
+      font-size: .75rem;
+      font-weight: 700;
+      letter-spacing: .12em;
+      text-transform: uppercase;
+      margin-bottom: 3rem;
+    }
+    h2 {
+      font-family: 'Syne', sans-serif;
+      font-size: clamp(1.8rem, 4vw, 3rem);
+      font-weight: 800;
+      line-height: 1.1;
+      letter-spacing: -.03em;
+      color: var(--text);
+      margin-bottom: 3rem;
+    }
 
-    .steps { display: grid; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); gap: 1.5rem; }
-    .step { background: var(--card); border: 1px solid var(--border); border-radius: 12px; padding: 1.5rem; }
-    .step-num { font-size: 2rem; font-weight: 800; color: var(--brand-light); line-height: 1; margin-bottom: .75rem; }
-    .step h3 { color: #fff; font-size: 1rem; margin-bottom: .4rem; }
-    .step p { color: var(--muted); font-size: .9rem; }
+    /* ── PASOS ── */
+    .steps { display: flex; flex-direction: column; gap: 0; }
+    .step-row {
+      display: grid;
+      grid-template-columns: 80px 1fr;
+      gap: 2rem;
+      padding: 2rem 0;
+      border-bottom: 1px solid var(--border);
+      align-items: start;
+    }
+    .step-row:first-child { border-top: 1px solid var(--border); }
+    .step-num {
+      font-family: 'Syne', sans-serif;
+      font-size: 3rem;
+      font-weight: 800;
+      color: var(--border);
+      line-height: 1;
+    }
+    .step-content h3 {
+      font-family: 'Syne', sans-serif;
+      font-size: 1.2rem;
+      font-weight: 700;
+      color: var(--text);
+      margin-bottom: .4rem;
+    }
+    .step-content p { color: var(--muted); font-size: .95rem; }
+    .step-tag {
+      display: inline-block;
+      background: var(--accent-dim);
+      color: var(--accent);
+      font-size: .7rem;
+      font-weight: 700;
+      letter-spacing: .08em;
+      text-transform: uppercase;
+      padding: .2rem .6rem;
+      border-radius: 4px;
+      margin-bottom: .5rem;
+    }
 
-    /* QUE INCLUYE */
-    .includes { background: var(--card); border-radius: 16px; border: 1px solid var(--border); padding: 2.5rem; }
-    .includes-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 1rem; margin-top: 1.5rem; }
-    .include-item { display: flex; align-items: flex-start; gap: .75rem; }
-    .check { color: var(--brand-light); font-size: 1.2rem; flex-shrink: 0; margin-top: .1rem; }
-    .include-item div strong { color: #fff; font-size: .95rem; display: block; }
-    .include-item div span { color: var(--muted); font-size: .85rem; }
+    /* ── INCLUYE ── */
+    .includes-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+      gap: 1px;
+      background: var(--border);
+      border: 1px solid var(--border);
+      border-radius: 12px;
+      overflow: hidden;
+    }
+    .include-item {
+      background: var(--surface);
+      padding: 1.75rem;
+      transition: background .15s;
+    }
+    .include-item:hover { background: #1a1a1a; }
+    .include-icon {
+      font-size: 1.6rem;
+      margin-bottom: 1rem;
+      display: block;
+    }
+    .include-item strong {
+      display: block;
+      color: var(--text);
+      font-size: 1rem;
+      font-weight: 700;
+      margin-bottom: .3rem;
+    }
+    .include-item span { color: var(--muted); font-size: .87rem; }
 
-    /* PRICING */
-    .pricing-card { background: var(--card); border: 2px solid var(--brand); border-radius: 16px; padding: 2.5rem; max-width: 480px; margin: 0 auto; text-align: center; }
-    .pricing-card .price { font-size: 3rem; font-weight: 800; color: #fff; }
-    .pricing-card .price-detail { color: var(--muted); margin-bottom: 2rem; }
-    .pricing-list { text-align: left; list-style: none; margin-bottom: 2rem; }
-    .pricing-list li { padding: .5rem 0; border-bottom: 1px solid var(--border); color: var(--text); font-size: .95rem; display: flex; gap: .5rem; }
-    .pricing-list li::before { content: "✓"; color: var(--brand-light); font-weight: 700; flex-shrink: 0; }
+    /* ── PRICING ── */
+    .pricing-wrap {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 3rem;
+      align-items: start;
+    }
+    .pricing-left h2 { margin-bottom: 1rem; }
+    .pricing-left p { color: var(--muted); font-size: 1rem; margin-bottom: 2rem; }
+    .pricing-card {
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: 16px;
+      padding: 2.5rem;
+      position: relative;
+      overflow: hidden;
+    }
+    .pricing-card::before {
+      content: '';
+      position: absolute;
+      top: 0; left: 0; right: 0;
+      height: 3px;
+      background: var(--accent);
+    }
+    .price-display {
+      display: flex;
+      align-items: baseline;
+      gap: .4rem;
+      margin-bottom: .3rem;
+    }
+    .price-big {
+      font-family: 'Syne', sans-serif;
+      font-size: 3.5rem;
+      font-weight: 800;
+      color: var(--text);
+      letter-spacing: -.04em;
+    }
+    .price-currency { color: var(--muted); font-size: 1.2rem; }
+    .price-sub { color: var(--muted); font-size: .85rem; margin-bottom: 2rem; }
+    .pricing-list {
+      list-style: none;
+      margin-bottom: 2rem;
+    }
+    .pricing-list li {
+      display: flex;
+      align-items: center;
+      gap: .75rem;
+      padding: .65rem 0;
+      border-bottom: 1px solid var(--border);
+      font-size: .9rem;
+      color: var(--text);
+    }
+    .pricing-list li:last-child { border-bottom: none; }
+    .pricing-list li::before {
+      content: '→';
+      color: var(--accent);
+      font-weight: 700;
+      flex-shrink: 0;
+    }
+    .no-contract {
+      display: inline-flex;
+      align-items: center;
+      gap: .4rem;
+      background: rgba(74,222,128,.1);
+      color: var(--green);
+      font-size: .78rem;
+      font-weight: 700;
+      letter-spacing: .06em;
+      text-transform: uppercase;
+      padding: .3rem .8rem;
+      border-radius: 999px;
+      margin-bottom: 1.5rem;
+    }
 
-    /* FAQ */
-    .faq { display: flex; flex-direction: column; gap: 1rem; }
-    .faq-item { background: var(--card); border: 1px solid var(--border); border-radius: 10px; padding: 1.25rem 1.5rem; }
-    .faq-item strong { color: #fff; display: block; margin-bottom: .4rem; }
-    .faq-item p { color: var(--muted); font-size: .9rem; }
+    /* ── FAQ ── */
+    .faq { display: flex; flex-direction: column; }
+    .faq-item {
+      padding: 1.5rem 0;
+      border-bottom: 1px solid var(--border);
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 2rem;
+    }
+    .faq-item:first-child { border-top: 1px solid var(--border); }
+    .faq-q {
+      font-family: 'Syne', sans-serif;
+      font-weight: 700;
+      font-size: 1rem;
+      color: var(--text);
+      letter-spacing: -.01em;
+    }
+    .faq-a { color: var(--muted); font-size: .92rem; }
 
-    /* CTA FINAL */
-    .cta-final { text-align: center; padding: 5rem 2rem; }
-    .cta-final h2 { margin-bottom: 1rem; }
-    .cta-final p { color: var(--muted); margin-bottom: 2rem; }
+    /* ── CTA FINAL ── */
+    .cta-final {
+      border-top: 1px solid var(--border);
+      padding: 6rem 2.5rem;
+      max-width: 1100px;
+      margin: 0 auto;
+      display: grid;
+      grid-template-columns: 1fr auto;
+      gap: 3rem;
+      align-items: center;
+    }
+    .cta-final h2 { font-size: clamp(2rem, 5vw, 3.5rem); margin-bottom: .5rem; }
+    .cta-final p { color: var(--muted); max-width: 480px; }
+    .cta-final-right { text-align: right; }
+    .available-badge {
+      display: inline-flex;
+      align-items: center;
+      gap: .5rem;
+      color: var(--green);
+      font-size: .8rem;
+      font-weight: 700;
+      letter-spacing: .06em;
+      text-transform: uppercase;
+      margin-bottom: 1rem;
+    }
+    .available-dot {
+      width: 7px; height: 7px;
+      background: var(--green);
+      border-radius: 50%;
+      animation: pulse 1.5s ease-in-out infinite;
+    }
+    @keyframes pulse {
+      0%, 100% { opacity: 1; }
+      50% { opacity: .3; }
+    }
 
-    /* FOOTER */
-    footer { text-align: center; padding: 2rem; border-top: 1px solid var(--border); color: var(--muted); font-size: .85rem; }
+    /* ── FOOTER ── */
+    footer {
+      border-top: 1px solid var(--border);
+      padding: 2rem 2.5rem;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      color: var(--muted);
+      font-size: .82rem;
+    }
+    footer a { color: var(--muted); text-decoration: none; }
+    footer a:hover { color: var(--text); }
 
-    /* WHATSAPP FLOAT */
-    .wa-float { position: fixed; bottom: 1.5rem; right: 1.5rem; background: #25d366; color: #fff; width: 56px; height: 56px; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-size: 1.6rem; text-decoration: none; box-shadow: 0 4px 20px rgba(37,211,102,.4); z-index: 100; transition: transform .2s; }
+    /* ── WA FLOAT ── */
+    .wa-float {
+      position: fixed;
+      bottom: 1.5rem; right: 1.5rem;
+      background: #25d366;
+      color: #fff;
+      width: 54px; height: 54px;
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 1.5rem;
+      text-decoration: none;
+      box-shadow: 0 4px 24px rgba(37,211,102,.35);
+      z-index: 100;
+      transition: transform .2s;
+    }
     .wa-float:hover { transform: scale(1.1); }
 
-    @media (max-width: 600px) {
-      .cta-group { flex-direction: column; align-items: center; }
-      .btn-primary, .btn-secondary { width: 100%; text-align: center; }
+    /* ── RESPONSIVE ── */
+    @media (max-width: 768px) {
+      .hero-bottom { flex-direction: column; align-items: flex-start; }
+      .hero-price-block { text-align: left; }
+      .pricing-wrap { grid-template-columns: 1fr; }
+      .faq-item { grid-template-columns: 1fr; gap: .5rem; }
+      .cta-final { grid-template-columns: 1fr; }
+      .cta-final-right { text-align: left; }
+      nav { padding: 1rem 1.5rem; }
+      .hero, .section { padding-left: 1.5rem; padding-right: 1.5rem; }
     }
   </style>
 </head>
 <body>
 
 <nav>
-  <div class="logo">Pack<span>Digital</span></div>
-  <a href="https://wa.me/541133613235?text=Hola%2C%20quiero%20saber%20m%C3%A1s%20sobre%20el%20Pack%20Digital" class="nav-cta" target="_blank">Empezar →</a>
+  <div class="logo">Pack<span>.</span>Digital</div>
+  <a href="https://wa.me/541133613235?text=Hola%2C%20quiero%20saber%20m%C3%A1s%20sobre%20el%20Pack%20Digital" class="nav-cta" target="_blank">Hablar →</a>
 </nav>
 
 <!-- HERO -->
 <div class="hero">
-  <div class="badge">🚀 Contenido profesional para negocios locales</div>
-  <h1>Tu negocio en redes,<br /><em>sin que tengas que hacerlo vos</em></h1>
-  <p class="hero-sub">Reels, posts, publicidad en Meta y más. Todo producido y listo para publicar. Sin reuniones largas, sin dolores de cabeza.</p>
-  <div class="hero-price"><strong>$400.000</strong><span>/mes · Sin contrato de permanencia</span></div>
-  <div class="cta-group">
-    <a href="https://wa.me/541133613235?text=Hola%2C%20me%20interesa%20el%20Pack%20Digital%20para%20mi%20negocio" class="btn-primary" target="_blank">Quiero empezar este mes</a>
-    <a href="#que-incluye" class="btn-secondary">Ver qué incluye</a>
+  <div class="hero-label">Contenido para negocios locales</div>
+  <h1>
+    Tu negocio en redes.
+    <span class="highlight">Sin que lo tengas<br>que hacer vos.</span>
+  </h1>
+  <div class="hero-bottom">
+    <div>
+      <p class="hero-desc">Reels, posts, publicidad en Meta. Todo listo para publicar cada mes. Vos seguís atendiendo tu negocio.</p>
+      <div class="cta-group">
+        <a href="https://wa.me/541133613235?text=Hola%2C%20me%20interesa%20el%20Pack%20Digital%20para%20mi%20negocio" class="btn-primary" target="_blank">Quiero empezar este mes</a>
+        <a href="#que-incluye" class="btn-ghost">Ver qué incluye ↓</a>
+      </div>
+    </div>
+    <div class="hero-price-block">
+      <div class="hero-price-big">$400.000</div>
+      <div class="hero-price-sub">por mes · sin contrato</div>
+    </div>
   </div>
 </div>
 
-<div class="proof">
-  Más de <strong>2 clientes</strong> ya creciendo con Pack Digital · Buenos Aires, Argentina
+<!-- TICKER -->
+<div class="ticker">
+  <div class="ticker-inner">
+    <span>●</span> Estudios jurídicos &nbsp;&nbsp; <span>●</span> Clínicas y consultorios &nbsp;&nbsp; <span>●</span> Odontólogos &nbsp;&nbsp; <span>●</span> Inmobiliarias &nbsp;&nbsp; <span>●</span> Restaurantes &nbsp;&nbsp; <span>●</span> Gimnasios &nbsp;&nbsp; <span>●</span> Estudios contables &nbsp;&nbsp; <span>●</span> Estudios jurídicos &nbsp;&nbsp; <span>●</span> Clínicas y consultorios &nbsp;&nbsp; <span>●</span> Odontólogos &nbsp;&nbsp; <span>●</span> Inmobiliarias &nbsp;&nbsp; <span>●</span> Restaurantes &nbsp;&nbsp; <span>●</span> Gimnasios &nbsp;&nbsp; <span>●</span> Estudios contables &nbsp;&nbsp;
+  </div>
 </div>
 
 <!-- COMO FUNCIONA -->
-<section>
-  <h2>¿Cómo funciona?</h2>
-  <p class="section-sub">Tres pasos. Sin reuniones eternas, sin tecnicismos.</p>
+<div class="section">
+  <div class="section-label">Cómo funciona</div>
+  <h2>Tres pasos.<br>Sin reuniones eternas.</h2>
   <div class="steps">
-    <div class="step">
+    <div class="step-row">
       <div class="step-num">01</div>
-      <h3>Nos contás de tu negocio</h3>
-      <p>Un formulario simple: qué vendés, a quién, qué tono querés. 5 minutos.</p>
+      <div class="step-content">
+        <div class="step-tag">Una sola vez</div>
+        <h3>Nos contás de tu negocio</h3>
+        <p>Un formulario simple: qué vendés, a quién le hablás, qué tono querés. Cinco minutos.</p>
+      </div>
     </div>
-    <div class="step">
+    <div class="step-row">
       <div class="step-num">02</div>
-      <h3>Producimos todo</h3>
-      <p>Guiones, voces, edición y diseño profesional. En 48hs tenés el primer lote listo.</p>
+      <div class="step-content">
+        <div class="step-tag">En 48 horas</div>
+        <h3>Producimos todo el contenido</h3>
+        <p>Guiones, voces en off, edición de video, diseño de imágenes y copy. Listo para publicar.</p>
+      </div>
     </div>
-    <div class="step">
+    <div class="step-row">
       <div class="step-num">03</div>
-      <h3>Vos solo subís</h3>
-      <p>Te mandamos los archivos listos. Vos los subís cuando quieras o lo hacemos nosotros.</p>
+      <div class="step-content">
+        <div class="step-tag">Cada mes</div>
+        <h3>Vos solo lo subís — o lo hacemos nosotros</h3>
+        <p>Te mandamos todo por WhatsApp. Si preferís, nos das acceso y nos encargamos de publicar también.</p>
+      </div>
     </div>
   </div>
-</section>
+</div>
 
 <!-- QUE INCLUYE -->
-<section id="que-incluye">
-  <h2>¿Qué incluye el pack?</h2>
-  <p class="section-sub">Todo lo que tu negocio necesita para crecer en redes.</p>
-  <div class="includes">
-    <div class="includes-grid">
-      <div class="include-item">
-        <span class="check">✦</span>
-        <div>
-          <strong>8 Reels por mes</strong>
-          <span>Guion, voz en off, subtítulos y edición incluidos</span>
-        </div>
-      </div>
-      <div class="include-item">
-        <span class="check">✦</span>
-        <div>
-          <strong>8 posts con copy</strong>
-          <span>Imágenes de marca con texto optimizado para tu rubro</span>
-        </div>
-      </div>
-      <div class="include-item">
-        <span class="check">✦</span>
-        <div>
-          <strong>Campaña Meta Ads</strong>
-          <span>Configuración de una campaña mensual para traer clientes</span>
-        </div>
-      </div>
-      <div class="include-item">
-        <span class="check">✦</span>
-        <div>
-          <strong>Copy para Stories</strong>
-          <span>Textos y CTAs para tus historias de Instagram</span>
-        </div>
-      </div>
-      <div class="include-item">
-        <span class="check">✦</span>
-        <div>
-          <strong>Reporte mensual</strong>
-          <span>Qué funcionó, qué no, qué ajustamos el mes siguiente</span>
-        </div>
-      </div>
-      <div class="include-item">
-        <span class="check">✦</span>
-        <div>
-          <strong>Soporte por WhatsApp</strong>
-          <span>Consultas y cambios durante el mes</span>
-        </div>
-      </div>
+<div class="section" id="que-incluye">
+  <div class="section-label">El pack incluye</div>
+  <h2>Todo lo que tu negocio<br>necesita cada mes.</h2>
+  <div class="includes-grid">
+    <div class="include-item">
+      <span class="include-icon">🎬</span>
+      <strong>8 Reels por mes</strong>
+      <span>Guion, voz en off, subtítulos y edición. Solo tenés que subirlos.</span>
+    </div>
+    <div class="include-item">
+      <span class="include-icon">🖼</span>
+      <strong>8 posts con copy</strong>
+      <span>Imágenes de marca con texto pensado para tu rubro y tu audiencia.</span>
+    </div>
+    <div class="include-item">
+      <span class="include-icon">📣</span>
+      <strong>Campaña Meta Ads</strong>
+      <span>Configuración mensual de publicidad en Facebook e Instagram para traer clientes nuevos.</span>
+    </div>
+    <div class="include-item">
+      <span class="include-icon">📲</span>
+      <strong>Copy para Stories</strong>
+      <span>Textos y llamadas a la acción para tus historias de Instagram.</span>
+    </div>
+    <div class="include-item">
+      <span class="include-icon">📊</span>
+      <strong>Reporte mensual</strong>
+      <span>Qué funcionó, qué no, y qué ajustamos el mes siguiente.</span>
+    </div>
+    <div class="include-item">
+      <span class="include-icon">💬</span>
+      <strong>Soporte por WhatsApp</strong>
+      <span>Consultas y ajustes durante el mes. Respuesta en el día.</span>
     </div>
   </div>
-</section>
+</div>
 
 <!-- PRICING -->
-<section>
-  <h2>Un precio, todo incluido</h2>
-  <p class="section-sub">Sin sorpresas, sin extras ocultos.</p>
-  <div class="pricing-card">
-    <div class="price">$400.000</div>
-    <div class="price-detail">pesos argentinos · por mes</div>
-    <ul class="pricing-list">
-      <li>8 Reels producidos y editados</li>
-      <li>8 posts con copy incluido</li>
-      <li>1 campaña de Meta Ads</li>
-      <li>Stories y CTAs</li>
-      <li>Reporte mensual</li>
-      <li>Soporte WhatsApp</li>
-      <li>Sin contrato de permanencia</li>
-    </ul>
-    <a href="https://wa.me/541133613235?text=Hola%2C%20me%20interesa%20el%20Pack%20Digital%20para%20mi%20negocio" class="btn-primary" target="_blank" style="display:block;width:100%;text-align:center;">
-      Quiero empezar → WhatsApp
-    </a>
+<div class="section">
+  <div class="section-label">Precio</div>
+  <div class="pricing-wrap">
+    <div class="pricing-left">
+      <h2>Un precio.<br>Todo adentro.</h2>
+      <p>Sin extras ocultos, sin sorpresas a fin de mes. Lo que ves es lo que pagás.</p>
+      <p style="color:var(--muted);font-size:.9rem;">Cupos limitados por zona y rubro — trabajamos con un solo negocio de cada tipo en cada ciudad para que tu contenido sea exclusivo.</p>
+    </div>
+    <div class="pricing-card">
+      <div class="no-contract">
+        <span class="available-dot"></span>
+        Sin contrato de permanencia
+      </div>
+      <div class="price-display">
+        <span class="price-big">$400.000</span>
+      </div>
+      <div class="price-sub">pesos argentinos · por mes</div>
+      <ul class="pricing-list">
+        <li>8 Reels producidos y editados</li>
+        <li>8 posts con copy incluido</li>
+        <li>1 campaña de Meta Ads</li>
+        <li>Stories y CTAs mensuales</li>
+        <li>Reporte de resultados</li>
+        <li>Soporte por WhatsApp</li>
+      </ul>
+      <a href="https://wa.me/541133613235?text=Hola%2C%20me%20interesa%20el%20Pack%20Digital%20para%20mi%20negocio" class="btn-primary" target="_blank" style="display:block;text-align:center;width:100%;">
+        Empezar → WhatsApp
+      </a>
+    </div>
   </div>
-</section>
+</div>
 
 <!-- FAQ -->
-<section>
-  <h2>Preguntas frecuentes</h2>
-  <p class="section-sub"></p>
+<div class="section">
+  <div class="section-label">Preguntas frecuentes</div>
+  <h2>Lo que siempre<br>nos preguntan.</h2>
   <div class="faq">
     <div class="faq-item">
-      <strong>¿Necesito saber de redes para usar esto?</strong>
-      <p>No. Te mandamos todo listo para copiar y pegar. Si querés, también lo publicamos nosotros.</p>
+      <div class="faq-q">¿Necesito saber de redes para usar esto?</div>
+      <div class="faq-a">No. Te mandamos todo listo para copiar y pegar. Si querés, también lo publicamos nosotros directamente.</div>
     </div>
     <div class="faq-item">
-      <strong>¿Cuánto tiempo me lleva a mí?</strong>
-      <p>El formulario inicial son 5 minutos. Después solo revisás el contenido y le das OK. Estimamos 20 minutos por mes de tu tiempo.</p>
+      <div class="faq-q">¿Cuánto tiempo me lleva a mí?</div>
+      <div class="faq-a">El formulario inicial son 5 minutos. Después solo revisás el contenido del mes y le das OK. No más de 20 minutos por mes.</div>
     </div>
     <div class="faq-item">
-      <strong>¿Qué pasa si no me gusta el contenido?</strong>
-      <p>Antes de publicar cualquier pieza, te la mostramos. Si algo no cierra, lo ajustamos. El objetivo es que sientas que es tuyo.</p>
+      <div class="faq-q">¿Qué pasa si no me gusta algo?</div>
+      <div class="faq-a">Antes de publicar cualquier pieza, te la mostramos. Si algo no cierra, lo ajustamos. El objetivo es que sientas que es tuyo.</div>
     </div>
     <div class="faq-item">
-      <strong>¿Hay contrato de permanencia?</strong>
-      <p>No. Podés cancelar cuando quieras. Creemos que si el servicio funciona, vas a querer seguir.</p>
+      <div class="faq-q">¿Hay contrato de permanencia?</div>
+      <div class="faq-a">No. Podés cancelar cuando quieras. Creemos que si el servicio funciona, vas a querer seguir — no hace falta atarte.</div>
     </div>
     <div class="faq-item">
-      <strong>¿Trabajan con cualquier tipo de negocio?</strong>
-      <p>Principalmente negocios locales: estudios jurídicos, clínicas, odontólogos, inmobiliarias, restaurantes, gimnasios, y más. Si tenés dudas, consultanos.</p>
+      <div class="faq-q">¿Trabajan con cualquier negocio?</div>
+      <div class="faq-a">Principalmente negocios locales: estudios jurídicos, clínicas, odontólogos, inmobiliarias, restaurantes, gimnasios, estudios contables. Un solo negocio por rubro por ciudad.</div>
     </div>
   </div>
-</section>
+</div>
 
 <!-- CTA FINAL -->
 <div class="cta-final">
-  <h2>Empezá este mes</h2>
-  <p>Cupos limitados por zona. Escribinos y te contamos si tenemos disponibilidad para tu negocio.</p>
-  <a href="https://wa.me/541133613235?text=Hola%2C%20quiero%20el%20Pack%20Digital%20para%20mi%20negocio" class="btn-primary" target="_blank">
-    Hablar por WhatsApp →
-  </a>
+  <div>
+    <h2>¿Tu negocio<br>tiene lugar?</h2>
+    <p>Cupos limitados por zona. Escribinos y te contamos si hay disponibilidad para tu rubro.</p>
+  </div>
+  <div class="cta-final-right">
+    <div class="available-badge">
+      <span class="available-dot"></span>
+      Lugares disponibles
+    </div>
+    <br>
+    <a href="https://wa.me/541133613235?text=Hola%2C%20quiero%20el%20Pack%20Digital%20para%20mi%20negocio" class="btn-primary" target="_blank">
+      Hablar por WhatsApp →
+    </a>
+  </div>
 </div>
 
 <footer>
-  <p>Pack Digital · Buenos Aires, Argentina · <a href="mailto:hola@packdigital.ar" style="color:var(--muted)">hola@packdigital.ar</a></p>
+  <span>Pack Digital · Buenos Aires, Argentina</span>
+  <a href="mailto:hola@packdigital.ar">hola@packdigital.ar</a>
 </footer>
 
-<!-- WhatsApp float -->
 <a href="https://wa.me/541133613235?text=Hola%2C%20quiero%20saber%20m%C3%A1s%20sobre%20el%20Pack%20Digital" class="wa-float" target="_blank" title="Hablar por WhatsApp">💬</a>
 
 </body>
