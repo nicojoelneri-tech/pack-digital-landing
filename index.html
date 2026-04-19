@@ -3,8 +3,8 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Pack Digital — Contenido para tu negocio</title>
-  <meta name="description" content="Reels, posts y publicidad en Meta para tu negocio. Todo hecho, todo listo. $400.000/mes." />
+  <title>Pack Digital — Presencia digital para tu negocio</title>
+  <meta name="description" content="Contenido mensual o página web institucional para tu negocio local. Sin complicaciones." />
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;700&family=Syne:wght@700;800&display=swap" rel="stylesheet" />
   <style>
@@ -14,7 +14,7 @@
       --bg: #0c0c0c;
       --surface: #141414;
       --border: #222;
-      --accent: #e8ff47;       /* amarillo limón */
+      --accent: #e8ff47;
       --accent-dim: rgba(232,255,71,.12);
       --text: #f0f0f0;
       --muted: #666;
@@ -30,7 +30,6 @@
       -webkit-font-smoothing: antialiased;
     }
 
-    /* Red en los márgenes laterales — visible solo fuera del contenido centrado */
     body::before {
       content: '';
       position: fixed;
@@ -41,7 +40,6 @@
         linear-gradient(rgba(232,255,71,.07) 1px, transparent 1px),
         linear-gradient(90deg, rgba(232,255,71,.07) 1px, transparent 1px);
       background-size: 44px 44px;
-      /* Mask: transparente en el centro (1100px), visible solo en los márgenes */
       -webkit-mask-image: linear-gradient(to right,
         black 0%,
         black calc(50% - 590px),
@@ -144,21 +142,7 @@
     .hero-desc {
       color: var(--muted);
       font-size: 1.05rem;
-      max-width: 460px;
-    }
-    .hero-price-block { text-align: right; }
-    .hero-price-big {
-      font-family: 'Syne', sans-serif;
-      font-size: clamp(2.4rem, 5vw, 3.8rem);
-      font-weight: 800;
-      color: var(--text);
-      letter-spacing: -.04em;
-      line-height: 1;
-    }
-    .hero-price-sub {
-      color: var(--muted);
-      font-size: .85rem;
-      margin-top: .3rem;
+      max-width: 500px;
     }
     .cta-group {
       display: flex;
@@ -245,6 +229,90 @@
       transition: filter .3s;
     }
     .hero-img-side .img-card:hover img { filter: brightness(.85); }
+
+    /* ── SERVICE SELECTOR ── */
+    .service-selector {
+      max-width: 1100px;
+      margin: 0 auto;
+      padding: 0 2.5rem 4rem;
+    }
+    .selector-label {
+      color: var(--muted);
+      font-size: .75rem;
+      font-weight: 700;
+      letter-spacing: .12em;
+      text-transform: uppercase;
+      margin-bottom: 1.25rem;
+    }
+    .selector-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 1rem;
+    }
+    .selector-card {
+      background: var(--surface);
+      border: 2px solid var(--border);
+      border-radius: 16px;
+      padding: 2rem;
+      cursor: pointer;
+      transition: border-color .2s, background .2s;
+      user-select: none;
+      position: relative;
+    }
+    .selector-card:hover { border-color: #444; }
+    .selector-card.active {
+      border-color: var(--accent);
+      background: rgba(232,255,71,.04);
+    }
+    .selector-card.active .selector-check {
+      opacity: 1;
+      background: var(--accent);
+      color: #0c0c0c;
+    }
+    .selector-check {
+      position: absolute;
+      top: 1.25rem; right: 1.25rem;
+      width: 24px; height: 24px;
+      border-radius: 50%;
+      border: 2px solid var(--border);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: .75rem;
+      font-weight: 900;
+      opacity: .3;
+      transition: opacity .2s, background .2s;
+    }
+    .selector-icon {
+      font-size: 1.8rem;
+      margin-bottom: 1rem;
+      display: block;
+    }
+    .selector-card h3 {
+      font-family: 'Syne', sans-serif;
+      font-weight: 800;
+      font-size: 1.25rem;
+      color: var(--text);
+      letter-spacing: -.02em;
+      margin-bottom: .4rem;
+    }
+    .selector-card p {
+      color: var(--muted);
+      font-size: .9rem;
+      margin-bottom: 1.25rem;
+    }
+    .selector-price {
+      font-family: 'Syne', sans-serif;
+      font-weight: 800;
+      font-size: 1.5rem;
+      color: var(--accent);
+      letter-spacing: -.03em;
+    }
+    .selector-price-note {
+      color: var(--muted);
+      font-size: .78rem;
+      margin-left: .3rem;
+    }
 
     /* ── TICKER ── */
     .ticker {
@@ -504,6 +572,8 @@
       grid-template-columns: 1fr auto;
       gap: 3rem;
       align-items: center;
+      position: relative;
+      overflow: hidden;
     }
     .cta-final h2 { font-size: clamp(2rem, 5vw, 3.5rem); margin-bottom: .5rem; }
     .cta-final p { color: var(--muted); max-width: 480px; }
@@ -528,12 +598,6 @@
     @keyframes pulse {
       0%, 100% { opacity: 1; }
       50% { opacity: .3; }
-    }
-
-    /* ── CTA BG IMAGE ── */
-    .cta-final {
-      position: relative;
-      overflow: hidden;
     }
     .cta-bg-img {
       position: absolute;
@@ -579,12 +643,13 @@
     }
     .wa-float:hover { transform: scale(1.1); }
 
+    /* ── SERVICE SECTIONS TOGGLE ── */
+    [data-service] { transition: opacity .2s; }
+    [data-service].hidden { display: none; }
+
     /* ── RESPONSIVE ── */
     @media (max-width: 768px) {
-      /* Nav */
       nav { padding: 1rem 1.25rem; }
-
-      /* Hero */
       .hero { padding: 3rem 1.25rem 2.5rem; }
       h1 { font-size: clamp(2.2rem, 10vw, 3rem); margin-bottom: 1.5rem; }
       .hero-bottom {
@@ -594,13 +659,10 @@
         margin-top: 2rem;
         gap: 1.5rem;
       }
-      .hero-price-block { text-align: left; }
-      .hero-price-big { font-size: 2.4rem; }
       .hero-desc { max-width: 100%; font-size: .95rem; }
       .cta-group { flex-direction: column; align-items: flex-start; gap: .75rem; }
       .btn-primary { width: 100%; text-align: center; padding: .9rem 1.5rem; }
 
-      /* Hero image strip — single column on mobile */
       .hero-img-strip {
         grid-template-columns: 1fr;
         padding: 0 1.25rem 2rem;
@@ -610,40 +672,27 @@
       .hero-img-side { flex-direction: row; }
       .hero-img-side .img-card { height: 120px; flex: 1; }
 
-      /* Sections */
+      .service-selector { padding: 0 1.25rem 3rem; }
+      .selector-grid { grid-template-columns: 1fr; gap: .75rem; }
+      .selector-card { padding: 1.5rem; }
+
       .section { padding: 3rem 1.25rem; }
       h2 { font-size: clamp(1.5rem, 7vw, 2rem); margin-bottom: 2rem; }
-
-      /* Steps */
       .step-row { grid-template-columns: 50px 1fr; gap: 1rem; padding: 1.5rem 0; }
       .step-num { font-size: 2rem; }
-
-      /* Includes grid */
       .includes-grid { grid-template-columns: 1fr; }
       .include-item { padding: 1.25rem; }
-
-      /* Pricing */
       .pricing-wrap { grid-template-columns: 1fr; gap: 2rem; }
       .pricing-card { padding: 1.75rem 1.25rem; }
       .price-big { font-size: 2.8rem; }
-
-      /* FAQ */
       .faq-item { grid-template-columns: 1fr; gap: .5rem; }
-
-      /* Context strip */
       .context-strip { padding: 0 1.25rem 3rem; }
       .context-img { height: 200px; }
       .context-img-text p { font-size: clamp(1.1rem, 5vw, 1.5rem); }
-
-      /* CTA final */
       .cta-final { grid-template-columns: 1fr; padding: 4rem 1.25rem; gap: 2rem; }
       .cta-final h2 { font-size: clamp(1.7rem, 7vw, 2.2rem); }
       .cta-final-right { text-align: left; }
-
-      /* Footer */
       footer { flex-direction: column; gap: .75rem; text-align: center; padding: 1.5rem 1.25rem; }
-
-      /* Hide side grid pattern on mobile (full-width viewport = no margins) */
       body::before { display: none; }
     }
   </style>
@@ -652,27 +701,28 @@
 
 <nav>
   <div class="logo">Pack<span>.</span>Digital</div>
-  <a href="https://wa.me/541133613235?text=Hola%2C%20quiero%20saber%20m%C3%A1s%20sobre%20el%20Pack%20Digital" class="nav-cta" target="_blank">Hablar →</a>
+  <a href="https://wa.me/541133613235?text=Hola%2C%20quiero%20saber%20m%C3%A1s%20sobre%20los%20servicios" class="nav-cta" target="_blank">Hablar →</a>
 </nav>
 
 <!-- HERO -->
 <div class="hero">
-  <div class="hero-label">Contenido para negocios locales</div>
+  <div class="hero-label">Presencia digital para negocios locales</div>
   <h1>
-    Contenido hecho<br>
-    <span class="highlight">a medida de<br>tu negocio.</span>
+    Tu negocio donde
+    <span class="highlight">tus clientes<br>te buscan.</span>
   </h1>
   <div class="hero-bottom">
     <div>
-      <p class="hero-desc">Reels, posts y stories producidos para vos. Entregamos el material listo — vos lo publicás cuando querés, sin depender de nadie.</p>
+      <p class="hero-desc">Contenido mensual para tus redes o página web institucional lista para usar. Elegís lo que necesita tu negocio ahora.</p>
       <div class="cta-group">
-        <a href="https://wa.me/541133613235?text=Hola%2C%20me%20interesa%20el%20Pack%20Digital%20para%20mi%20negocio" class="btn-primary" target="_blank">Quiero empezar este mes</a>
-        <a href="#que-incluye" class="btn-ghost">Ver qué incluye ↓</a>
+        <a href="#elegir" class="btn-primary">Ver servicios ↓</a>
+        <a href="https://wa.me/541133613235?text=Hola%2C%20tengo%20una%20consulta%20sobre%20los%20servicios" class="btn-ghost" target="_blank">Consultar por WhatsApp →</a>
       </div>
     </div>
-    <div class="hero-price-block">
-      <div class="hero-price-big">$400.000</div>
-      <div class="hero-price-sub">por mes · sin contrato</div>
+    <div>
+      <div style="font-family:'Syne',sans-serif;font-size:.75rem;font-weight:700;letter-spacing:.1em;text-transform:uppercase;color:var(--muted);margin-bottom:.75rem;">Desde</div>
+      <div style="font-family:'Syne',sans-serif;font-size:clamp(2.4rem,5vw,3.8rem);font-weight:800;color:var(--text);letter-spacing:-.04em;line-height:1;">$250.000</div>
+      <div style="color:var(--muted);font-size:.85rem;margin-top:.3rem;">pago único · sin contrato</div>
     </div>
   </div>
 </div>
@@ -691,7 +741,34 @@
       <img src="https://images.unsplash.com/photo-1563986768609-322da13575f3?auto=format&fit=crop&w=400&q=80" alt="Producción de contenido" loading="lazy" />
     </div>
     <div class="img-card">
-      <img src="https://images.unsplash.com/photo-1611162616305-c69b3fa7fbe0?auto=format&fit=crop&w=400&q=80" alt="Instagram" loading="lazy" />
+      <img src="https://images.unsplash.com/photo-1611162616305-c69b3fa7fbe0?auto=format&fit=crop&w=400&q=80" alt="Redes sociales" loading="lazy" />
+    </div>
+  </div>
+</div>
+
+<!-- SERVICE SELECTOR -->
+<div class="service-selector" id="elegir">
+  <div class="selector-label">¿Qué necesita tu negocio?</div>
+  <div class="selector-grid">
+    <div class="selector-card active" data-pick="contenido" onclick="selectService('contenido')">
+      <div class="selector-check">✓</div>
+      <span class="selector-icon">🎬</span>
+      <h3>Pack de Contenido</h3>
+      <p>Reels, posts y stories producidos cada mes. Vos los publicás cuando querés.</p>
+      <div>
+        <span class="selector-price">$400.000</span>
+        <span class="selector-price-note">/ mes</span>
+      </div>
+    </div>
+    <div class="selector-card" data-pick="web" onclick="selectService('web')">
+      <div class="selector-check">✓</div>
+      <span class="selector-icon">🌐</span>
+      <h3>Página Web</h3>
+      <p>Sitio institucional listo para usar: contacto, ubicación, reseñas y redes. Sin complicaciones.</p>
+      <div>
+        <span class="selector-price">$250.000</span>
+        <span class="selector-price-note">pago único</span>
+      </div>
     </div>
   </div>
 </div>
@@ -703,152 +780,311 @@
   </div>
 </div>
 
-<!-- COMO FUNCIONA -->
-<div class="section">
-  <div class="section-label">Cómo funciona</div>
-  <h2>Tres pasos.<br>Sin reuniones eternas.</h2>
-  <div class="steps">
-    <div class="step-row">
-      <div class="step-num">01</div>
-      <div class="step-content">
-        <div class="step-tag">Una sola vez</div>
-        <h3>Nos contás de tu negocio</h3>
-        <p>Un formulario simple: qué vendés, a quién le hablás, qué tono querés. Cinco minutos.</p>
+<!-- ════════════════════════════════════════
+     SERVICIO: PACK DE CONTENIDO
+     ════════════════════════════════════════ -->
+
+<div data-service="contenido">
+
+  <!-- COMO FUNCIONA -->
+  <div class="section">
+    <div class="section-label">Cómo funciona</div>
+    <h2>Tres pasos.<br>Sin reuniones eternas.</h2>
+    <div class="steps">
+      <div class="step-row">
+        <div class="step-num">01</div>
+        <div class="step-content">
+          <div class="step-tag">Una sola vez</div>
+          <h3>Nos contás de tu negocio</h3>
+          <p>Un brief simple: qué vendés, a quién le hablás, qué tono querés. Diez minutos.</p>
+        </div>
       </div>
-    </div>
-    <div class="step-row">
-      <div class="step-num">02</div>
-      <div class="step-content">
-        <div class="step-tag">En 48 horas</div>
-        <h3>Producimos todo, pensado para vos</h3>
-        <p>Guiones, voces en off, edición de video, diseño de imágenes y copy. Todo adaptado al tono y la identidad de tu negocio.</p>
+      <div class="step-row">
+        <div class="step-num">02</div>
+        <div class="step-content">
+          <div class="step-tag">En 48 horas</div>
+          <h3>Producimos todo, pensado para vos</h3>
+          <p>Guiones, voces en off, edición de video, diseño de imágenes y copy. Todo adaptado al tono y la identidad de tu negocio.</p>
+        </div>
       </div>
-    </div>
-    <div class="step-row">
-      <div class="step-num">03</div>
-      <div class="step-content">
-        <div class="step-tag">Cada mes</div>
-        <h3>Recibís todo listo, lo subís cuando querés</h3>
-        <p>Te mandamos el pack completo por WhatsApp. Organizado, con instrucciones claras. Vos tenés el control total de tu perfil.</p>
+      <div class="step-row">
+        <div class="step-num">03</div>
+        <div class="step-content">
+          <div class="step-tag">Cada mes</div>
+          <h3>Recibís todo listo, lo subís cuando querés</h3>
+          <p>Te mandamos el pack completo por WhatsApp. Organizado, con instrucciones claras. Vos tenés el control total de tu perfil.</p>
+        </div>
       </div>
     </div>
   </div>
-</div>
 
-<!-- QUE INCLUYE -->
-<div class="section" id="que-incluye">
-  <div class="section-label">El pack incluye</div>
-  <h2>Todo lo que tu negocio<br>necesita cada mes.</h2>
-  <div class="includes-grid">
-    <div class="include-item">
-      <span class="include-icon">🎬</span>
-      <strong>8 Reels por mes</strong>
-      <span>Guion, voz en off, subtítulos y edición. Listos para subir desde tu teléfono.</span>
-    </div>
-    <div class="include-item">
-      <span class="include-icon">🖼</span>
-      <strong>8 posts con copy</strong>
-      <span>Diseño de imágenes y texto pensado para tu rubro, tu voz y tu audiencia.</span>
-    </div>
-    <div class="include-item">
-      <span class="include-icon">📲</span>
-      <strong>Stories del mes</strong>
-      <span>Copies, CTAs y textos para historias de Instagram. Todo escrito para sonar como vos.</span>
-    </div>
-    <div class="include-item">
-      <span class="include-icon">🎯</span>
-      <strong>Brief de tu negocio</strong>
-      <span>Antes de arrancar, entendemos tu rubro, tu cliente ideal y tu tono. Todo el contenido sale de ahí.</span>
-    </div>
-    <div class="include-item">
-      <span class="include-icon">📊</span>
-      <strong>Reporte mensual</strong>
-      <span>Feedback sobre qué contenido generó más respuesta y qué ajustamos el siguiente mes.</span>
-    </div>
-    <div class="include-item">
-      <span class="include-icon">💬</span>
-      <strong>Soporte por WhatsApp</strong>
-      <span>Consultas y ajustes durante el mes. Respuesta en el día.</span>
-    </div>
-  </div>
-</div>
-
-<!-- PRICING -->
-<div class="section">
-  <div class="section-label">Precio</div>
-  <div class="pricing-wrap">
-    <div class="pricing-left">
-      <h2>Un precio.<br>Todo adentro.</h2>
-      <p>Sin extras ocultos, sin sorpresas a fin de mes. Lo que ves es lo que pagás.</p>
-      <p style="color:var(--muted);font-size:.9rem;">Cupos limitados por zona y rubro — trabajamos con un solo negocio de cada tipo en cada ciudad para que tu contenido sea exclusivo.</p>
-    </div>
-    <div class="pricing-card">
-      <div class="no-contract">
-        <span class="available-dot"></span>
-        Sin contrato de permanencia
+  <!-- QUE INCLUYE -->
+  <div class="section" id="que-incluye">
+    <div class="section-label">El pack incluye</div>
+    <h2>Todo lo que tu negocio<br>necesita cada mes.</h2>
+    <div class="includes-grid">
+      <div class="include-item">
+        <span class="include-icon">🎬</span>
+        <strong>8 Reels por mes</strong>
+        <span>Guion, voz en off, subtítulos y edición. Listos para subir desde tu teléfono.</span>
       </div>
-      <div class="price-display">
-        <span class="price-big">$400.000</span>
+      <div class="include-item">
+        <span class="include-icon">🖼</span>
+        <strong>8 posts con copy</strong>
+        <span>Diseño de imágenes y texto pensado para tu rubro, tu voz y tu audiencia.</span>
       </div>
-      <div class="price-sub">pesos argentinos · por mes</div>
-      <ul class="pricing-list">
-        <li>8 Reels producidos y editados</li>
-        <li>8 posts con copy incluido</li>
-        <li>Stories y CTAs del mes</li>
-        <li>Brief de marca + estrategia de contenido</li>
-        <li>Reporte mensual de resultados</li>
-        <li>Soporte por WhatsApp</li>
-      </ul>
-      <a href="https://wa.me/541133613235?text=Hola%2C%20me%20interesa%20el%20Pack%20Digital%20para%20mi%20negocio" class="btn-primary" target="_blank" style="display:block;text-align:center;width:100%;">
-        Empezar → WhatsApp
-      </a>
+      <div class="include-item">
+        <span class="include-icon">📲</span>
+        <strong>Stories del mes</strong>
+        <span>Copies, CTAs y textos para historias de Instagram. Todo escrito para sonar como vos.</span>
+      </div>
+      <div class="include-item">
+        <span class="include-icon">🎯</span>
+        <strong>Brief de tu negocio</strong>
+        <span>Antes de arrancar, entendemos tu rubro, tu cliente ideal y tu tono. Todo el contenido sale de ahí.</span>
+      </div>
+      <div class="include-item">
+        <span class="include-icon">📊</span>
+        <strong>Reporte mensual</strong>
+        <span>Feedback sobre qué contenido generó más respuesta y qué ajustamos el siguiente mes.</span>
+      </div>
+      <div class="include-item">
+        <span class="include-icon">💬</span>
+        <strong>Soporte por WhatsApp</strong>
+        <span>Consultas y ajustes durante el mes. Respuesta en el día.</span>
+      </div>
     </div>
   </div>
-</div>
 
-<!-- IMAGEN CONTEXTO -->
-<div class="context-strip">
-  <div class="context-img">
-    <img src="https://images.unsplash.com/photo-1522202176988-66273c2fd55f?auto=format&fit=crop&w=1200&q=80" alt="Equipo trabajando" loading="lazy" />
-    <div class="context-img-text">
-      <p>Vos te enfocás en tu negocio.<br><span>Nosotros nos encargamos del resto.</span></p>
+  <!-- PRICING CONTENIDO -->
+  <div class="section">
+    <div class="section-label">Precio</div>
+    <div class="pricing-wrap">
+      <div class="pricing-left">
+        <h2>Un precio.<br>Todo adentro.</h2>
+        <p>Sin extras ocultos, sin sorpresas a fin de mes. Lo que ves es lo que pagás.</p>
+        <p style="color:var(--muted);font-size:.9rem;">Cupos limitados por zona y rubro — trabajamos con un solo negocio de cada tipo en cada ciudad para que tu contenido sea exclusivo.</p>
+      </div>
+      <div class="pricing-card">
+        <div class="no-contract">
+          <span class="available-dot"></span>
+          Sin contrato de permanencia
+        </div>
+        <div class="price-display">
+          <span class="price-big">$400.000</span>
+        </div>
+        <div class="price-sub">pesos argentinos · por mes</div>
+        <ul class="pricing-list">
+          <li>8 Reels producidos y editados</li>
+          <li>8 posts con copy incluido</li>
+          <li>Stories y CTAs del mes</li>
+          <li>Brief de marca + estrategia de contenido</li>
+          <li>Reporte mensual de resultados</li>
+          <li>Soporte por WhatsApp</li>
+        </ul>
+        <a href="https://wa.me/541133613235?text=Hola%2C%20me%20interesa%20el%20Pack%20de%20Contenido" class="btn-primary" target="_blank" style="display:block;text-align:center;width:100%;">
+          Empezar → WhatsApp
+        </a>
+      </div>
     </div>
   </div>
-</div>
 
-<!-- FAQ -->
-<div class="section">
-  <div class="section-label">Preguntas frecuentes</div>
-  <h2>Lo que siempre<br>nos preguntan.</h2>
-  <div class="faq">
-    <div class="faq-item">
-      <div class="faq-q">¿Necesito saber de redes para usar esto?</div>
-      <div class="faq-a">No. Te mandamos todo listo para subir: video editado, imagen lista, texto copiable. Solo tocás "publicar" cuando quieras.</div>
-    </div>
-    <div class="faq-item">
-      <div class="faq-q">¿Ustedes publican el contenido?</div>
-      <div class="faq-a">No. Entregamos el material completo y vos lo subís. Preferimos que el control de tu perfil sea tuyo — así no dependés de nadie para nada.</div>
-    </div>
-    <div class="faq-item">
-      <div class="faq-q">¿Cuánto tiempo me lleva a mí?</div>
-      <div class="faq-a">El brief inicial son 10 minutos. Después revisás el contenido del mes y le das OK. No más de 20 minutos por mes de tu tiempo.</div>
-    </div>
-    <div class="faq-item">
-      <div class="faq-q">¿Qué pasa si no me gusta algo?</div>
-      <div class="faq-a">Antes de publicar cualquier pieza, te la mostramos. Si algo no cierra, lo ajustamos. El objetivo es que sientas que es tuyo.</div>
-    </div>
-    <div class="faq-item">
-      <div class="faq-q">¿Hay contrato de permanencia?</div>
-      <div class="faq-a">No. Podés cancelar cuando quieras. Creemos que si el servicio funciona, vas a querer seguir — no hace falta atarte.</div>
-    </div>
-    <div class="faq-item">
-      <div class="faq-q">¿Trabajan con cualquier negocio?</div>
-      <div class="faq-a">Principalmente negocios locales: estudios jurídicos, clínicas, odontólogos, inmobiliarias, restaurantes, gimnasios, estudios contables. Un solo negocio por rubro por ciudad.</div>
+  <!-- CONTEXT STRIP CONTENIDO -->
+  <div class="context-strip">
+    <div class="context-img">
+      <img src="https://images.unsplash.com/photo-1522202176988-66273c2fd55f?auto=format&fit=crop&w=1200&q=80" alt="Equipo trabajando" loading="lazy" />
+      <div class="context-img-text">
+        <p>Vos te enfocás en tu negocio.<br><span>Nosotros nos encargamos del resto.</span></p>
+      </div>
     </div>
   </div>
-</div>
 
-<!-- CTA FINAL -->
+  <!-- FAQ CONTENIDO -->
+  <div class="section">
+    <div class="section-label">Preguntas frecuentes</div>
+    <h2>Lo que siempre<br>nos preguntan.</h2>
+    <div class="faq">
+      <div class="faq-item">
+        <div class="faq-q">¿Necesito saber de redes para usar esto?</div>
+        <div class="faq-a">No. Te mandamos todo listo para subir: video editado, imagen lista, texto copiable. Solo tocás "publicar" cuando quieras.</div>
+      </div>
+      <div class="faq-item">
+        <div class="faq-q">¿Ustedes publican el contenido?</div>
+        <div class="faq-a">No. Entregamos el material completo y vos lo subís. Preferimos que el control de tu perfil sea tuyo — así no dependés de nadie para nada.</div>
+      </div>
+      <div class="faq-item">
+        <div class="faq-q">¿Cuánto tiempo me lleva a mí?</div>
+        <div class="faq-a">El brief inicial son 10 minutos. Después revisás el contenido del mes y le das OK. No más de 20 minutos por mes de tu tiempo.</div>
+      </div>
+      <div class="faq-item">
+        <div class="faq-q">¿Qué pasa si no me gusta algo?</div>
+        <div class="faq-a">Antes de publicar cualquier pieza, te la mostramos. Si algo no cierra, lo ajustamos. El objetivo es que sientas que es tuyo.</div>
+      </div>
+      <div class="faq-item">
+        <div class="faq-q">¿Hay contrato de permanencia?</div>
+        <div class="faq-a">No. Podés cancelar cuando quieras. Creemos que si el servicio funciona, vas a querer seguir — no hace falta atarte.</div>
+      </div>
+      <div class="faq-item">
+        <div class="faq-q">¿Trabajan con cualquier negocio?</div>
+        <div class="faq-a">Principalmente negocios locales: estudios jurídicos, clínicas, odontólogos, inmobiliarias, restaurantes, gimnasios, estudios contables. Un solo negocio por rubro por ciudad.</div>
+      </div>
+    </div>
+  </div>
+
+</div><!-- /data-service="contenido" -->
+
+
+<!-- ════════════════════════════════════════
+     SERVICIO: PÁGINA WEB
+     ════════════════════════════════════════ -->
+
+<div data-service="web" class="hidden">
+
+  <!-- COMO FUNCIONA -->
+  <div class="section">
+    <div class="section-label">Cómo funciona</div>
+    <h2>De cero a online<br>en una semana.</h2>
+    <div class="steps">
+      <div class="step-row">
+        <div class="step-num">01</div>
+        <div class="step-content">
+          <div class="step-tag">Día 1</div>
+          <h3>Nos contás de tu negocio</h3>
+          <p>Logo, fotos, descripción, datos de contacto. Si no tenés algo, te ayudamos a resolverlo. No necesitás saber nada de tecnología.</p>
+        </div>
+      </div>
+      <div class="step-row">
+        <div class="step-num">02</div>
+        <div class="step-content">
+          <div class="step-tag">En 5 días hábiles</div>
+          <h3>Construimos y te mostramos el sitio</h3>
+          <p>Diseñamos tu página, configuramos el formulario de contacto, integramos tus reseñas de Google y tus redes. Te mostramos todo antes de publicar.</p>
+        </div>
+      </div>
+      <div class="step-row">
+        <div class="step-num">03</div>
+        <div class="step-content">
+          <div class="step-tag">Día 7</div>
+          <h3>Tu sitio está online</h3>
+          <p>Publicamos con tu dominio o te recomendamos uno. El sitio es tuyo — te entregamos los accesos y queda en tus manos.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- QUE INCLUYE WEB -->
+  <div class="section">
+    <div class="section-label">Qué incluye</div>
+    <h2>Todo lo que un negocio<br>local necesita online.</h2>
+    <div class="includes-grid">
+      <div class="include-item">
+        <span class="include-icon">🏠</span>
+        <strong>Sitio institucional completo</strong>
+        <span>Inicio, sobre el negocio, servicios y contacto. Diseño limpio, profesional y adaptado a tu identidad.</span>
+      </div>
+      <div class="include-item">
+        <span class="include-icon">📱</span>
+        <strong>100% adaptado a celular</strong>
+        <span>El sitio se ve perfecto en cualquier dispositivo. Hoy la mayoría de tus clientes te busca desde el teléfono.</span>
+      </div>
+      <div class="include-item">
+        <span class="include-icon">📍</span>
+        <strong>Mapa e integración con Google</strong>
+        <span>Ubicación con Google Maps integrada y reseñas de tu negocio visibles directamente en el sitio.</span>
+      </div>
+      <div class="include-item">
+        <span class="include-icon">📬</span>
+        <strong>Formulario de contacto</strong>
+        <span>Los mensajes del sitio llegan directo a tu WhatsApp o email. Sin perder ningún cliente.</span>
+      </div>
+      <div class="include-item">
+        <span class="include-icon">🔗</span>
+        <strong>Links a tus redes</strong>
+        <span>Instagram, Facebook, TikTok — lo que uses. Todo conectado para que el cliente pueda seguirte.</span>
+      </div>
+      <div class="include-item">
+        <span class="include-icon">⚡</span>
+        <strong>Rápido y sin complicaciones</strong>
+        <span>Sin login, sin tienda, sin base de datos que mantener. Un sitio que funciona y no da problemas.</span>
+      </div>
+    </div>
+  </div>
+
+  <!-- PRICING WEB -->
+  <div class="section">
+    <div class="section-label">Precio</div>
+    <div class="pricing-wrap">
+      <div class="pricing-left">
+        <h2>Pago único.<br>Sitio tuyo para siempre.</h2>
+        <p>Sin cuotas mensuales ni sorpresas. Pagás una vez y el sitio queda en tu poder con todos los accesos.</p>
+        <p style="color:var(--muted);font-size:.9rem;">¿Necesitás algo más complejo — tienda online, login, reservas? Consultanos por separado, lo cotizamos sin compromiso.</p>
+      </div>
+      <div class="pricing-card">
+        <div class="no-contract">
+          <span class="available-dot"></span>
+          Entrega en 7 días hábiles
+        </div>
+        <div class="price-display">
+          <span class="price-big">$250.000</span>
+        </div>
+        <div class="price-sub">pesos argentinos · pago único</div>
+        <ul class="pricing-list">
+          <li>Sitio institucional completo</li>
+          <li>Diseño mobile-first</li>
+          <li>Integración Google Maps + reseñas</li>
+          <li>Formulario de contacto a WhatsApp</li>
+          <li>Links a redes sociales</li>
+          <li>Accesos y código fuente entregados</li>
+        </ul>
+        <a href="https://wa.me/541133613235?text=Hola%2C%20me%20interesa%20la%20p%C3%A1gina%20web%20para%20mi%20negocio" class="btn-primary" target="_blank" style="display:block;text-align:center;width:100%;">
+          Consultar → WhatsApp
+        </a>
+      </div>
+    </div>
+  </div>
+
+  <!-- CONTEXT STRIP WEB -->
+  <div class="context-strip">
+    <div class="context-img">
+      <img src="https://images.unsplash.com/photo-1467232004584-a241de8bcf5d?auto=format&fit=crop&w=1200&q=80" alt="Diseño web" loading="lazy" />
+      <div class="context-img-text">
+        <p>Tu negocio online<br><span>en menos de una semana.</span></p>
+      </div>
+    </div>
+  </div>
+
+  <!-- FAQ WEB -->
+  <div class="section">
+    <div class="section-label">Preguntas frecuentes</div>
+    <h2>Lo que siempre<br>nos preguntan.</h2>
+    <div class="faq">
+      <div class="faq-item">
+        <div class="faq-q">¿Necesito tener dominio propio?</div>
+        <div class="faq-a">No es obligatorio. Si ya tenés uno, lo usamos. Si no, te recomendamos uno acorde a tu negocio — el costo del dominio es aparte y muy bajo.</div>
+      </div>
+      <div class="faq-item">
+        <div class="faq-q">¿El hosting está incluido?</div>
+        <div class="faq-a">El sitio se publica en una plataforma sin costo mensual. Si en el futuro necesitás hosting dedicado, te avisamos y lo coordinamos.</div>
+      </div>
+      <div class="faq-item">
+        <div class="faq-q">¿Puedo pedir cambios después?</div>
+        <div class="faq-a">Sí, dentro del proceso de entrega incluimos ajustes. Cambios posteriores se cotizan por separado según lo que necesites.</div>
+      </div>
+      <div class="faq-item">
+        <div class="faq-q">¿Qué necesito tener para arrancar?</div>
+        <div class="faq-a">Logo, fotos del negocio y tus datos de contacto. Si no tenés fotos, podemos usar imágenes de stock acordes a tu rubro.</div>
+      </div>
+      <div class="faq-item">
+        <div class="faq-q">¿Puedo agregar una tienda online después?</div>
+        <div class="faq-a">Sí, pero eso es un proyecto aparte. El pack web cubre el sitio institucional — si necesitás ecommerce, consultanos y lo cotizamos por separado.</div>
+      </div>
+    </div>
+  </div>
+
+</div><!-- /data-service="web" -->
+
+
+<!-- CTA FINAL (compartido) -->
 <div class="cta-final">
   <div class="cta-bg-img">
     <img src="https://images.unsplash.com/photo-1600880292203-757bb62b4baf?auto=format&fit=crop&w=1400&q=80" alt="" loading="lazy" />
@@ -863,7 +1099,7 @@
       Lugares disponibles
     </div>
     <br>
-    <a href="https://wa.me/541133613235?text=Hola%2C%20quiero%20el%20Pack%20Digital%20para%20mi%20negocio" class="btn-primary" target="_blank">
+    <a href="https://wa.me/541133613235?text=Hola%2C%20quiero%20consultar%20disponibilidad%20para%20mi%20negocio" class="btn-primary" target="_blank">
       Hablar por WhatsApp →
     </a>
   </div>
@@ -874,7 +1110,27 @@
   <a href="mailto:hola@packdigital.ar">hola@packdigital.ar</a>
 </footer>
 
-<a href="https://wa.me/541133613235?text=Hola%2C%20quiero%20saber%20m%C3%A1s%20sobre%20el%20Pack%20Digital" class="wa-float" target="_blank" title="Hablar por WhatsApp">💬</a>
+<a href="https://wa.me/541133613235?text=Hola%2C%20quiero%20saber%20m%C3%A1s%20sobre%20los%20servicios" class="wa-float" target="_blank" title="Hablar por WhatsApp">💬</a>
+
+<script>
+  function selectService(service) {
+    // Update selector cards
+    document.querySelectorAll('.selector-card').forEach(function(card) {
+      card.classList.toggle('active', card.dataset.pick === service);
+    });
+    // Show/hide service sections
+    document.querySelectorAll('[data-service]').forEach(function(el) {
+      el.classList.toggle('hidden', el.dataset.service !== service);
+    });
+    // Scroll to first section of selected service
+    var firstSection = document.querySelector('[data-service="' + service + '"] .section');
+    if (firstSection) {
+      setTimeout(function() {
+        firstSection.scrollIntoView({ behavior: 'smooth', block: 'start' });
+      }, 50);
+    }
+  }
+</script>
 
 </body>
 </html>
