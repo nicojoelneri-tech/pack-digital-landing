@@ -67,8 +67,7 @@
       position: sticky;
       top: 0;
       z-index: 50;
-      background: rgba(12,12,12,.9);
-      backdrop-filter: blur(12px);
+      background: var(--bg);
       border-bottom: 1px solid var(--border);
     }
     .logo-img {
@@ -618,9 +617,29 @@
       align-items: center;
       color: var(--muted);
       font-size: .82rem;
+      gap: 1.5rem;
+      flex-wrap: wrap;
     }
     footer a { color: var(--muted); text-decoration: none; }
     footer a:hover { color: var(--text); }
+    .footer-social {
+      display: flex;
+      align-items: center;
+      gap: 1.25rem;
+    }
+    .footer-social a {
+      display: flex;
+      align-items: center;
+      gap: .4rem;
+      font-size: .82rem;
+      transition: color .15s;
+    }
+    .footer-social svg { flex-shrink: 0; }
+    .footer-links {
+      display: flex;
+      align-items: center;
+      gap: 1.5rem;
+    }
 
     /* ── WA FLOAT ── */
     .wa-float {
@@ -732,7 +751,9 @@
       .cta-final { grid-template-columns: 1fr; padding: 4rem 1.25rem; gap: 2rem; }
       .cta-final h2 { font-size: clamp(1.7rem, 7vw, 2.2rem); }
       .cta-final-right { text-align: left; }
-      footer { flex-direction: column; gap: .75rem; text-align: center; padding: 1.5rem 1.25rem; }
+      footer { flex-direction: column; gap: 1rem; text-align: center; padding: 1.5rem 1.25rem; }
+      .footer-social { justify-content: center; }
+      .footer-links { justify-content: center; }
       body::before { display: none; }
     }
   </style>
@@ -1158,8 +1179,25 @@
 
 <footer>
   <span>[mitch] · Buenos Aires, Argentina</span>
-  <a href="mailto:hola@packdigital.ar">hola@packdigital.ar</a>
+  <div class="footer-social">
+    <a href="https://www.instagram.com/od.mitch/" target="_blank" rel="noopener">
+      <svg width="15" height="15" viewBox="0 0 24 24" fill="currentColor"><path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zm0-2.163c-3.259 0-3.667.014-4.947.072-4.358.2-6.78 2.618-6.98 6.98-.059 1.281-.073 1.689-.073 4.948 0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98-1.281-.059-1.69-.073-4.949-.073zm0 5.838c-3.403 0-6.162 2.759-6.162 6.162s2.759 6.163 6.162 6.163 6.162-2.759 6.162-6.163c0-3.403-2.759-6.162-6.162-6.162zm0 10.162c-2.209 0-4-1.79-4-4 0-2.209 1.791-4 4-4s4 1.791 4 4c0 2.21-1.791 4-4 4zm6.406-11.845c-.796 0-1.441.645-1.441 1.44s.645 1.44 1.441 1.44c.795 0 1.439-.645 1.439-1.44s-.644-1.44-1.439-1.44z"/></svg>
+      Instagram
+    </a>
+    <a href="https://www.tiktok.com/@od.mitch" target="_blank" rel="noopener">
+      <svg width="15" height="15" viewBox="0 0 24 24" fill="currentColor"><path d="M19.59 6.69a4.83 4.83 0 01-3.77-4.25V2h-3.45v13.67a2.89 2.89 0 01-2.88 2.5 2.89 2.89 0 01-2.89-2.89 2.89 2.89 0 012.89-2.89c.28 0 .54.04.79.1V9.01a6.27 6.27 0 00-.79-.05 6.34 6.34 0 00-6.34 6.34 6.34 6.34 0 006.34 6.34 6.34 6.34 0 006.33-6.34V8.69a8.2 8.2 0 004.79 1.53V6.77a4.85 4.85 0 01-1.02-.08z"/></svg>
+      TikTok
+    </a>
+  </div>
+  <div class="footer-links">
+    <a href="mailto:hola@packdigital.ar">hola@packdigital.ar</a>
+    <a href="#legales">Legales</a>
+  </div>
 </footer>
+
+<div id="legales" style="max-width:1100px;margin:0 auto;padding:2rem 2.5rem;color:#444;font-size:.75rem;line-height:1.7;border-top:1px solid #1a1a1a;">
+  Los servicios ofrecidos en este sitio son prestados por [mitch], operador digital independiente, Buenos Aires, Argentina. Los precios están expresados en pesos argentinos (ARS) y pueden actualizarse sin previo aviso. La contratación no implica exclusividad de contenido más allá de lo acordado por rubro y zona geográfica. Para consultas: <a href="mailto:hola@packdigital.ar" style="color:#444;">hola@packdigital.ar</a>
+</div>
 
 <a href="https://wa.me/541133613235?text=Hola%2C%20quiero%20saber%20m%C3%A1s%20sobre%20los%20servicios" class="wa-float" target="_blank" title="Hablar por WhatsApp">💬</a>
 
