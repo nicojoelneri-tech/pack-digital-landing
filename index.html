@@ -161,6 +161,58 @@
     }
     .btn-ghost:hover { color: var(--text); }
 
+    /* ── HERO IMAGE ── */
+    .hero-img-strip {
+      max-width: 1100px;
+      margin: 0 auto 0;
+      padding: 0 2.5rem 3rem;
+      display: grid;
+      grid-template-columns: 2fr 1fr;
+      gap: 1rem;
+      height: 340px;
+    }
+    .hero-img-main {
+      border-radius: 14px;
+      overflow: hidden;
+      position: relative;
+    }
+    .hero-img-main img {
+      width: 100%; height: 100%;
+      object-fit: cover;
+      filter: brightness(.75);
+    }
+    .hero-img-main .img-overlay {
+      position: absolute;
+      bottom: 0; left: 0; right: 0;
+      padding: 1.5rem;
+      background: linear-gradient(to top, rgba(0,0,0,.8) 0%, transparent 100%);
+    }
+    .img-stat {
+      font-family: 'Syne', sans-serif;
+      font-size: 2.2rem;
+      font-weight: 800;
+      color: var(--accent);
+      line-height: 1;
+    }
+    .img-stat-label { color: rgba(255,255,255,.6); font-size: .8rem; margin-top: .2rem; }
+    .hero-img-side {
+      display: flex;
+      flex-direction: column;
+      gap: 1rem;
+    }
+    .hero-img-side .img-card {
+      flex: 1;
+      border-radius: 14px;
+      overflow: hidden;
+    }
+    .hero-img-side .img-card img {
+      width: 100%; height: 100%;
+      object-fit: cover;
+      filter: brightness(.7);
+      transition: filter .3s;
+    }
+    .hero-img-side .img-card:hover img { filter: brightness(.85); }
+
     /* ── TICKER ── */
     .ticker {
       border-top: 1px solid var(--border);
@@ -372,6 +424,42 @@
     }
     .faq-a { color: var(--muted); font-size: .92rem; }
 
+    /* ── IMAGEN CONTEXTO ── */
+    .context-strip {
+      max-width: 1100px;
+      margin: 0 auto;
+      padding: 0 2.5rem 4rem;
+    }
+    .context-img {
+      width: 100%;
+      height: 280px;
+      border-radius: 14px;
+      overflow: hidden;
+      position: relative;
+    }
+    .context-img img {
+      width: 100%; height: 100%;
+      object-fit: cover;
+      filter: brightness(.6);
+    }
+    .context-img-text {
+      position: absolute;
+      top: 50%; left: 50%;
+      transform: translate(-50%, -50%);
+      text-align: center;
+      width: 100%;
+      padding: 0 2rem;
+    }
+    .context-img-text p {
+      font-family: 'Syne', sans-serif;
+      font-size: clamp(1.4rem, 3vw, 2.2rem);
+      font-weight: 800;
+      color: #fff;
+      letter-spacing: -.02em;
+      line-height: 1.2;
+    }
+    .context-img-text p span { color: var(--accent); }
+
     /* ── CTA FINAL ── */
     .cta-final {
       border-top: 1px solid var(--border);
@@ -407,6 +495,23 @@
       0%, 100% { opacity: 1; }
       50% { opacity: .3; }
     }
+
+    /* ── CTA BG IMAGE ── */
+    .cta-final {
+      position: relative;
+      overflow: hidden;
+    }
+    .cta-bg-img {
+      position: absolute;
+      inset: 0;
+      z-index: 0;
+    }
+    .cta-bg-img img {
+      width: 100%; height: 100%;
+      object-fit: cover;
+      filter: brightness(.2) saturate(.3);
+    }
+    .cta-final > *:not(.cta-bg-img) { position: relative; z-index: 1; }
 
     /* ── FOOTER ── */
     footer {
@@ -478,6 +583,25 @@
     <div class="hero-price-block">
       <div class="hero-price-big">$400.000</div>
       <div class="hero-price-sub">por mes · sin contrato</div>
+    </div>
+  </div>
+</div>
+
+<!-- HERO IMAGE STRIP -->
+<div class="hero-img-strip">
+  <div class="hero-img-main">
+    <img src="https://images.unsplash.com/photo-1556742049-0cfed4f6a45d?auto=format&fit=crop&w=900&q=80" alt="Negocio local" loading="lazy" />
+    <div class="img-overlay">
+      <div class="img-stat">+2.000</div>
+      <div class="img-stat-label">negocios locales en Argentina sin presencia digital activa</div>
+    </div>
+  </div>
+  <div class="hero-img-side">
+    <div class="img-card">
+      <img src="https://images.unsplash.com/photo-1563986768609-322da13575f3?auto=format&fit=crop&w=400&q=80" alt="Producción de contenido" loading="lazy" />
+    </div>
+    <div class="img-card">
+      <img src="https://images.unsplash.com/photo-1611162616305-c69b3fa7fbe0?auto=format&fit=crop&w=400&q=80" alt="Instagram" loading="lazy" />
     </div>
   </div>
 </div>
@@ -592,6 +716,16 @@
   </div>
 </div>
 
+<!-- IMAGEN CONTEXTO -->
+<div class="context-strip">
+  <div class="context-img">
+    <img src="https://images.unsplash.com/photo-1522202176988-66273c2fd55f?auto=format&fit=crop&w=1200&q=80" alt="Equipo trabajando" loading="lazy" />
+    <div class="context-img-text">
+      <p>Vos te enfocás en tu negocio.<br><span>Nosotros nos encargamos del resto.</span></p>
+    </div>
+  </div>
+</div>
+
 <!-- FAQ -->
 <div class="section">
   <div class="section-label">Preguntas frecuentes</div>
@@ -622,6 +756,9 @@
 
 <!-- CTA FINAL -->
 <div class="cta-final">
+  <div class="cta-bg-img">
+    <img src="https://images.unsplash.com/photo-1600880292203-757bb62b4baf?auto=format&fit=crop&w=1400&q=80" alt="" loading="lazy" />
+  </div>
   <div>
     <h2>¿Tu negocio<br>tiene lugar?</h2>
     <p>Cupos limitados por zona. Escribinos y te contamos si hay disponibilidad para tu rubro.</p>
