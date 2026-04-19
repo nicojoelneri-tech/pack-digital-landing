@@ -646,9 +646,8 @@
       padding: 0 2.5rem 3.5rem;
     }
     .clients-inner {
-      border: 1px solid var(--border);
-      border-radius: 12px;
-      padding: 1.75rem 2.5rem;
+      padding: 2rem 0;
+      border-top: 1px solid var(--border);
       display: flex;
       align-items: center;
       gap: 3rem;
@@ -781,17 +780,6 @@
     </div>
     <div class="img-card">
       <img src="https://images.unsplash.com/photo-1611162616305-c69b3fa7fbe0?auto=format&fit=crop&w=400&q=80" alt="Redes sociales" loading="lazy" />
-    </div>
-  </div>
-</div>
-
-<!-- CLIENTS -->
-<div class="clients-strip">
-  <div class="clients-inner">
-    <span class="clients-label">Ya trabajan con nosotros</span>
-    <div class="clients-logos">
-      <img src="img/caso_legal_logo.png" alt="Caso Legal" />
-      <img src="img/MIR_logo.png" alt="Mir Soluciones" />
     </div>
   </div>
 </div>
@@ -942,7 +930,7 @@
   <!-- CONTEXT STRIP CONTENIDO -->
   <div class="context-strip">
     <div class="context-img">
-      <img src="https://images.unsplash.com/photo-1522202176988-66273c2fd55f?auto=format&fit=crop&w=1200&q=80" alt="Equipo trabajando" loading="lazy" />
+      <img src="https://images.unsplash.com/photo-1497366216548-37526070297c?auto=format&fit=crop&w=1200&q=80" alt="Equipo trabajando" loading="lazy" />
       <div class="context-img-text">
         <p>Vos te enfocás en tu negocio.<br><span>Nosotros nos encargamos del resto.</span></p>
       </div>
@@ -1155,6 +1143,17 @@
   </div>
 </div>
 
+<!-- CLIENTS -->
+<div class="clients-strip">
+  <div class="clients-inner">
+    <span class="clients-label">Ya trabajan con nosotros</span>
+    <div class="clients-logos">
+      <img src="img/caso_legal_logo.png" alt="Caso Legal" />
+      <img src="img/MIR_logo.png" alt="Mir Soluciones" />
+    </div>
+  </div>
+</div>
+
 <footer>
   <span>[mitch] · Buenos Aires, Argentina</span>
   <a href="mailto:hola@packdigital.ar">hola@packdigital.ar</a>
@@ -1172,13 +1171,6 @@
     document.querySelectorAll('[data-service]').forEach(function(el) {
       el.classList.toggle('hidden', el.dataset.service !== service);
     });
-    // Scroll to first section of selected service
-    var firstSection = document.querySelector('[data-service="' + service + '"] .section');
-    if (firstSection) {
-      setTimeout(function() {
-        firstSection.scrollIntoView({ behavior: 'smooth', block: 'start' });
-      }, 50);
-    }
   }
 </script>
 
