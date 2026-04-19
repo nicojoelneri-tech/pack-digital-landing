@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Pack Digital — Presencia digital para tu negocio</title>
+  <title>mitch — Presencia digital para tu negocio</title>
   <meta name="description" content="Contenido mensual o página web institucional para tu negocio local. Sin complicaciones." />
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;700&family=Syne:wght@700;800&display=swap" rel="stylesheet" />
@@ -71,14 +71,12 @@
       backdrop-filter: blur(12px);
       border-bottom: 1px solid var(--border);
     }
-    .logo {
-      font-family: 'Syne', sans-serif;
-      font-weight: 800;
-      font-size: 1.2rem;
-      color: var(--text);
-      letter-spacing: -.02em;
+    .logo-img {
+      height: 26px;
+      display: block;
+      filter: invert(1);
+      opacity: .9;
     }
-    .logo span { color: var(--accent); }
     .nav-cta {
       background: var(--accent);
       color: #0c0c0c;
@@ -643,6 +641,46 @@
     }
     .wa-float:hover { transform: scale(1.1); }
 
+    /* ── CLIENTS STRIP ── */
+    .clients-strip {
+      max-width: 1100px;
+      margin: 0 auto;
+      padding: 0 2.5rem 3.5rem;
+    }
+    .clients-inner {
+      border: 1px solid var(--border);
+      border-radius: 12px;
+      padding: 1.75rem 2.5rem;
+      display: flex;
+      align-items: center;
+      gap: 3rem;
+      flex-wrap: wrap;
+    }
+    .clients-label {
+      color: var(--muted);
+      font-size: .72rem;
+      font-weight: 700;
+      letter-spacing: .12em;
+      text-transform: uppercase;
+      white-space: nowrap;
+      flex-shrink: 0;
+    }
+    .clients-logos {
+      display: flex;
+      align-items: center;
+      gap: 3rem;
+      flex-wrap: wrap;
+    }
+    .clients-logos img {
+      height: 36px;
+      max-width: 140px;
+      object-fit: contain;
+      opacity: .65;
+      filter: brightness(1.2);
+      transition: opacity .2s;
+    }
+    .clients-logos img:hover { opacity: 1; }
+
     /* ── SERVICE SECTIONS TOGGLE ── */
     [data-service] { transition: opacity .2s; }
     [data-service].hidden { display: none; }
@@ -672,6 +710,9 @@
       .hero-img-side { flex-direction: row; }
       .hero-img-side .img-card { height: 120px; flex: 1; }
 
+      .clients-strip { padding: 0 1.25rem 2.5rem; }
+      .clients-inner { padding: 1.25rem 1.5rem; gap: 1.5rem; }
+      .clients-logos { gap: 2rem; }
       .service-selector { padding: 0 1.25rem 3rem; }
       .selector-grid { grid-template-columns: 1fr; gap: .75rem; }
       .selector-card { padding: 1.5rem; }
@@ -700,7 +741,7 @@
 <body>
 
 <nav>
-  <div class="logo">Pack<span>.</span>Digital</div>
+  <img src="img/mitch_logo.png" alt="mitch" class="logo-img" />
   <a href="https://wa.me/541133613235?text=Hola%2C%20quiero%20saber%20m%C3%A1s%20sobre%20los%20servicios" class="nav-cta" target="_blank">Hablar →</a>
 </nav>
 
@@ -742,6 +783,17 @@
     </div>
     <div class="img-card">
       <img src="https://images.unsplash.com/photo-1611162616305-c69b3fa7fbe0?auto=format&fit=crop&w=400&q=80" alt="Redes sociales" loading="lazy" />
+    </div>
+  </div>
+</div>
+
+<!-- CLIENTS -->
+<div class="clients-strip">
+  <div class="clients-inner">
+    <span class="clients-label">Ya trabajan con nosotros</span>
+    <div class="clients-logos">
+      <img src="img/caso_legal_logo.png" alt="Caso Legal" />
+      <img src="img/MIR_logo.png" alt="Mir Soluciones" />
     </div>
   </div>
 </div>
@@ -1106,7 +1158,7 @@
 </div>
 
 <footer>
-  <span>Pack Digital · Buenos Aires, Argentina</span>
+  <span>[mitch] · Buenos Aires, Argentina</span>
   <a href="mailto:hola@packdigital.ar">hola@packdigital.ar</a>
 </footer>
 
