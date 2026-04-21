@@ -4,7 +4,7 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>mitch — Presencia digital para tu negocio</title>
-  <meta name="description" content="Contenido mensual o página web institucional para tu negocio local. Sin complicaciones." />
+  <meta name="description" content="Contenido mensual para redes, publicidad en Meta y página web institucional para negocios locales. Sin complicaciones." />
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;700&family=Syne:wght@700;800&display=swap" rel="stylesheet" />
   <style>
@@ -41,24 +41,16 @@
         linear-gradient(90deg, rgba(0,224,204,.07) 1px, transparent 1px);
       background-size: 44px 44px;
       -webkit-mask-image: linear-gradient(to right,
-        black 0%,
-        black calc(50% - 590px),
-        transparent calc(50% - 540px),
-        transparent calc(50% + 540px),
-        black calc(50% + 590px),
-        black 100%
-      );
+        black 0%, black calc(50% - 590px),
+        transparent calc(50% - 540px), transparent calc(50% + 540px),
+        black calc(50% + 590px), black 100%);
       mask-image: linear-gradient(to right,
-        black 0%,
-        black calc(50% - 590px),
-        transparent calc(50% - 540px),
-        transparent calc(50% + 540px),
-        black calc(50% + 590px),
-        black 100%
-      );
+        black 0%, black calc(50% - 590px),
+        transparent calc(50% - 540px), transparent calc(50% + 540px),
+        black calc(50% + 590px), black 100%);
     }
 
-    /* ── NAV ── */
+    /* NAV */
     nav {
       padding: 1.25rem 2.5rem;
       display: flex;
@@ -70,10 +62,7 @@
       background: var(--bg);
       border-bottom: 1px solid var(--border);
     }
-    .logo-img {
-      height: 80px;
-      display: block;
-    }
+    .logo-img { height: 80px; display: block; }
     .nav-cta {
       background: var(--accent);
       color: #0c0c0c;
@@ -87,7 +76,7 @@
     }
     .nav-cta:hover { opacity: .85; }
 
-    /* ── HERO ── */
+    /* HERO */
     .hero {
       padding: 5rem 2.5rem 4rem;
       max-width: 1100px;
@@ -120,10 +109,7 @@
       letter-spacing: -.03em;
       margin-bottom: 2rem;
     }
-    h1 .highlight {
-      color: var(--accent);
-      display: block;
-    }
+    h1 .highlight { color: var(--accent); display: block; }
     .hero-bottom {
       display: flex;
       align-items: flex-end;
@@ -134,11 +120,7 @@
       border-top: 1px solid var(--border);
       margin-top: 3rem;
     }
-    .hero-desc {
-      color: var(--muted);
-      font-size: 1.05rem;
-      max-width: 500px;
-    }
+    .hero-desc { color: var(--muted); font-size: 1.05rem; max-width: 500px; }
     .cta-group {
       display: flex;
       gap: 1rem;
@@ -170,7 +152,7 @@
     }
     .btn-ghost:hover { color: var(--text); }
 
-    /* ── HERO IMAGE ── */
+    /* HERO IMAGE */
     .hero-img-strip {
       max-width: 1100px;
       margin: 0 auto;
@@ -206,16 +188,8 @@
       line-height: 1;
     }
     .img-stat-label { color: rgba(255,255,255,.6); font-size: .8rem; margin-top: .2rem; }
-    .hero-img-side {
-      display: flex;
-      flex-direction: column;
-      gap: 1rem;
-    }
-    .hero-img-side .img-card {
-      border-radius: 14px;
-      overflow: hidden;
-      height: 162px;
-    }
+    .hero-img-side { display: flex; flex-direction: column; gap: 1rem; }
+    .hero-img-side .img-card { border-radius: 14px; overflow: hidden; height: 162px; }
     .hero-img-side .img-card img {
       width: 100%; height: 100%;
       object-fit: cover;
@@ -225,13 +199,13 @@
     }
     .hero-img-side .img-card:hover img { filter: brightness(.85); }
 
-    /* ── SERVICE SELECTOR ── */
-    .service-selector {
+    /* SERVICES OVERVIEW */
+    .services-overview {
       max-width: 1100px;
       margin: 0 auto;
-      padding: 0 2.5rem 4rem;
+      padding: 0 2.5rem 5rem;
     }
-    .selector-label {
+    .services-label {
       color: var(--muted);
       font-size: .75rem;
       font-weight: 700;
@@ -239,77 +213,59 @@
       text-transform: uppercase;
       margin-bottom: 1.25rem;
     }
-    .selector-grid {
+    .services-grid {
       display: grid;
-      grid-template-columns: 1fr 1fr;
+      grid-template-columns: repeat(3, 1fr);
       gap: 1rem;
     }
-    .selector-card {
+    .service-card {
       background: var(--surface);
-      border: 2px solid var(--border);
+      border: 1px solid var(--border);
       border-radius: 16px;
       padding: 2rem;
-      cursor: pointer;
+      text-decoration: none;
+      color: var(--text);
       transition: border-color .2s, background .2s;
-      user-select: none;
-      position: relative;
-    }
-    .selector-card:hover { border-color: #444; }
-    .selector-card.active {
-      border-color: var(--accent);
-      background: rgba(0,224,204,.04);
-    }
-    .selector-card.active .selector-check {
-      opacity: 1;
-      background: var(--accent);
-      color: #0c0c0c;
-    }
-    .selector-check {
-      position: absolute;
-      top: 1.25rem; right: 1.25rem;
-      width: 24px; height: 24px;
-      border-radius: 50%;
-      border: 2px solid var(--border);
       display: flex;
+      flex-direction: column;
+      gap: .75rem;
+    }
+    .service-card:hover { border-color: #444; background: #1a1a1a; }
+    .service-card.featured { border-color: var(--accent); background: rgba(0,224,204,.04); }
+    .service-tag {
+      display: inline-flex;
       align-items: center;
-      justify-content: center;
-      font-size: .75rem;
-      font-weight: 900;
-      opacity: .3;
-      transition: opacity .2s, background .2s;
+      gap: .35rem;
+      font-size: .68rem;
+      font-weight: 700;
+      letter-spacing: .1em;
+      text-transform: uppercase;
+      padding: .2rem .6rem;
+      border-radius: 4px;
+      width: fit-content;
     }
-    .selector-icon {
-      font-size: 1.8rem;
-      margin-bottom: 1rem;
-      display: block;
-    }
-    .selector-card h3 {
+    .service-tag.main { background: var(--accent-dim); color: var(--accent); }
+    .service-tag.addon { background: rgba(139,92,246,.15); color: #a78bfa; }
+    .service-tag.once { background: rgba(59,130,246,.12); color: #60a5fa; }
+    .service-icon { font-size: 1.8rem; }
+    .service-card h3 {
       font-family: 'Syne', sans-serif;
       font-weight: 800;
-      font-size: 1.25rem;
+      font-size: 1.2rem;
       color: var(--text);
       letter-spacing: -.02em;
-      margin-bottom: .4rem;
     }
-    .selector-card p {
-      color: var(--muted);
-      font-size: .9rem;
-      margin-bottom: 1.25rem;
-    }
-    .selector-price {
+    .service-card p { color: var(--muted); font-size: .88rem; flex: 1; }
+    .service-price {
       font-family: 'Syne', sans-serif;
       font-weight: 800;
-      font-size: 1.5rem;
+      font-size: 1.4rem;
       color: var(--accent);
       letter-spacing: -.03em;
     }
-    .selector-price-note {
-      color: var(--muted);
-      font-size: .78rem;
-      margin-left: .3rem;
-    }
+    .service-price-note { color: var(--muted); font-size: .75rem; margin-left: .25rem; }
 
-    /* ── TICKER ── */
+    /* TICKER */
     .ticker {
       border-top: 1px solid var(--border);
       border-bottom: 1px solid var(--border);
@@ -336,7 +292,7 @@
       100% { transform: translateX(-50%); }
     }
 
-    /* ── SECCIONES ── */
+    /* SECCIONES */
     .section {
       max-width: 1100px;
       margin: 0 auto;
@@ -361,7 +317,7 @@
       margin-bottom: 3rem;
     }
 
-    /* ── PASOS ── */
+    /* PASOS */
     .steps { display: flex; flex-direction: column; gap: 0; }
     .step-row {
       display: grid;
@@ -400,7 +356,7 @@
       margin-bottom: .5rem;
     }
 
-    /* ── INCLUYE ── */
+    /* INCLUYE */
     .includes-grid {
       display: grid;
       grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
@@ -416,70 +372,74 @@
       transition: background .15s;
     }
     .include-item:hover { background: #1a1a1a; }
-    .include-icon {
-      font-size: 1.6rem;
-      margin-bottom: 1rem;
-      display: block;
-    }
-    .include-item strong {
-      display: block;
-      color: var(--text);
-      font-size: 1rem;
-      font-weight: 700;
-      margin-bottom: .3rem;
-    }
+    .include-icon { font-size: 1.6rem; margin-bottom: 1rem; display: block; }
+    .include-item strong { display: block; color: var(--text); font-size: 1rem; font-weight: 700; margin-bottom: .3rem; }
     .include-item span { color: var(--muted); font-size: .87rem; }
 
-    /* ── PRICING ── */
-    .pricing-wrap {
+    /* PRICING */
+    .pricing-cols {
       display: grid;
-      grid-template-columns: 1fr 1fr;
-      gap: 3rem;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 1rem;
       align-items: start;
     }
-    .pricing-left h2 { margin-bottom: 1rem; }
-    .pricing-left p { color: var(--muted); font-size: 1rem; margin-bottom: 2rem; }
     .pricing-card {
       background: var(--surface);
       border: 1px solid var(--border);
       border-radius: 16px;
-      padding: 2.5rem;
+      padding: 2rem;
       position: relative;
       overflow: hidden;
+      display: flex;
+      flex-direction: column;
+    }
+    .pricing-card.featured {
+      border-color: var(--accent);
+      background: rgba(0,224,204,.03);
     }
     .pricing-card::before {
       content: '';
       position: absolute;
       top: 0; left: 0; right: 0;
       height: 3px;
-      background: var(--accent);
+      background: var(--border);
     }
-    .price-display {
-      display: flex;
-      align-items: baseline;
-      gap: .4rem;
-      margin-bottom: .3rem;
+    .pricing-card.featured::before { background: var(--accent); }
+    .pricing-card.addon-card::before { background: #a78bfa; }
+    .pricing-card.web-card::before { background: #60a5fa; }
+    .pricing-name {
+      font-family: 'Syne', sans-serif;
+      font-weight: 800;
+      font-size: 1rem;
+      letter-spacing: .04em;
+      text-transform: uppercase;
+      margin-bottom: 1.25rem;
     }
+    .pricing-card.featured .pricing-name { color: var(--accent); }
+    .pricing-card.addon-card .pricing-name { color: #a78bfa; }
+    .pricing-card.web-card .pricing-name { color: #60a5fa; }
+    .price-display { display: flex; align-items: baseline; gap: .4rem; margin-bottom: .25rem; }
     .price-big {
       font-family: 'Syne', sans-serif;
-      font-size: 3.5rem;
+      font-size: 2.8rem;
       font-weight: 800;
       color: var(--text);
       letter-spacing: -.04em;
     }
-    .price-currency { color: var(--muted); font-size: 1.2rem; }
-    .price-sub { color: var(--muted); font-size: .85rem; margin-bottom: 2rem; }
+    .price-currency { color: var(--muted); font-size: 1rem; }
+    .price-sub { color: var(--muted); font-size: .82rem; margin-bottom: 1.75rem; }
     .pricing-list {
       list-style: none;
       margin-bottom: 2rem;
+      flex: 1;
     }
     .pricing-list li {
       display: flex;
-      align-items: center;
+      align-items: flex-start;
       gap: .75rem;
-      padding: .65rem 0;
+      padding: .6rem 0;
       border-bottom: 1px solid var(--border);
-      font-size: .9rem;
+      font-size: .88rem;
       color: var(--text);
     }
     .pricing-list li:last-child { border-bottom: none; }
@@ -488,23 +448,76 @@
       color: var(--accent);
       font-weight: 700;
       flex-shrink: 0;
+      margin-top: .05rem;
     }
-    .no-contract {
+    .pricing-card.addon-card .pricing-list li::before { color: #a78bfa; }
+    .pricing-card.web-card .pricing-list li::before { color: #60a5fa; }
+    .badge-featured {
       display: inline-flex;
       align-items: center;
       gap: .4rem;
-      background: rgba(74,222,128,.1);
-      color: var(--green);
-      font-size: .78rem;
+      background: var(--accent-dim);
+      color: var(--accent);
+      font-size: .7rem;
       font-weight: 700;
-      letter-spacing: .06em;
+      letter-spacing: .08em;
       text-transform: uppercase;
-      padding: .3rem .8rem;
+      padding: .25rem .7rem;
       border-radius: 999px;
-      margin-bottom: 1.5rem;
+      margin-bottom: 1rem;
+    }
+    .available-dot {
+      width: 6px; height: 6px;
+      background: var(--green);
+      border-radius: 50%;
+      animation: pulse 1.5s ease-in-out infinite;
+    }
+    @keyframes pulse {
+      0%, 100% { opacity: 1; }
+      50% { opacity: .3; }
     }
 
-    /* ── FAQ ── */
+    /* ADDS-ON BANNER */
+    .addon-banner {
+      border: 1px solid #2a2a2a;
+      border-radius: 12px;
+      padding: 1.75rem 2rem;
+      background: rgba(139,92,246,.06);
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 1.5rem;
+      flex-wrap: wrap;
+      margin-top: 3rem;
+    }
+    .addon-banner-left { display: flex; align-items: center; gap: 1.25rem; flex-wrap: wrap; }
+    .addon-tag {
+      font-size: .68rem;
+      font-weight: 700;
+      letter-spacing: .1em;
+      text-transform: uppercase;
+      color: #a78bfa;
+      background: rgba(139,92,246,.15);
+      padding: .2rem .6rem;
+      border-radius: 4px;
+    }
+    .addon-banner strong {
+      font-family: 'Syne', sans-serif;
+      font-size: 1.1rem;
+      font-weight: 800;
+      color: var(--text);
+    }
+    .addon-banner p { color: var(--muted); font-size: .87rem; }
+    .addon-price {
+      font-family: 'Syne', sans-serif;
+      font-size: 1.6rem;
+      font-weight: 800;
+      color: #a78bfa;
+      white-space: nowrap;
+    }
+    .addon-price span { font-size: .8rem; color: var(--muted); font-weight: 400; }
+
+    /* FAQ */
     .faq { display: flex; flex-direction: column; }
     .faq-item {
       padding: 1.5rem 0;
@@ -523,7 +536,7 @@
     }
     .faq-a { color: var(--muted); font-size: .92rem; }
 
-    /* ── IMAGEN CONTEXTO ── */
+    /* CONTEXT STRIP */
     .context-strip {
       max-width: 1100px;
       margin: 0 auto;
@@ -559,7 +572,7 @@
     }
     .context-img-text p span { color: var(--accent); }
 
-    /* ── CTA FINAL ── */
+    /* CTA FINAL */
     .cta-final {
       border-top: 1px solid var(--border);
       padding: 6rem 2.5rem;
@@ -586,21 +599,7 @@
       text-transform: uppercase;
       margin-bottom: 1rem;
     }
-    .available-dot {
-      width: 7px; height: 7px;
-      background: var(--green);
-      border-radius: 50%;
-      animation: pulse 1.5s ease-in-out infinite;
-    }
-    @keyframes pulse {
-      0%, 100% { opacity: 1; }
-      50% { opacity: .3; }
-    }
-    .cta-bg-img {
-      position: absolute;
-      inset: 0;
-      z-index: 0;
-    }
+    .cta-bg-img { position: absolute; inset: 0; z-index: 0; }
     .cta-bg-img img {
       width: 100%; height: 100%;
       object-fit: cover;
@@ -608,11 +607,8 @@
     }
     .cta-final > *:not(.cta-bg-img) { position: relative; z-index: 1; }
 
-    /* ── FOOTER ── */
-    footer {
-      color: var(--muted);
-      font-size: .82rem;
-    }
+    /* FOOTER */
+    footer { color: var(--muted); font-size: .82rem; }
     .footer-row {
       max-width: 1100px;
       margin: 0 auto;
@@ -624,32 +620,74 @@
       gap: 1.5rem;
       flex-wrap: wrap;
     }
-    .footer-row-clients {
-      border-bottom: 1px solid var(--border);
-    }
-    .footer-row + .footer-row {
-      border-top: none;
-    }
+    .footer-row-clients { border-bottom: 1px solid var(--border); }
+    .footer-row + .footer-row { border-top: none; }
     footer a { color: var(--muted); text-decoration: none; }
     footer a:hover { color: var(--text); }
-    .footer-social {
-      display: flex;
-      align-items: center;
-      gap: 1.25rem;
+    .footer-social { display: flex; align-items: center; gap: 1.25rem; }
+    .footer-social a { display: flex; align-items: center; gap: .4rem; transition: color .15s; }
+    .footer-links { display: flex; align-items: center; gap: 1.5rem; }
+    .footer-clients { display: flex; align-items: center; gap: 2rem; flex-wrap: wrap; }
+    .footer-clients-label {
+      color: var(--muted);
+      font-size: .72rem;
+      font-weight: 700;
+      letter-spacing: .12em;
+      text-transform: uppercase;
+      white-space: nowrap;
+      flex-shrink: 0;
     }
-    .footer-social a {
-      display: flex;
-      align-items: center;
-      gap: .4rem;
-      transition: color .15s;
+    .footer-clients-logos { display: flex; align-items: center; gap: 2rem; }
+    .footer-clients-logos img {
+      height: 28px;
+      max-width: 110px;
+      object-fit: contain;
+      opacity: .5;
+      filter: brightness(1.2);
+      transition: opacity .2s;
     }
-    .footer-links {
-      display: flex;
-      align-items: center;
-      gap: 1.5rem;
-    }
+    .footer-clients-logos img:hover { opacity: .8; }
 
-    /* ── WA FLOAT ── */
+    /* GALERÍA */
+    .gallery-section { padding: 5rem 0; overflow: hidden; border-top: 1px solid var(--border); }
+    .gallery-section .section-label { padding: 0 clamp(1.25rem, 5vw, 5rem); }
+    .gallery-section h2 { padding: 0 clamp(1.25rem, 5vw, 5rem); margin-bottom: 2.5rem; }
+    .gallery-track-wrap { position: relative; overflow: hidden; }
+    .gallery-track-wrap::before,
+    .gallery-track-wrap::after {
+      content: '';
+      position: absolute;
+      top: 0; bottom: 0;
+      width: 80px;
+      z-index: 2;
+      pointer-events: none;
+    }
+    .gallery-track-wrap::before { left: 0; background: linear-gradient(to right, #0a0a0a, transparent); }
+    .gallery-track-wrap::after  { right: 0; background: linear-gradient(to left, #0a0a0a, transparent); }
+    .gallery-track {
+      display: flex;
+      gap: 1.25rem;
+      padding: 0 clamp(1.25rem, 5vw, 5rem) 1.5rem;
+      overflow-x: auto;
+      scroll-snap-type: x mandatory;
+      -webkit-overflow-scrolling: touch;
+      scrollbar-width: none;
+    }
+    .gallery-track::-webkit-scrollbar { display: none; }
+    .gallery-card {
+      flex: 0 0 auto;
+      scroll-snap-align: start;
+      border-radius: 12px;
+      overflow: hidden;
+      border: 1px solid rgba(255,255,255,.08);
+      background: #111;
+    }
+    .gallery-card.post  { width: 220px; height: 275px; }
+    .gallery-card.story { width: 155px; height: 275px; }
+    .gallery-card img { width: 100%; height: 100%; object-fit: cover; display: block; }
+    .gallery-track.dragging { cursor: grabbing; user-select: none; }
+
+    /* WA FLOAT */
     .wa-float {
       position: fixed;
       bottom: 1.5rem; right: 1.5rem;
@@ -668,85 +706,33 @@
     }
     .wa-float:hover { transform: scale(1.1); }
 
-    /* ── CLIENTS (dentro del footer) ── */
-    .footer-clients {
-      display: flex;
-      align-items: center;
-      gap: 2rem;
-      flex-wrap: wrap;
-    }
-    .footer-clients-label {
-      color: var(--muted);
-      font-size: .72rem;
-      font-weight: 700;
-      letter-spacing: .12em;
-      text-transform: uppercase;
-      white-space: nowrap;
-      flex-shrink: 0;
-    }
-    .footer-clients-logos {
-      display: flex;
-      align-items: center;
-      gap: 2rem;
-    }
-    .footer-clients-logos img {
-      height: 28px;
-      max-width: 110px;
-      object-fit: contain;
-      opacity: .5;
-      filter: brightness(1.2);
-      transition: opacity .2s;
-    }
-    .footer-clients-logos img:hover { opacity: .8; }
-
-    /* ── SERVICE SECTIONS TOGGLE ── */
-    [data-service] { transition: opacity .2s; }
-    [data-service].hidden { display: none; }
-
-    /* ── RESPONSIVE ── */
+    /* RESPONSIVE */
     @media (max-width: 768px) {
       nav { padding: 1rem 1.25rem; }
       .hero { padding: 3rem 1.25rem 2.5rem; }
       h1 { font-size: clamp(2.2rem, 10vw, 3rem); margin-bottom: 1.5rem; }
-      .hero-bottom {
-        flex-direction: column;
-        align-items: flex-start;
-        padding-top: 2rem;
-        margin-top: 2rem;
-        gap: 1.5rem;
-      }
+      .hero-bottom { flex-direction: column; align-items: flex-start; padding-top: 2rem; margin-top: 2rem; gap: 1.5rem; }
       .hero-desc { max-width: 100%; font-size: .95rem; }
       .cta-group { flex-direction: column; align-items: flex-start; gap: .75rem; }
       .btn-primary { width: 100%; text-align: center; padding: .9rem 1.5rem; }
-
-      .hero-img-strip {
-        grid-template-columns: 1fr;
-        padding: 0 1.25rem 2rem;
-        gap: .75rem;
-      }
+      .hero-img-strip { grid-template-columns: 1fr; padding: 0 1.25rem 2rem; gap: .75rem; }
       .hero-img-main { height: 220px; }
       .hero-img-side { flex-direction: row; }
       .hero-img-side .img-card { height: 120px; flex: 1; }
-
-      .footer-clients { gap: 1rem; }
-      .footer-clients-logos { gap: 1.25rem; }
-      .service-selector { padding: 0 1.25rem 3rem; }
-      .selector-grid { grid-template-columns: 1fr; gap: .75rem; }
-      .selector-card { padding: 1.5rem; }
-
+      .services-overview { padding: 0 1.25rem 3rem; }
+      .services-grid { grid-template-columns: 1fr; }
       .section { padding: 3rem 1.25rem; }
       h2 { font-size: clamp(1.5rem, 7vw, 2rem); margin-bottom: 2rem; }
       .step-row { grid-template-columns: 50px 1fr; gap: 1rem; padding: 1.5rem 0; }
       .step-num { font-size: 2rem; }
       .includes-grid { grid-template-columns: 1fr; }
       .include-item { padding: 1.25rem; }
-      .pricing-wrap { grid-template-columns: 1fr; gap: 2rem; }
+      .pricing-cols { grid-template-columns: 1fr; }
       .pricing-card { padding: 1.75rem 1.25rem; }
-      .price-big { font-size: 2.8rem; }
+      .price-big { font-size: 2.4rem; }
       .faq-item { grid-template-columns: 1fr; gap: .5rem; }
       .context-strip { padding: 0 1.25rem 3rem; }
       .context-img { height: 200px; }
-      .context-img-text p { font-size: clamp(1.1rem, 5vw, 1.5rem); }
       .cta-final { grid-template-columns: 1fr; padding: 4rem 1.25rem; gap: 2rem; }
       .cta-final h2 { font-size: clamp(1.7rem, 7vw, 2.2rem); }
       .cta-final-right { text-align: left; }
@@ -755,6 +741,9 @@
       .footer-social { justify-content: center; }
       .footer-links { justify-content: center; }
       body::before { display: none; }
+      .addon-banner { flex-direction: column; align-items: flex-start; }
+      .gallery-card.post  { width: 170px; height: 213px; }
+      .gallery-card.story { width: 120px; height: 213px; }
     }
   </style>
 </head>
@@ -762,7 +751,7 @@
 
 <nav>
   <img src="img/mitch_logo.png" alt="mitch" class="logo-img" />
-  <a href="https://wa.me/541133613235?text=Hola%2C%20quiero%20saber%20m%C3%A1s%20sobre%20los%20servicios" class="nav-cta" target="_blank">Hablar →</a>
+  <a href="https://wa.me/5491133613235?text=Hola%2C+vi+la+web+de+mitch+y+quiero+saber+m%C3%A1s" class="nav-cta" target="_blank">Hablar →</a>
 </nav>
 
 <!-- HERO -->
@@ -774,21 +763,21 @@
   </h1>
   <div class="hero-bottom">
     <div>
-      <p class="hero-desc">Contenido mensual para tus redes o página web institucional lista para usar. Elegís lo que necesita tu negocio ahora.</p>
+      <p class="hero-desc">Contenido mensual para tus redes, publicidad en Instagram y Facebook, o página web institucional. Elegís lo que necesita tu negocio ahora.</p>
       <div class="cta-group">
-        <a href="#elegir" class="btn-primary">Ver servicios ↓</a>
-        <a href="https://wa.me/541133613235?text=Hola%2C%20tengo%20una%20consulta%20sobre%20los%20servicios" class="btn-ghost" target="_blank">Consultar por WhatsApp →</a>
+        <a href="#servicios" class="btn-primary">Ver servicios ↓</a>
+        <a href="https://wa.me/5491133613235?text=Hola%2C+vi+la+web+de+mitch+y+tengo+una+consulta" class="btn-ghost" target="_blank">Consultar por WhatsApp →</a>
       </div>
     </div>
     <div>
       <div style="font-family:'Syne',sans-serif;font-size:.75rem;font-weight:700;letter-spacing:.1em;text-transform:uppercase;color:var(--muted);margin-bottom:.75rem;">Desde</div>
-      <div style="font-family:'Syne',sans-serif;font-size:clamp(2.4rem,5vw,3.8rem);font-weight:800;color:var(--text);letter-spacing:-.04em;line-height:1;">$250.000</div>
-      <div style="color:var(--muted);font-size:.85rem;margin-top:.3rem;">pago único · sin contrato</div>
+      <div style="font-family:'Syne',sans-serif;font-size:clamp(2.4rem,5vw,3.8rem);font-weight:800;color:var(--text);letter-spacing:-.04em;line-height:1;">$400.000</div>
+      <div style="color:var(--muted);font-size:.85rem;margin-top:.3rem;">por mes · sin permanencia</div>
     </div>
   </div>
 </div>
 
-<!-- HERO IMAGE STRIP -->
+<!-- HERO IMAGES -->
 <div class="hero-img-strip">
   <div class="hero-img-main">
     <img src="https://images.unsplash.com/photo-1556742049-0cfed4f6a45d?auto=format&fit=crop&w=900&q=80" alt="Negocio local" loading="lazy" />
@@ -807,47 +796,61 @@
   </div>
 </div>
 
-<!-- SERVICE SELECTOR -->
-<div class="service-selector" id="elegir">
-  <div class="selector-label">¿Qué necesita tu negocio?</div>
-  <div class="selector-grid">
-    <div class="selector-card active" data-pick="contenido" onclick="selectService('contenido')">
-      <div class="selector-check">✓</div>
-      <span class="selector-icon">🎬</span>
-      <h3>Pack de Contenido</h3>
-      <p>Reels, posts y stories producidos cada mes. Vos los publicás cuando querés.</p>
+<!-- SERVICES OVERVIEW -->
+<div class="services-overview" id="servicios">
+  <div class="services-label">¿Qué necesita tu negocio?</div>
+  <div class="services-grid">
+
+    <a href="#pack-digital" class="service-card featured">
+      <div class="service-tag main">★ El más elegido</div>
+      <div class="service-icon">🎬</div>
+      <h3>Pack Digital</h3>
+      <p>Reels con audio, posts, stories y calendario de publicación. Todo producido y entregado cada mes.</p>
       <div>
-        <span class="selector-price">$400.000</span>
-        <span class="selector-price-note">/ mes</span>
+        <span class="service-price">$400.000</span>
+        <span class="service-price-note">/ mes</span>
       </div>
-    </div>
-    <div class="selector-card" data-pick="web" onclick="selectService('web')">
-      <div class="selector-check">✓</div>
-      <span class="selector-icon">🌐</span>
+    </a>
+
+    <a href="#meta-ads" class="service-card">
+      <div class="service-tag addon">+ Add-on</div>
+      <div class="service-icon">📣</div>
+      <h3>Publicidad en Meta</h3>
+      <p>Gestionamos tu publicidad en Instagram y Facebook para que tu contenido llegue a clientes nuevos.</p>
+      <div>
+        <span class="service-price" style="color:#a78bfa;">+$200.000</span>
+        <span class="service-price-note">/ mes</span>
+      </div>
+    </a>
+
+    <a href="#pagina-web" class="service-card">
+      <div class="service-tag once">Pago único</div>
+      <div class="service-icon">🌐</div>
       <h3>Página Web</h3>
-      <p>Sitio institucional listo para usar: contacto, ubicación, reseñas y redes. Sin complicaciones.</p>
+      <p>Sitio institucional online en 7 días. Contacto, ubicación, servicios y redes. Tuyo para siempre.</p>
       <div>
-        <span class="selector-price">$250.000</span>
-        <span class="selector-price-note">pago único</span>
+        <span class="service-price" style="color:#60a5fa;">$300.000</span>
+        <span class="service-price-note">pago único</span>
       </div>
-    </div>
+    </a>
+
   </div>
 </div>
 
 <!-- TICKER -->
 <div class="ticker">
   <div class="ticker-inner">
-    <span>●</span> Estudios jurídicos &nbsp;&nbsp; <span>●</span> Clínicas y consultorios &nbsp;&nbsp; <span>●</span> Odontólogos &nbsp;&nbsp; <span>●</span> Inmobiliarias &nbsp;&nbsp; <span>●</span> Restaurantes &nbsp;&nbsp; <span>●</span> Gimnasios &nbsp;&nbsp; <span>●</span> Estudios contables &nbsp;&nbsp; <span>●</span> Estudios jurídicos &nbsp;&nbsp; <span>●</span> Clínicas y consultorios &nbsp;&nbsp; <span>●</span> Odontólogos &nbsp;&nbsp; <span>●</span> Inmobiliarias &nbsp;&nbsp; <span>●</span> Restaurantes &nbsp;&nbsp; <span>●</span> Gimnasios &nbsp;&nbsp; <span>●</span> Estudios contables &nbsp;&nbsp;
+    <span>●</span> Estudios jurídicos &nbsp;&nbsp; <span>●</span> Clínicas y consultorios &nbsp;&nbsp; <span>●</span> Odontólogos &nbsp;&nbsp; <span>●</span> Inmobiliarias &nbsp;&nbsp; <span>●</span> Restaurantes &nbsp;&nbsp; <span>●</span> Gimnasios &nbsp;&nbsp; <span>●</span> Estudios contables &nbsp;&nbsp; <span>●</span> Veterinarias &nbsp;&nbsp; <span>●</span> Estudios jurídicos &nbsp;&nbsp; <span>●</span> Clínicas y consultorios &nbsp;&nbsp; <span>●</span> Odontólogos &nbsp;&nbsp; <span>●</span> Inmobiliarias &nbsp;&nbsp; <span>●</span> Restaurantes &nbsp;&nbsp; <span>●</span> Gimnasios &nbsp;&nbsp; <span>●</span> Estudios contables &nbsp;&nbsp; <span>●</span> Veterinarias &nbsp;&nbsp;
   </div>
 </div>
 
-<!-- ════════════════════════════════════════
-     SERVICIO: PACK DE CONTENIDO
-     ════════════════════════════════════════ -->
 
-<div data-service="contenido">
+<!-- ══════════════════════════════
+     PACK DIGITAL
+     ══════════════════════════════ -->
 
-  <!-- COMO FUNCIONA -->
+<div id="pack-digital">
+
   <div class="section">
     <div class="section-label">Cómo funciona</div>
     <h2>Tres pasos.<br>Sin reuniones eternas.</h2>
@@ -857,7 +860,7 @@
         <div class="step-content">
           <div class="step-tag">Una sola vez</div>
           <h3>Nos contás de tu negocio</h3>
-          <p>Un brief simple: qué vendés, a quién le hablás, qué tono querés. Diez minutos.</p>
+          <p>Un brief simple: qué vendés, a quién le hablás, qué tono querés. Diez minutos por WhatsApp.</p>
         </div>
       </div>
       <div class="step-row">
@@ -865,287 +868,237 @@
         <div class="step-content">
           <div class="step-tag">En 48 horas</div>
           <h3>Producimos todo, pensado para vos</h3>
-          <p>Guiones, voces en off, edición de video, diseño de imágenes y copy. Todo adaptado al tono y la identidad de tu negocio.</p>
+          <p>Guiones, voces en off, diseño de imágenes y copy. Todo adaptado a la identidad y el tono de tu negocio.</p>
         </div>
       </div>
       <div class="step-row">
         <div class="step-num">03</div>
         <div class="step-content">
-          <div class="step-tag">Cada mes</div>
-          <h3>Recibís todo listo, lo subís cuando querés</h3>
-          <p>Te mandamos el pack completo por WhatsApp. Organizado, con instrucciones claras. Vos tenés el control total de tu perfil.</p>
+          <div class="step-tag">Cuando lo necesitás</div>
+          <h3>Recibís el pack completo por WhatsApp</h3>
+          <p>Contenido organizado, calendario de publicación y guía de instrucciones. Vos subís cada pieza cuando querés.</p>
         </div>
       </div>
     </div>
   </div>
 
-  <!-- QUE INCLUYE -->
   <div class="section" id="que-incluye">
     <div class="section-label">El pack incluye</div>
     <h2>Todo lo que tu negocio<br>necesita cada mes.</h2>
     <div class="includes-grid">
       <div class="include-item">
         <span class="include-icon">🎬</span>
-        <strong>8 Reels por mes</strong>
-        <span>Guion, voz en off, subtítulos y edición. Listos para subir desde tu teléfono.</span>
+        <strong>8 Reels con audio</strong>
+        <span>Guion de 5 beats, voz en off generada y copy del post incluido. Listos para subir.</span>
       </div>
       <div class="include-item">
         <span class="include-icon">🖼</span>
-        <strong>8 posts con copy</strong>
-        <span>Diseño de imágenes y texto pensado para tu rubro, tu voz y tu audiencia.</span>
+        <strong>8 Posts con copy</strong>
+        <span>4 variantes de diseño por post y texto pensado para tu rubro, tu voz y tu audiencia.</span>
       </div>
       <div class="include-item">
         <span class="include-icon">📲</span>
-        <strong>Stories del mes</strong>
-        <span>Copies, CTAs y textos para historias de Instagram. Todo escrito para sonar como vos.</span>
+        <strong>4 Stories del mes</strong>
+        <span>Diseñadas en 4 variantes con CTAs concretos: WhatsApp, consulta, promo del mes.</span>
+      </div>
+      <div class="include-item">
+        <span class="include-icon">📅</span>
+        <strong>Calendario de publicación</strong>
+        <span>Cronograma visual de todo el mes: qué publicar y cuándo para mantener ritmo constante.</span>
+      </div>
+      <div class="include-item">
+        <span class="include-icon">📦</span>
+        <strong>Entrega en ZIP lista para usar</strong>
+        <span>Todo empaquetado en una carpeta ordenada con instrucciones claras. Sin buscar archivos.</span>
       </div>
       <div class="include-item">
         <span class="include-icon">🎯</span>
-        <strong>Brief de tu negocio</strong>
-        <span>Antes de arrancar, entendemos tu rubro, tu cliente ideal y tu tono. Todo el contenido sale de ahí.</span>
-      </div>
-      <div class="include-item">
-        <span class="include-icon">📊</span>
-        <strong>Reporte mensual</strong>
-        <span>Feedback sobre qué contenido generó más respuesta y qué ajustamos el siguiente mes.</span>
-      </div>
-      <div class="include-item">
-        <span class="include-icon">💬</span>
-        <strong>Soporte por WhatsApp</strong>
-        <span>Consultas y ajustes durante el mes. Respuesta en el día.</span>
+        <strong>Diseño exclusivo por cliente</strong>
+        <span>Templates únicos para tu negocio. Ningún otro cliente de tu rubro en tu zona usa el mismo diseño.</span>
       </div>
     </div>
   </div>
 
-  <!-- PRICING CONTENIDO -->
-  <div class="section">
-    <div class="section-label">Precio</div>
-    <div class="pricing-wrap">
-      <div class="pricing-left">
-        <h2>Un precio.<br>Todo adentro.</h2>
-        <p>Sin extras ocultos, sin sorpresas a fin de mes. Lo que ves es lo que pagás.</p>
-        <p style="color:var(--muted);font-size:.9rem;">Cupos limitados por zona y rubro — trabajamos con un solo negocio de cada tipo en cada ciudad para que tu contenido sea exclusivo.</p>
+</div>
+
+<!-- GALERÍA MUESTRAS -->
+<div class="gallery-section">
+  <div class="section-label">Ejemplos reales</div>
+  <h2>Así se ve el contenido<br>que entregamos.</h2>
+  <div class="gallery-track-wrap">
+    <div class="gallery-track">
+      <div class="gallery-card post">
+        <img src="muestras/juridico_p01.png" alt="Post estudio jurídico" loading="lazy" />
       </div>
-      <div class="pricing-card">
-        <div class="no-contract">
-          <span class="available-dot"></span>
-          Sin contrato de permanencia
-        </div>
-        <div class="price-display">
-          <span class="price-big">$400.000</span>
-        </div>
-        <div class="price-sub">pesos argentinos · por mes</div>
-        <ul class="pricing-list">
-          <li>8 Reels producidos y editados</li>
-          <li>8 posts con copy incluido</li>
-          <li>Stories y CTAs del mes</li>
-          <li>Brief de marca + estrategia de contenido</li>
-          <li>Reporte mensual de resultados</li>
-          <li>Soporte por WhatsApp</li>
-        </ul>
-        <a href="https://wa.me/541133613235?text=Hola%2C%20me%20interesa%20el%20Pack%20de%20Contenido" class="btn-primary" target="_blank" style="display:block;text-align:center;width:100%;">
-          Empezar → WhatsApp
-        </a>
+      <div class="gallery-card story">
+        <img src="muestras/juridico_s01.png" alt="Story estudio jurídico" loading="lazy" />
+      </div>
+      <div class="gallery-card post">
+        <img src="muestras/juridico_p02.png" alt="Post estudio jurídico 2" loading="lazy" />
+      </div>
+      <div class="gallery-card post">
+        <img src="muestras/gimnasio_p01.png" alt="Post gimnasio" loading="lazy" />
+      </div>
+      <div class="gallery-card story">
+        <img src="muestras/gimnasio_s01.png" alt="Story gimnasio" loading="lazy" />
+      </div>
+      <div class="gallery-card post">
+        <img src="muestras/gimnasio_p02.png" alt="Post gimnasio 2" loading="lazy" />
+      </div>
+      <div class="gallery-card post">
+        <img src="muestras/juridico_p03.png" alt="Post estudio jurídico 3" loading="lazy" />
+      </div>
+      <div class="gallery-card story">
+        <img src="muestras/juridico_s02.png" alt="Story estudio jurídico 2" loading="lazy" />
+      </div>
+      <div class="gallery-card post">
+        <img src="muestras/gimnasio_p03.png" alt="Post gimnasio 3" loading="lazy" />
+      </div>
+      <div class="gallery-card story">
+        <img src="muestras/gimnasio_s02.png" alt="Story gimnasio 2" loading="lazy" />
+      </div>
+      <div class="gallery-card post">
+        <img src="muestras/juridico_p04.png" alt="Post estudio jurídico 4" loading="lazy" />
+      </div>
+      <div class="gallery-card post">
+        <img src="muestras/gimnasio_p04.png" alt="Post gimnasio 4" loading="lazy" />
       </div>
     </div>
   </div>
+</div>
 
-  <!-- CONTEXT STRIP CONTENIDO -->
-  <div class="context-strip">
-    <div class="context-img">
-      <img src="https://images.unsplash.com/photo-1497366216548-37526070297c?auto=format&fit=crop&w=1200&q=80" alt="Equipo trabajando" loading="lazy" />
-      <div class="context-img-text">
-        <p>Vos te enfocás en tu negocio.<br><span>Nosotros nos encargamos del resto.</span></p>
+
+<!-- ══════════════════════════════
+     PRICING
+     ══════════════════════════════ -->
+
+<div class="section">
+  <div class="section-label">Precios</div>
+  <h2>Elegís el nivel<br>que necesita tu negocio.</h2>
+
+  <div class="pricing-cols">
+
+    <!-- Pack Digital -->
+    <div class="pricing-card featured" id="pack-digital-precio">
+      <div class="badge-featured"><span class="available-dot"></span> Más elegido</div>
+      <div class="pricing-name">Pack Digital</div>
+      <div class="price-display">
+        <span class="price-big">$400.000</span>
       </div>
+      <div class="price-sub">pesos argentinos · por mes · sin permanencia</div>
+      <ul class="pricing-list">
+        <li>8 Reels con guion + audio voiceover</li>
+        <li>8 Posts (4 variantes de diseño + copy)</li>
+        <li>4 Stories (4 variantes + CTA)</li>
+        <li>Calendario de publicación mensual</li>
+        <li>Entrega en ZIP lista para usar</li>
+        <li>Diseño exclusivo para tu rubro y zona</li>
+        <li>Soporte por WhatsApp</li>
+      </ul>
+      <a href="https://wa.me/5491133613235?text=Hola%2C+quiero+el+Pack+Digital+de+mitch" class="btn-primary" target="_blank" style="display:block;text-align:center;width:100%;">
+        Empezar → WhatsApp
+      </a>
     </div>
+
+    <!-- Meta Ads -->
+    <div class="pricing-card addon-card" id="meta-ads">
+      <div class="pricing-name">Publicidad en Meta</div>
+      <div class="price-display">
+        <span class="price-big" style="color:var(--text);">+$200.000</span>
+      </div>
+      <div class="price-sub">add-on · se suma al Pack Digital</div>
+      <ul class="pricing-list">
+        <li>Gestión de tu cuenta de Meta Ads</li>
+        <li>Creación de campañas con tus propios contenidos</li>
+        <li>Segmentación por zona, edad e intereses</li>
+        <li>Optimización semanal de resultados</li>
+        <li>Reporte mensual de alcance y conversiones</li>
+        <li>Vos definís el presupuesto de publicidad</li>
+      </ul>
+      <a href="https://wa.me/5491133613235?text=Hola%2C+me+interesa+sumar+publicidad+en+Meta+al+pack" class="btn-primary" target="_blank" style="display:block;text-align:center;width:100%;background:#a78bfa;color:#0c0c0c;">
+        Consultar → WhatsApp
+      </a>
+    </div>
+
+    <!-- Página Web -->
+    <div class="pricing-card web-card" id="pagina-web">
+      <div class="pricing-name">Página Web</div>
+      <div class="price-display">
+        <span class="price-big" style="color:var(--text);">$300.000</span>
+      </div>
+      <div class="price-sub">pago único · tuya para siempre</div>
+      <ul class="pricing-list">
+        <li>Sitio institucional completo</li>
+        <li>Diseño adaptado a tu identidad</li>
+        <li>100% mobile-first</li>
+        <li>Mapa + integración Google</li>
+        <li>Formulario de contacto a WhatsApp</li>
+        <li>Online en 7 días hábiles</li>
+        <li>Accesos y código fuente entregados</li>
+      </ul>
+      <a href="https://wa.me/5491133613235?text=Hola%2C+quiero+una+p%C3%A1gina+web+con+mitch" class="btn-primary" target="_blank" style="display:block;text-align:center;width:100%;background:#60a5fa;color:#0c0c0c;">
+        Consultar → WhatsApp
+      </a>
+    </div>
+
   </div>
 
-  <!-- FAQ CONTENIDO -->
-  <div class="section">
-    <div class="section-label">Preguntas frecuentes</div>
-    <h2>Lo que siempre<br>nos preguntan.</h2>
-    <div class="faq">
-      <div class="faq-item">
-        <div class="faq-q">¿Necesito saber de redes para usar esto?</div>
-        <div class="faq-a">No. Te mandamos todo listo para subir: video editado, imagen lista, texto copiable. Solo tocás "publicar" cuando quieras.</div>
-      </div>
-      <div class="faq-item">
-        <div class="faq-q">¿Ustedes publican el contenido?</div>
-        <div class="faq-a">No. Entregamos el material completo y vos lo subís. Preferimos que el control de tu perfil sea tuyo — así no dependés de nadie para nada.</div>
-      </div>
-      <div class="faq-item">
-        <div class="faq-q">¿Cuánto tiempo me lleva a mí?</div>
-        <div class="faq-a">El brief inicial son 10 minutos. Después revisás el contenido del mes y le das OK. No más de 20 minutos por mes de tu tiempo.</div>
-      </div>
-      <div class="faq-item">
-        <div class="faq-q">¿Qué pasa si no me gusta algo?</div>
-        <div class="faq-a">Antes de publicar cualquier pieza, te la mostramos. Si algo no cierra, lo ajustamos. El objetivo es que sientas que es tuyo.</div>
-      </div>
-      <div class="faq-item">
-        <div class="faq-q">¿Hay contrato de permanencia?</div>
-        <div class="faq-a">No. Podés cancelar cuando quieras. Creemos que si el servicio funciona, vas a querer seguir — no hace falta atarte.</div>
-      </div>
-      <div class="faq-item">
-        <div class="faq-q">¿Trabajan con cualquier negocio?</div>
-        <div class="faq-a">Principalmente negocios locales: estudios jurídicos, clínicas, odontólogos, inmobiliarias, restaurantes, gimnasios, estudios contables. Un solo negocio por rubro por ciudad.</div>
-      </div>
+  <!-- Nota exclusividad -->
+  <p style="color:var(--muted);font-size:.87rem;margin-top:2rem;text-align:center;">
+    Cupos limitados por zona y rubro — trabajamos con un solo negocio de cada tipo en cada ciudad para que tu contenido sea exclusivo.
+  </p>
+
+</div>
+
+<!-- CONTEXT STRIP -->
+<div class="context-strip">
+  <div class="context-img">
+    <img src="https://images.unsplash.com/photo-1497366216548-37526070297c?auto=format&fit=crop&w=1200&q=80" alt="Equipo trabajando" loading="lazy" />
+    <div class="context-img-text">
+      <p>Vos te enfocás en tu negocio.<br><span>Nosotros nos encargamos del resto.</span></p>
     </div>
   </div>
+</div>
 
-</div><!-- /data-service="contenido" -->
 
-
-<!-- ════════════════════════════════════════
-     SERVICIO: PÁGINA WEB
-     ════════════════════════════════════════ -->
-
-<div data-service="web" class="hidden">
-
-  <!-- COMO FUNCIONA -->
-  <div class="section">
-    <div class="section-label">Cómo funciona</div>
-    <h2>De cero a online<br>en una semana.</h2>
-    <div class="steps">
-      <div class="step-row">
-        <div class="step-num">01</div>
-        <div class="step-content">
-          <div class="step-tag">Día 1</div>
-          <h3>Nos contás de tu negocio</h3>
-          <p>Logo, fotos, descripción, datos de contacto. Si no tenés algo, te ayudamos a resolverlo. No necesitás saber nada de tecnología.</p>
-        </div>
-      </div>
-      <div class="step-row">
-        <div class="step-num">02</div>
-        <div class="step-content">
-          <div class="step-tag">En 5 días hábiles</div>
-          <h3>Construimos y te mostramos el sitio</h3>
-          <p>Diseñamos tu página, configuramos el formulario de contacto, integramos tus reseñas de Google y tus redes. Te mostramos todo antes de publicar.</p>
-        </div>
-      </div>
-      <div class="step-row">
-        <div class="step-num">03</div>
-        <div class="step-content">
-          <div class="step-tag">Día 7</div>
-          <h3>Tu sitio está online</h3>
-          <p>Publicamos con tu dominio o te recomendamos uno. El sitio es tuyo — te entregamos los accesos y queda en tus manos.</p>
-        </div>
-      </div>
+<!-- FAQ -->
+<div class="section">
+  <div class="section-label">Preguntas frecuentes</div>
+  <h2>Lo que siempre<br>nos preguntan.</h2>
+  <div class="faq">
+    <div class="faq-item">
+      <div class="faq-q">¿Necesito saber de redes para usar esto?</div>
+      <div class="faq-a">No. Te mandamos todo listo para subir: audio, imagen diseñada, texto copiable. Solo tocás "publicar" cuando quieras. El calendario te dice exactamente qué subir cada día.</div>
+    </div>
+    <div class="faq-item">
+      <div class="faq-q">¿Ustedes publican el contenido?</div>
+      <div class="faq-a">No, salvo que sumes el add-on de publicidad. Con el Pack Digital te entregamos el material y vos lo subís. Preferimos que el control de tu perfil sea tuyo.</div>
+    </div>
+    <div class="faq-item">
+      <div class="faq-q">¿Cuánto tiempo me lleva a mí?</div>
+      <div class="faq-a">El brief inicial son 10 minutos. Después revisás el pack del mes y le das OK. No más de 20 minutos por mes de tu tiempo.</div>
+    </div>
+    <div class="faq-item">
+      <div class="faq-q">¿Qué es el add-on de publicidad?</div>
+      <div class="faq-a">Es un servicio que se suma al Pack Digital. Tomamos los contenidos que ya produjimos y los usamos como anuncios en Instagram y Facebook, apuntando a gente nueva en tu zona. Vos ponés el presupuesto de anuncios, nosotros lo gestionamos.</div>
+    </div>
+    <div class="faq-item">
+      <div class="faq-q">¿Cómo es el pago?</div>
+      <div class="faq-a">50% al arrancar y 50% antes de que entreguemos el contenido. Solo por transferencia bancaria.</div>
+    </div>
+    <div class="faq-item">
+      <div class="faq-q">¿Trabajan con cualquier negocio?</div>
+      <div class="faq-a">Principalmente negocios locales: estudios jurídicos, clínicas, odontólogos, inmobiliarias, restaurantes, gimnasios, veterinarias y más. Un solo negocio por rubro por ciudad — si hay lugar para el tuyo, te avisamos.</div>
+    </div>
+    <div class="faq-item">
+      <div class="faq-q">¿La página web tiene costo mensual?</div>
+      <div class="faq-a">No. Es un pago único. El sitio se publica en una plataforma sin costo mensual y los accesos quedan en tu poder. Si después necesitás cambios, se cotizan por separado.</div>
     </div>
   </div>
-
-  <!-- QUE INCLUYE WEB -->
-  <div class="section">
-    <div class="section-label">Qué incluye</div>
-    <h2>Todo lo que un negocio<br>local necesita online.</h2>
-    <div class="includes-grid">
-      <div class="include-item">
-        <span class="include-icon">🏠</span>
-        <strong>Sitio institucional completo</strong>
-        <span>Inicio, sobre el negocio, servicios y contacto. Diseño limpio, profesional y adaptado a tu identidad.</span>
-      </div>
-      <div class="include-item">
-        <span class="include-icon">📱</span>
-        <strong>100% adaptado a celular</strong>
-        <span>El sitio se ve perfecto en cualquier dispositivo. Hoy la mayoría de tus clientes te busca desde el teléfono.</span>
-      </div>
-      <div class="include-item">
-        <span class="include-icon">📍</span>
-        <strong>Mapa e integración con Google</strong>
-        <span>Ubicación con Google Maps integrada y reseñas de tu negocio visibles directamente en el sitio.</span>
-      </div>
-      <div class="include-item">
-        <span class="include-icon">📬</span>
-        <strong>Formulario de contacto</strong>
-        <span>Los mensajes del sitio llegan directo a tu WhatsApp o email. Sin perder ningún cliente.</span>
-      </div>
-      <div class="include-item">
-        <span class="include-icon">🔗</span>
-        <strong>Links a tus redes</strong>
-        <span>Instagram, Facebook, TikTok — lo que uses. Todo conectado para que el cliente pueda seguirte.</span>
-      </div>
-      <div class="include-item">
-        <span class="include-icon">⚡</span>
-        <strong>Rápido y sin complicaciones</strong>
-        <span>Sin login, sin tienda, sin base de datos que mantener. Un sitio que funciona y no da problemas.</span>
-      </div>
-    </div>
-  </div>
-
-  <!-- PRICING WEB -->
-  <div class="section">
-    <div class="section-label">Precio</div>
-    <div class="pricing-wrap">
-      <div class="pricing-left">
-        <h2>Pago único.<br>Sitio tuyo para siempre.</h2>
-        <p>Sin cuotas mensuales ni sorpresas. Pagás una vez y el sitio queda en tu poder con todos los accesos.</p>
-        <p style="color:var(--muted);font-size:.9rem;">¿Necesitás algo más complejo — tienda online, login, reservas? Consultanos por separado, lo cotizamos sin compromiso.</p>
-      </div>
-      <div class="pricing-card">
-        <div class="no-contract">
-          <span class="available-dot"></span>
-          Entrega en 7 días hábiles
-        </div>
-        <div class="price-display">
-          <span class="price-big">$250.000</span>
-        </div>
-        <div class="price-sub">pesos argentinos · pago único</div>
-        <ul class="pricing-list">
-          <li>Sitio institucional completo</li>
-          <li>Diseño mobile-first</li>
-          <li>Integración Google Maps + reseñas</li>
-          <li>Formulario de contacto a WhatsApp</li>
-          <li>Links a redes sociales</li>
-          <li>Accesos y código fuente entregados</li>
-        </ul>
-        <a href="https://wa.me/541133613235?text=Hola%2C%20me%20interesa%20la%20p%C3%A1gina%20web%20para%20mi%20negocio" class="btn-primary" target="_blank" style="display:block;text-align:center;width:100%;">
-          Consultar → WhatsApp
-        </a>
-      </div>
-    </div>
-  </div>
-
-  <!-- CONTEXT STRIP WEB -->
-  <div class="context-strip">
-    <div class="context-img">
-      <img src="https://images.unsplash.com/photo-1467232004584-a241de8bcf5d?auto=format&fit=crop&w=1200&q=80" alt="Diseño web" loading="lazy" />
-      <div class="context-img-text">
-        <p>Tu negocio online<br><span>en menos de una semana.</span></p>
-      </div>
-    </div>
-  </div>
-
-  <!-- FAQ WEB -->
-  <div class="section">
-    <div class="section-label">Preguntas frecuentes</div>
-    <h2>Lo que siempre<br>nos preguntan.</h2>
-    <div class="faq">
-      <div class="faq-item">
-        <div class="faq-q">¿Necesito tener dominio propio?</div>
-        <div class="faq-a">No es obligatorio. Si ya tenés uno, lo usamos. Si no, te recomendamos uno acorde a tu negocio — el costo del dominio es aparte y muy bajo.</div>
-      </div>
-      <div class="faq-item">
-        <div class="faq-q">¿El hosting está incluido?</div>
-        <div class="faq-a">El sitio se publica en una plataforma sin costo mensual. Si en el futuro necesitás hosting dedicado, te avisamos y lo coordinamos.</div>
-      </div>
-      <div class="faq-item">
-        <div class="faq-q">¿Puedo pedir cambios después?</div>
-        <div class="faq-a">Sí, dentro del proceso de entrega incluimos ajustes. Cambios posteriores se cotizan por separado según lo que necesites.</div>
-      </div>
-      <div class="faq-item">
-        <div class="faq-q">¿Qué necesito tener para arrancar?</div>
-        <div class="faq-a">Logo, fotos del negocio y tus datos de contacto. Si no tenés fotos, podemos usar imágenes de stock acordes a tu rubro.</div>
-      </div>
-      <div class="faq-item">
-        <div class="faq-q">¿Puedo agregar una tienda online después?</div>
-        <div class="faq-a">Sí, pero eso es un proyecto aparte. El pack web cubre el sitio institucional — si necesitás ecommerce, consultanos y lo cotizamos por separado.</div>
-      </div>
-    </div>
-  </div>
-
-</div><!-- /data-service="web" -->
+</div>
 
 
-<!-- CTA FINAL (compartido) -->
+<!-- CTA FINAL -->
 <div class="cta-final">
   <div class="cta-bg-img">
     <img src="https://images.unsplash.com/photo-1600880292203-757bb62b4baf?auto=format&fit=crop&w=1400&q=80" alt="" loading="lazy" />
@@ -1160,7 +1113,7 @@
       Lugares disponibles
     </div>
     <br>
-    <a href="https://wa.me/541133613235?text=Hola%2C%20quiero%20consultar%20disponibilidad%20para%20mi%20negocio" class="btn-primary" target="_blank">
+    <a href="https://wa.me/5491133613235?text=Hola%2C+vi+la+web+de+mitch+y+quiero+consultar+disponibilidad" class="btn-primary" target="_blank">
       Hablar por WhatsApp →
     </a>
   </div>
@@ -1177,15 +1130,15 @@
   <div class="footer-row">
     <span>[mitch] · Buenos Aires, Argentina</span>
     <div class="footer-social">
-    <a href="https://www.instagram.com/od.mitch/" target="_blank" rel="noopener">
-      <svg width="15" height="15" viewBox="0 0 24 24" fill="currentColor"><path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zm0-2.163c-3.259 0-3.667.014-4.947.072-4.358.2-6.78 2.618-6.98 6.98-.059 1.281-.073 1.689-.073 4.948 0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98-1.281-.059-1.69-.073-4.949-.073zm0 5.838c-3.403 0-6.162 2.759-6.162 6.162s2.759 6.163 6.162 6.163 6.162-2.759 6.162-6.163c0-3.403-2.759-6.162-6.162-6.162zm0 10.162c-2.209 0-4-1.79-4-4 0-2.209 1.791-4 4-4s4 1.791 4 4c0 2.21-1.791 4-4 4zm6.406-11.845c-.796 0-1.441.645-1.441 1.44s.645 1.44 1.441 1.44c.795 0 1.439-.645 1.439-1.44s-.644-1.44-1.439-1.44z"/></svg>
-      Instagram
-    </a>
-    <a href="https://www.tiktok.com/@od.mitch" target="_blank" rel="noopener">
-      <svg width="15" height="15" viewBox="0 0 24 24" fill="currentColor"><path d="M19.59 6.69a4.83 4.83 0 01-3.77-4.25V2h-3.45v13.67a2.89 2.89 0 01-2.88 2.5 2.89 2.89 0 01-2.89-2.89 2.89 2.89 0 012.89-2.89c.28 0 .54.04.79.1V9.01a6.27 6.27 0 00-.79-.05 6.34 6.34 0 00-6.34 6.34 6.34 6.34 0 006.34 6.34 6.34 6.34 0 006.33-6.34V8.69a8.2 8.2 0 004.79 1.53V6.77a4.85 4.85 0 01-1.02-.08z"/></svg>
-      TikTok
-    </a>
-  </div>
+      <a href="https://www.instagram.com/od.mitch/" target="_blank" rel="noopener">
+        <svg width="15" height="15" viewBox="0 0 24 24" fill="currentColor"><path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zm0-2.163c-3.259 0-3.667.014-4.947.072-4.358.2-6.78 2.618-6.98 6.98-.059 1.281-.073 1.689-.073 4.948 0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98-1.281-.059-1.69-.073-4.949-.073zm0 5.838c-3.403 0-6.162 2.759-6.162 6.162s2.759 6.163 6.162 6.163 6.162-2.759 6.162-6.163c0-3.403-2.759-6.162-6.162-6.162zm0 10.162c-2.209 0-4-1.79-4-4 0-2.209 1.791-4 4-4s4 1.791 4 4c0 2.21-1.791 4-4 4zm6.406-11.845c-.796 0-1.441.645-1.441 1.44s.645 1.44 1.441 1.44c.795 0 1.439-.645 1.439-1.44s-.644-1.44-1.439-1.44z"/></svg>
+        Instagram
+      </a>
+      <a href="https://www.tiktok.com/@od.mitch" target="_blank" rel="noopener">
+        <svg width="15" height="15" viewBox="0 0 24 24" fill="currentColor"><path d="M19.59 6.69a4.83 4.83 0 01-3.77-4.25V2h-3.45v13.67a2.89 2.89 0 01-2.88 2.5 2.89 2.89 0 01-2.89-2.89 2.89 2.89 0 012.89-2.89c.28 0 .54.04.79.1V9.01a6.27 6.27 0 00-.79-.05 6.34 6.34 0 00-6.34 6.34 6.34 6.34 0 006.34 6.34 6.34 6.34 0 006.33-6.34V8.69a8.2 8.2 0 004.79 1.53V6.77a4.85 4.85 0 01-1.02-.08z"/></svg>
+        TikTok
+      </a>
+    </div>
     <div class="footer-links">
       <a href="mailto:hola@packdigital.ar">hola@packdigital.ar</a>
       <a href="#legales" id="legales" title="Los servicios son prestados por [mitch], operador digital independiente, Buenos Aires, Argentina. Precios en ARS, sujetos a actualización.">Legales</a>
@@ -1193,19 +1146,26 @@
   </div>
 </footer>
 
-<a href="https://wa.me/541133613235?text=Hola%2C%20quiero%20saber%20m%C3%A1s%20sobre%20los%20servicios" class="wa-float" target="_blank" title="Hablar por WhatsApp">💬</a>
+<a href="https://wa.me/5491133613235?text=Hola%2C+vi+la+web+de+mitch+y+quiero+saber+m%C3%A1s" class="wa-float" target="_blank" title="Hablar por WhatsApp">💬</a>
 
 <script>
-  function selectService(service) {
-    // Update selector cards
-    document.querySelectorAll('.selector-card').forEach(function(card) {
-      card.classList.toggle('active', card.dataset.pick === service);
+  document.querySelectorAll('.gallery-track').forEach(function(track) {
+    var isDown = false, startX, scrollLeft;
+    track.addEventListener('mousedown', function(e) {
+      isDown = true; track.classList.add('dragging');
+      startX = e.pageX - track.offsetLeft; scrollLeft = track.scrollLeft;
     });
-    // Show/hide service sections
-    document.querySelectorAll('[data-service]').forEach(function(el) {
-      el.classList.toggle('hidden', el.dataset.service !== service);
+    track.addEventListener('mouseleave', function() { isDown = false; track.classList.remove('dragging'); });
+    track.addEventListener('mouseup',    function() { isDown = false; track.classList.remove('dragging'); });
+    track.addEventListener('mousemove',  function(e) {
+      if (!isDown) return; e.preventDefault();
+      track.scrollLeft = scrollLeft - (e.pageX - track.offsetLeft - startX) * 1.5;
     });
-  }
+    track.addEventListener('wheel', function(e) {
+      if (Math.abs(e.deltaX) > Math.abs(e.deltaY)) return;
+      e.preventDefault(); track.scrollLeft += e.deltaY * 1.5;
+    }, { passive: false });
+  });
 </script>
 
 </body>
