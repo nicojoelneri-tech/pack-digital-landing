@@ -662,17 +662,16 @@
 
   // Iphones del hero
   const HERO_PHONES = {
-    front:     'media/reels/segui.mp4',
+    front:     'media/reels/La capacitación de hoy pt.1-1.mp4',
     backLeft:  'media/reels/mas de 15 años.mp4',
     backRight: 'media/reels/La Holando.mp4',
   };
 
   // Iphones de la sección Productos
-  // type 'video' → reel con overlay UI  |  type 'image' → screenshot limpio sin overlay
   const PRODUCT_PHONES = {
     pack: { type: 'video', src: 'media/reels/segui.mp4' },
-    ads:  { type: 'image', src: null },   // → ponés: 'media/meta-panel.jpg'
-    web:  { type: 'image', src: null },   // → ponés: 'media/web-caso-legal.jpg'
+    ads:  { type: 'image', src: 'media/meta-panel.png' },
+    web:  { type: 'image', src: 'media/web-caso-legal.jpg' },
   };
 
   // Feed de muestras
@@ -681,31 +680,41 @@
   // src: null → usa gradiente de color como placeholder
   const tiles = [
     // ── REELS ──────────────────────────────────────────────────
-    { cat:'reels', type:'video', src:'media/reels/segui.mp4',           bg:'reel-gym',   title:'Seguí entrenando',          sub:'Gym · reel' },
-    { cat:'reels', type:'video', src:'media/reels/mas de 15 años.mp4',  bg:'reel-jur',   title:'Más de 15 años',             sub:'Estudio · reel' },
-    { cat:'reels', type:'video', src:'media/reels/La Holando.mp4',      bg:'reel-vet',   title:'La Holando',                 sub:'Reel' },
+    { cat:'reels', type:'video', src:'media/reels/La capacitación de hoy pt.1-1.mp4', bg:'reel-gym',   title:'La capacitación de hoy',   sub:'mitch · TikTok' },
+    { cat:'reels', type:'video', src:'media/reels/A qué me dedico-1.mp4',             bg:'reel-jur',   title:'¿A qué me dedico?',        sub:'mitch · TikTok' },
+    { cat:'reels', type:'video', src:'media/reels/cuanto gasto en herramientas.mp4',  bg:'reel-odont', title:'¿Cuánto gasto en tools?',   sub:'mitch · TikTok' },
+    { cat:'reels', type:'video', src:'media/reels/segui.mp4',                         bg:'reel-gym',   title:'Seguí entrenando',          sub:'Reel · cliente' },
+    { cat:'reels', type:'video', src:'media/reels/mas de 15 años.mp4',                bg:'reel-jur',   title:'Más de 15 años',            sub:'Caso Legal · reel' },
+    { cat:'reels', type:'video', src:'media/reels/La Holando.mp4',                    bg:'reel-vet',   title:'La Holando',                sub:'Reel · cliente' },
+    { cat:'reels', type:'video', src:'media/reels/Lolaut cámaras.mp4',                bg:'reel-resto', title:'Lolaut Cámaras',            sub:'Reel · cliente' },
+    { cat:'reels', type:'video', src:'media/reels/Pisco producciones.mp4',            bg:'reel-odont', title:'Pisco Producciones',        sub:'Reel · cliente' },
+    { cat:'reels', type:'video', src:'media/reels/Tablero reca ramos.mp4',            bg:'reel-jur',   title:'Tablero Reca Ramos',        sub:'Reel · cliente' },
     // ── POSTS ──────────────────────────────────────────────────
-    { cat:'posts', type:'image', src:'muestras/juridico_p01.png',  bg:'reel-jur',   title:'Estudio jurídico',   sub:'Post · template' },
-    { cat:'posts', type:'image', src:'muestras/juridico_p02.png',  bg:'reel-jur',   title:'Estudio jurídico',   sub:'Post · template' },
-    { cat:'posts', type:'image', src:'muestras/juridico_p03.png',  bg:'reel-jur',   title:'Estudio jurídico',   sub:'Post · template' },
-    { cat:'posts', type:'image', src:'muestras/juridico_p04.png',  bg:'reel-jur',   title:'Estudio jurídico',   sub:'Post · template' },
-    { cat:'posts', type:'image', src:'muestras/odonto_p01.png',    bg:'reel-odont', title:'Odontología',         sub:'Post · template' },
-    { cat:'posts', type:'image', src:'muestras/odonto_p02.png',    bg:'reel-odont', title:'Odontología',         sub:'Post · template' },
-    { cat:'posts', type:'image', src:'muestras/odonto_p03.png',    bg:'reel-odont', title:'Odontología',         sub:'Post · template' },
-    { cat:'posts', type:'image', src:'muestras/vete_p01.png',      bg:'reel-vet',   title:'Veterinaria',         sub:'Post · template' },
-    { cat:'posts', type:'image', src:'muestras/vete_p02.png',      bg:'reel-vet',   title:'Veterinaria',         sub:'Post · template' },
-    { cat:'posts', type:'image', src:'muestras/vete_p03.png',      bg:'reel-vet',   title:'Veterinaria',         sub:'Post · template' },
-    { cat:'posts', type:'image', src:'muestras/gimnasio_p01.png',  bg:'reel-gym',   title:'Gimnasio',            sub:'Post · template' },
-    { cat:'posts', type:'image', src:'muestras/gimnasio_p02.png',  bg:'reel-gym',   title:'Gimnasio',            sub:'Post · template' },
-    { cat:'posts', type:'image', src:'muestras/gimnasio_p03.png',  bg:'reel-gym',   title:'Gimnasio',            sub:'Post · template' },
-    { cat:'posts', type:'image', src:'muestras/gimnasio_p04.png',  bg:'reel-gym',   title:'Gimnasio',            sub:'Post · template' },
+    { cat:'posts', type:'image', src:'media/posts/103_v1_tu-ups-te-da-una-falsa-sensacion-de-seguridad.png', bg:'reel-jur', title:'Tu UPS te da una falsa sensación', sub:'Caso Legal · post' },
+    { cat:'posts', type:'image', src:'media/posts/104_v1_te-dijeron-culpa-concurrente-y-creiste-que-pe.png',  bg:'reel-jur', title:'Te dijeron culpa concurrente',     sub:'Caso Legal · post' },
+    { cat:'posts', type:'image', src:'media/posts/Marcelo5.png',  bg:'reel-resto', title:'Mir Soluciones',  sub:'Post · cliente' },
+    { cat:'posts', type:'image', src:'media/posts/Tab_1_1.png',   bg:'reel-gym',   title:'Template',        sub:'Post · template' },
+    { cat:'posts', type:'image', src:'muestras/juridico_p01.png', bg:'reel-jur',   title:'Estudio jurídico', sub:'Post · template' },
+    { cat:'posts', type:'image', src:'muestras/juridico_p02.png', bg:'reel-jur',   title:'Estudio jurídico', sub:'Post · template' },
+    { cat:'posts', type:'image', src:'muestras/juridico_p03.png', bg:'reel-jur',   title:'Estudio jurídico', sub:'Post · template' },
+    { cat:'posts', type:'image', src:'muestras/juridico_p04.png', bg:'reel-jur',   title:'Estudio jurídico', sub:'Post · template' },
+    { cat:'posts', type:'image', src:'muestras/odonto_p01.png',   bg:'reel-odont', title:'Odontología',      sub:'Post · template' },
+    { cat:'posts', type:'image', src:'muestras/odonto_p02.png',   bg:'reel-odont', title:'Odontología',      sub:'Post · template' },
+    { cat:'posts', type:'image', src:'muestras/odonto_p03.png',   bg:'reel-odont', title:'Odontología',      sub:'Post · template' },
+    { cat:'posts', type:'image', src:'muestras/vete_p01.png',     bg:'reel-vet',   title:'Veterinaria',      sub:'Post · template' },
+    { cat:'posts', type:'image', src:'muestras/vete_p02.png',     bg:'reel-vet',   title:'Veterinaria',      sub:'Post · template' },
+    { cat:'posts', type:'image', src:'muestras/vete_p03.png',     bg:'reel-vet',   title:'Veterinaria',      sub:'Post · template' },
+    { cat:'posts', type:'image', src:'muestras/gimnasio_p01.png', bg:'reel-gym',   title:'Gimnasio',         sub:'Post · template' },
+    { cat:'posts', type:'image', src:'muestras/gimnasio_p02.png', bg:'reel-gym',   title:'Gimnasio',         sub:'Post · template' },
+    { cat:'posts', type:'image', src:'muestras/gimnasio_p03.png', bg:'reel-gym',   title:'Gimnasio',         sub:'Post · template' },
+    { cat:'posts', type:'image', src:'muestras/gimnasio_p04.png', bg:'reel-gym',   title:'Gimnasio',         sub:'Post · template' },
     // ── STORIES ────────────────────────────────────────────────
-    { cat:'stories', type:'image', src:'muestras/juridico_s01.png',  bg:'reel-jur',   title:'Estudio jurídico',   sub:'Story · template' },
-    { cat:'stories', type:'image', src:'muestras/juridico_s02.png',  bg:'reel-jur',   title:'Estudio jurídico',   sub:'Story · template' },
-    { cat:'stories', type:'image', src:'muestras/odonto_s01.png',    bg:'reel-odont', title:'Odontología',         sub:'Story · template' },
-    { cat:'stories', type:'image', src:'muestras/vete_s01.png',      bg:'reel-vet',   title:'Veterinaria',         sub:'Story · template' },
-    { cat:'stories', type:'image', src:'muestras/gimnasio_s01.png',  bg:'reel-gym',   title:'Gimnasio',            sub:'Story · template' },
-    { cat:'stories', type:'image', src:'muestras/gimnasio_s02.png',  bg:'reel-gym',   title:'Gimnasio',            sub:'Story · template' },
+    { cat:'stories', type:'image', src:'muestras/juridico_s01.png',  bg:'reel-jur',   title:'Estudio jurídico', sub:'Story · template' },
+    { cat:'stories', type:'image', src:'muestras/juridico_s02.png',  bg:'reel-jur',   title:'Estudio jurídico', sub:'Story · template' },
+    { cat:'stories', type:'image', src:'muestras/odonto_s01.png',    bg:'reel-odont', title:'Odontología',      sub:'Story · template' },
+    { cat:'stories', type:'image', src:'muestras/vete_s01.png',      bg:'reel-vet',   title:'Veterinaria',      sub:'Story · template' },
+    { cat:'stories', type:'image', src:'muestras/gimnasio_s01.png',  bg:'reel-gym',   title:'Gimnasio',         sub:'Story · template' },
+    { cat:'stories', type:'image', src:'muestras/gimnasio_s02.png',  bg:'reel-gym',   title:'Gimnasio',         sub:'Story · template' },
   ];
 
   // ══════════════════════════════════════════════════════════════
