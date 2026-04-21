@@ -423,7 +423,7 @@
       </div>
       <div class="product-phone reveal">
         <div class="phone" style="transform:rotate(-3deg)">
-          <div class="phone-screen reel-vet">
+          <div class="phone-screen reel-vet" id="prod-pack-screen">
             <div class="phone-notch"></div>
             <div class="phone-reel-overlay"></div>
             <div class="phone-reel-live"><span class="rdot"></span> Reel Pack</div>
@@ -457,7 +457,7 @@
       </div>
       <div class="product-phone reveal">
         <div class="phone" style="transform:rotate(-3deg)">
-          <div class="phone-screen reel-jur">
+          <div class="phone-screen reel-jur" id="prod-ads-screen">
             <div class="phone-notch"></div>
             <div class="phone-reel-overlay"></div>
             <div class="phone-reel-live"><span class="rdot" style="background:var(--purple)"></span> Ad activo</div>
@@ -491,7 +491,7 @@
       </div>
       <div class="product-phone reveal">
         <div class="phone" style="transform:rotate(-3deg)">
-          <div class="phone-screen reel-gym">
+          <div class="phone-screen reel-gym" id="prod-web-screen">
             <div class="phone-notch"></div>
             <div class="phone-reel-overlay"></div>
             <div class="phone-reel-live"><span class="rdot" style="background:var(--blue)"></span> Sitio web</div>
@@ -660,11 +660,19 @@
   // MEDIA CONFIG — editá acá para agregar contenido real
   // ══════════════════════════════════════════════════════════════
 
-  // Iphones del hero — poné rutas a .mp4 o null para mantener gradiente
+  // Iphones del hero
   const HERO_PHONES = {
     front:     'media/reels/segui.mp4',
     backLeft:  'media/reels/mas de 15 años.mp4',
     backRight: 'media/reels/La Holando.mp4',
+  };
+
+  // Iphones de la sección Productos
+  // type 'video' → reel con overlay UI  |  type 'image' → screenshot limpio sin overlay
+  const PRODUCT_PHONES = {
+    pack: { type: 'video', src: 'media/reels/segui.mp4' },
+    ads:  { type: 'image', src: null },   // → ponés: 'media/meta-panel.jpg'
+    web:  { type: 'image', src: null },   // → ponés: 'media/web-caso-legal.jpg'
   };
 
   // Feed de muestras
@@ -713,7 +721,28 @@
   const all = [...tickerItems, ...tickerItems, ...tickerItems];
   row.innerHTML = all.map(x => `<span><em>●</em> ${x}</span>`).join('');
 
-  // ── Hero phones ─────────────────────────────────────────
+  // ── Product phones ───────────────────────────────────────
+  function mountProductPhone(id, cfg) {
+    const screen = document.getElementById(id);
+    if (!screen || !cfg.src) return;
+    if (cfg.type === 'video') {
+      const vid = document.createElement('video');
+      vid.className = 'phone-video'; vid.autoplay = true; vid.muted = true; vid.loop = true; vid.playsInline = true;
+      vid.innerHTML = `<source src="${cfg.src}" type="video/mp4">`;
+      screen.insertBefore(vid, screen.firstChild);
+    } else {
+      const img = document.createElement('img');
+      img.className = 'phone-video'; img.src = cfg.src; img.alt = '';
+      screen.insertBefore(img, screen.firstChild);
+      // screenshot limpio: ocultamos overlay, caption y progress
+      screen.querySelectorAll('.phone-reel-overlay, .phone-reel-live, .phone-reel-caption, .phone-reel-actions, .phone-progress').forEach(el => el.style.display = 'none');
+    }
+  }
+  mountProductPhone('prod-pack-screen', PRODUCT_PHONES.pack);
+  mountProductPhone('prod-ads-screen',  PRODUCT_PHONES.ads);
+  mountProductPhone('prod-web-screen',  PRODUCT_PHONES.web);
+
+  // ── Hero phones ───────────────────────────────────────────
   function mountPhoneVideo(screenEl, src) {
     if (!src) return;
     const vid = document.createElement('video');
