@@ -175,6 +175,7 @@
     @media (min-width: 960px)  { .feed-grid { grid-template-columns: repeat(4,1fr); gap: 14px; } }
 
     .feed-tile { aspect-ratio: 9/16; background: var(--bg-2); border-radius: var(--r-l); overflow: hidden; position: relative; border: 1px solid var(--border); cursor: pointer; transition: transform .3s, border-color .2s; }
+    .feed-tile[data-cat="posts"] { aspect-ratio: 4/5; }
     .feed-tile:hover { transform: translateY(-4px); border-color: var(--accent-border); }
     .feed-tile::after { content: ''; position: absolute; inset: 0; background: linear-gradient(180deg, rgba(0,0,0,.25) 0%, rgba(0,0,0,0) 30%, rgba(0,0,0,0) 55%, rgba(0,0,0,.85) 100%); pointer-events: none; }
     .tile-media { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; display: block; }
@@ -380,10 +381,9 @@
         <h2 style="font-size:clamp(2rem,5.5vw,3.6rem); margin-top:16px; letter-spacing:-.04em;">Esto es<br>lo que recibís.</h2>
       </div>
       <div class="chip-group">
-        <button class="chip on" data-filter="todos">Todos</button>
-        <button class="chip" data-filter="reels">Reels</button>
+        <button class="chip on" data-filter="reels">Reels</button>
         <button class="chip" data-filter="posts">Posts</button>
-        <button class="chip" data-filter="stories">Stories</button>
+        <button class="chip" data-filter="stories">Historias</button>
       </div>
     </div>
     <div class="feed-grid" id="feed-grid"></div>
@@ -678,43 +678,34 @@
   // type: 'video' → .mp4 en media/reels/
   // type: 'image' → .jpg/.png en muestras/
   // src: null → usa gradiente de color como placeholder
+  // Fisher-Yates shuffle
+  function shuffle(arr) {
+    for (let i = arr.length - 1; i > 0; i--) {
+      const j = Math.floor(Math.random() * (i + 1));
+      [arr[i], arr[j]] = [arr[j], arr[i]];
+    }
+    return arr;
+  }
+
   const tiles = [
     // ── REELS ──────────────────────────────────────────────────
-    { cat:'reels', type:'video', src:'media/reels/La capacitación de hoy pt.1-1.mp4', bg:'reel-gym',   title:'La capacitación de hoy',   sub:'mitch · TikTok' },
-    { cat:'reels', type:'video', src:'media/reels/A qué me dedico-1.mp4',             bg:'reel-jur',   title:'¿A qué me dedico?',        sub:'mitch · TikTok' },
-    { cat:'reels', type:'video', src:'media/reels/cuanto gasto en herramientas.mp4',  bg:'reel-odont', title:'¿Cuánto gasto en tools?',   sub:'mitch · TikTok' },
-    { cat:'reels', type:'video', src:'media/reels/segui.mp4',                         bg:'reel-gym',   title:'Seguí entrenando',          sub:'Reel · cliente' },
-    { cat:'reels', type:'video', src:'media/reels/mas de 15 años.mp4',                bg:'reel-jur',   title:'Más de 15 años',            sub:'Caso Legal · reel' },
-    { cat:'reels', type:'video', src:'media/reels/La Holando.mp4',                    bg:'reel-vet',   title:'La Holando',                sub:'Reel · cliente' },
-    { cat:'reels', type:'video', src:'media/reels/Lolaut cámaras.mp4',                bg:'reel-resto', title:'Lolaut Cámaras',            sub:'Reel · cliente' },
-    { cat:'reels', type:'video', src:'media/reels/Pisco producciones.mp4',            bg:'reel-odont', title:'Pisco Producciones',        sub:'Reel · cliente' },
-    { cat:'reels', type:'video', src:'media/reels/Tablero reca ramos.mp4',            bg:'reel-jur',   title:'Tablero Reca Ramos',        sub:'Reel · cliente' },
+    ...shuffle([
+      { cat:'reels', type:'video', src:'media/reels/La capacitación de hoy pt.1-1.mp4', title:'La capacitación de hoy',  sub:'mitch · TikTok' },
+      { cat:'reels', type:'video', src:'media/reels/A qué me dedico-1.mp4',             title:'¿A qué me dedico?',       sub:'mitch · TikTok' },
+      { cat:'reels', type:'video', src:'media/reels/cuanto gasto en herramientas.mp4',  title:'¿Cuánto gasto en tools?', sub:'mitch · TikTok' },
+      { cat:'reels', type:'video', src:'media/reels/segui.mp4',                         title:'Seguí entrenando',        sub:'Reel · cliente' },
+      { cat:'reels', type:'video', src:'media/reels/mas de 15 años.mp4',                title:'Más de 15 años',          sub:'Caso Legal · reel' },
+      { cat:'reels', type:'video', src:'media/reels/La Holando.mp4',                    title:'La Holando',              sub:'Reel · cliente' },
+      { cat:'reels', type:'video', src:'media/reels/Lolaut cámaras.mp4',                title:'Lolaut Cámaras',          sub:'Reel · cliente' },
+      { cat:'reels', type:'video', src:'media/reels/Pisco producciones.mp4',            title:'Pisco Producciones',      sub:'Reel · cliente' },
+      { cat:'reels', type:'video', src:'media/reels/Tablero reca ramos.mp4',            title:'Tablero Reca Ramos',      sub:'Reel · cliente' },
+    ]),
     // ── POSTS ──────────────────────────────────────────────────
-    { cat:'posts', type:'image', src:'media/posts/103_v1_tu-ups-te-da-una-falsa-sensacion-de-seguridad.png', bg:'reel-jur', title:'Tu UPS te da una falsa sensación', sub:'Caso Legal · post' },
-    { cat:'posts', type:'image', src:'media/posts/104_v1_te-dijeron-culpa-concurrente-y-creiste-que-pe.png',  bg:'reel-jur', title:'Te dijeron culpa concurrente',     sub:'Caso Legal · post' },
-    { cat:'posts', type:'image', src:'media/posts/Marcelo5.png',  bg:'reel-resto', title:'Mir Soluciones',  sub:'Post · cliente' },
-    { cat:'posts', type:'image', src:'media/posts/Tab_1_1.png',   bg:'reel-gym',   title:'Template',        sub:'Post · template' },
-    { cat:'posts', type:'image', src:'muestras/juridico_p01.png', bg:'reel-jur',   title:'Estudio jurídico', sub:'Post · template' },
-    { cat:'posts', type:'image', src:'muestras/juridico_p02.png', bg:'reel-jur',   title:'Estudio jurídico', sub:'Post · template' },
-    { cat:'posts', type:'image', src:'muestras/juridico_p03.png', bg:'reel-jur',   title:'Estudio jurídico', sub:'Post · template' },
-    { cat:'posts', type:'image', src:'muestras/juridico_p04.png', bg:'reel-jur',   title:'Estudio jurídico', sub:'Post · template' },
-    { cat:'posts', type:'image', src:'muestras/odonto_p01.png',   bg:'reel-odont', title:'Odontología',      sub:'Post · template' },
-    { cat:'posts', type:'image', src:'muestras/odonto_p02.png',   bg:'reel-odont', title:'Odontología',      sub:'Post · template' },
-    { cat:'posts', type:'image', src:'muestras/odonto_p03.png',   bg:'reel-odont', title:'Odontología',      sub:'Post · template' },
-    { cat:'posts', type:'image', src:'muestras/vete_p01.png',     bg:'reel-vet',   title:'Veterinaria',      sub:'Post · template' },
-    { cat:'posts', type:'image', src:'muestras/vete_p02.png',     bg:'reel-vet',   title:'Veterinaria',      sub:'Post · template' },
-    { cat:'posts', type:'image', src:'muestras/vete_p03.png',     bg:'reel-vet',   title:'Veterinaria',      sub:'Post · template' },
-    { cat:'posts', type:'image', src:'muestras/gimnasio_p01.png', bg:'reel-gym',   title:'Gimnasio',         sub:'Post · template' },
-    { cat:'posts', type:'image', src:'muestras/gimnasio_p02.png', bg:'reel-gym',   title:'Gimnasio',         sub:'Post · template' },
-    { cat:'posts', type:'image', src:'muestras/gimnasio_p03.png', bg:'reel-gym',   title:'Gimnasio',         sub:'Post · template' },
-    { cat:'posts', type:'image', src:'muestras/gimnasio_p04.png', bg:'reel-gym',   title:'Gimnasio',         sub:'Post · template' },
+    { cat:'posts', type:'image', src:'media/posts/103_v1_tu-ups-te-da-una-falsa-sensacion-de-seguridad.png', title:'Tu UPS te da una falsa sensación', sub:'Caso Legal · post' },
+    { cat:'posts', type:'image', src:'media/posts/104_v1_te-dijeron-culpa-concurrente-y-creiste-que-pe.png',  title:'Te dijeron culpa concurrente',     sub:'Caso Legal · post' },
+    { cat:'posts', type:'image', src:'media/posts/Marcelo5.png', title:'Mir Soluciones', sub:'Post · cliente' },
+    { cat:'posts', type:'image', src:'media/posts/Tab_1_1.png',  title:'Template',       sub:'Post · template' },
     // ── STORIES ────────────────────────────────────────────────
-    { cat:'stories', type:'image', src:'muestras/juridico_s01.png',  bg:'reel-jur',   title:'Estudio jurídico', sub:'Story · template' },
-    { cat:'stories', type:'image', src:'muestras/juridico_s02.png',  bg:'reel-jur',   title:'Estudio jurídico', sub:'Story · template' },
-    { cat:'stories', type:'image', src:'muestras/odonto_s01.png',    bg:'reel-odont', title:'Odontología',      sub:'Story · template' },
-    { cat:'stories', type:'image', src:'muestras/vete_s01.png',      bg:'reel-vet',   title:'Veterinaria',      sub:'Story · template' },
-    { cat:'stories', type:'image', src:'muestras/gimnasio_s01.png',  bg:'reel-gym',   title:'Gimnasio',         sub:'Story · template' },
-    { cat:'stories', type:'image', src:'muestras/gimnasio_s02.png',  bg:'reel-gym',   title:'Gimnasio',         sub:'Story · template' },
   ];
 
   // ══════════════════════════════════════════════════════════════
@@ -786,7 +777,7 @@
         </div>`;
     }).join('');
   }
-  renderTiles('todos');
+  renderTiles('reels');
 
   document.querySelectorAll('.chip').forEach(btn => {
     btn.addEventListener('click', () => {
