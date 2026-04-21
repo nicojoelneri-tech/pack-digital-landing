@@ -662,33 +662,42 @@
 
   // Iphones del hero — poné rutas a .mp4 o null para mantener gradiente
   const HERO_PHONES = {
-    front: null,        // ej: 'media/reels/mitch-demo.mp4'
-    backLeft: null,     // ej: 'media/reels/caso-legal-1.mp4'
-    backRight: null,    // ej: 'media/reels/mir-1.mp4'
+    front:     'media/reels/segui.mp4',
+    backLeft:  'media/reels/mas de 15 años.mp4',
+    backRight: 'media/reels/La Holando.mp4',
   };
 
   // Feed de muestras
   // type: 'video' → .mp4 en media/reels/
-  // type: 'image' → .jpg/.png en media/posts/ o media/stories/
+  // type: 'image' → .jpg/.png en muestras/
   // src: null → usa gradiente de color como placeholder
   const tiles = [
-    // ── REELS (.mp4 sin audio, 9:16) ───────────────────────────
-    { cat:'reels', type:'video',  src: null, bg:'reel-odont', title:'El proceso, en 30s',           sub:'Odonto · 22s' },
-    { cat:'reels', type:'video',  src: null, bg:'reel-vet',   title:'Primer turno gratis',           sub:'Veterinaria · 18s' },
-    { cat:'reels', type:'video',  src: null, bg:'reel-gym',   title:'Rutina de 5 min',               sub:'Fitness · 20s' },
-    { cat:'reels', type:'video',  src: null, bg:'reel-jur',   title:'Tus derechos como inquilino',   sub:'Edu · 18s' },
-    { cat:'reels', type:'video',  src: null, bg:'reel-odont', title:'Antes / después',               sub:'Testimonial · 15s' },
-    { cat:'reels', type:'video',  src: null, bg:'reel-resto', title:'El menú del día en 15s',        sub:'Restaurante' },
-    // ── POSTS (.jpg o .png, cuadrado o 4:5) ────────────────────
-    { cat:'posts', type:'image',  src: null, bg:'reel-jur',   title:'5 señales de alerta',           sub:'Estudio · carrusel' },
-    { cat:'posts', type:'image',  src: null, bg:'reel-resto', title:'Historia del local',            sub:'Institucional' },
-    { cat:'posts', type:'image',  src: null, bg:'reel-vet',   title:'Cuidados del verano',           sub:'Edu · carrusel' },
-    { cat:'posts', type:'image',  src: null, bg:'reel-gym',   title:'Transformación del mes',        sub:'Testimonial' },
-    // ── STORIES (.jpg o .png, 9:16) ────────────────────────────
-    { cat:'stories', type:'image', src: null, bg:'reel-gym',  title:'Reservá hoy',                  sub:'CTA WhatsApp' },
-    { cat:'stories', type:'image', src: null, bg:'reel-jur',  title:'Horarios de atención',          sub:'Info' },
-    { cat:'stories', type:'image', src: null, bg:'reel-odont', title:'Nuevo turno disponible',       sub:'Update' },
-    { cat:'stories', type:'image', src: null, bg:'reel-vet',  title:'Nuevo paciente del día',        sub:'Behind the scenes' },
+    // ── REELS ──────────────────────────────────────────────────
+    { cat:'reels', type:'video', src:'media/reels/segui.mp4',           bg:'reel-gym',   title:'Seguí entrenando',          sub:'Gym · reel' },
+    { cat:'reels', type:'video', src:'media/reels/mas de 15 años.mp4',  bg:'reel-jur',   title:'Más de 15 años',             sub:'Estudio · reel' },
+    { cat:'reels', type:'video', src:'media/reels/La Holando.mp4',      bg:'reel-vet',   title:'La Holando',                 sub:'Reel' },
+    // ── POSTS ──────────────────────────────────────────────────
+    { cat:'posts', type:'image', src:'muestras/juridico_p01.png',  bg:'reel-jur',   title:'Estudio jurídico',   sub:'Post · template' },
+    { cat:'posts', type:'image', src:'muestras/juridico_p02.png',  bg:'reel-jur',   title:'Estudio jurídico',   sub:'Post · template' },
+    { cat:'posts', type:'image', src:'muestras/juridico_p03.png',  bg:'reel-jur',   title:'Estudio jurídico',   sub:'Post · template' },
+    { cat:'posts', type:'image', src:'muestras/juridico_p04.png',  bg:'reel-jur',   title:'Estudio jurídico',   sub:'Post · template' },
+    { cat:'posts', type:'image', src:'muestras/odonto_p01.png',    bg:'reel-odont', title:'Odontología',         sub:'Post · template' },
+    { cat:'posts', type:'image', src:'muestras/odonto_p02.png',    bg:'reel-odont', title:'Odontología',         sub:'Post · template' },
+    { cat:'posts', type:'image', src:'muestras/odonto_p03.png',    bg:'reel-odont', title:'Odontología',         sub:'Post · template' },
+    { cat:'posts', type:'image', src:'muestras/vete_p01.png',      bg:'reel-vet',   title:'Veterinaria',         sub:'Post · template' },
+    { cat:'posts', type:'image', src:'muestras/vete_p02.png',      bg:'reel-vet',   title:'Veterinaria',         sub:'Post · template' },
+    { cat:'posts', type:'image', src:'muestras/vete_p03.png',      bg:'reel-vet',   title:'Veterinaria',         sub:'Post · template' },
+    { cat:'posts', type:'image', src:'muestras/gimnasio_p01.png',  bg:'reel-gym',   title:'Gimnasio',            sub:'Post · template' },
+    { cat:'posts', type:'image', src:'muestras/gimnasio_p02.png',  bg:'reel-gym',   title:'Gimnasio',            sub:'Post · template' },
+    { cat:'posts', type:'image', src:'muestras/gimnasio_p03.png',  bg:'reel-gym',   title:'Gimnasio',            sub:'Post · template' },
+    { cat:'posts', type:'image', src:'muestras/gimnasio_p04.png',  bg:'reel-gym',   title:'Gimnasio',            sub:'Post · template' },
+    // ── STORIES ────────────────────────────────────────────────
+    { cat:'stories', type:'image', src:'muestras/juridico_s01.png',  bg:'reel-jur',   title:'Estudio jurídico',   sub:'Story · template' },
+    { cat:'stories', type:'image', src:'muestras/juridico_s02.png',  bg:'reel-jur',   title:'Estudio jurídico',   sub:'Story · template' },
+    { cat:'stories', type:'image', src:'muestras/odonto_s01.png',    bg:'reel-odont', title:'Odontología',         sub:'Story · template' },
+    { cat:'stories', type:'image', src:'muestras/vete_s01.png',      bg:'reel-vet',   title:'Veterinaria',         sub:'Story · template' },
+    { cat:'stories', type:'image', src:'muestras/gimnasio_s01.png',  bg:'reel-gym',   title:'Gimnasio',            sub:'Story · template' },
+    { cat:'stories', type:'image', src:'muestras/gimnasio_s02.png',  bg:'reel-gym',   title:'Gimnasio',            sub:'Story · template' },
   ];
 
   // ══════════════════════════════════════════════════════════════
