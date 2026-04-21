@@ -27,6 +27,7 @@
       --purple: #a78bfa;
       --blue: #60a5fa;
       --green: #4ade80;
+      --gold: #f59e0b;
       --f-display: 'Syne', sans-serif;
       --f-body: 'Space Grotesk', sans-serif;
       --f-mono: 'JetBrains Mono', monospace;
@@ -206,6 +207,7 @@
     .product-bullets li::before { content: '→'; flex-shrink: 0; color: var(--accent); }
     #tab-ads .product-bullets li::before  { color: var(--purple); }
     #tab-web .product-bullets li::before  { color: var(--blue); }
+    #tab-dir .product-bullets li::before  { color: var(--gold); }
 
     .product-phone { display: flex; justify-content: center; }
 
@@ -220,12 +222,12 @@
     .process-card p { color: var(--muted); font-size: 14px; line-height: 1.5; }
 
     /* ── PRICING ─────────────────────────────────────── */
-    .pricing-grid { display: grid; gap: 16px; max-width: 1100px; margin: 0 auto; }
-    @media (min-width: 960px) { .pricing-grid { grid-template-columns: 1fr 1.15fr 1fr; align-items: stretch; } }
+    .pricing-grid { display: grid; gap: 16px; max-width: 1200px; margin: 0 auto; }
+    @media (min-width: 760px) { .pricing-grid { grid-template-columns: 1fr 1fr; align-items: stretch; } }
+    @media (min-width: 1100px) { .pricing-grid { grid-template-columns: 1fr 1.1fr 1fr 1fr; } }
     .pricing-card { background: var(--bg-2); border: 1px solid var(--border); border-radius: var(--r-xl); padding: 32px; position: relative; overflow: visible; display: flex; flex-direction: column; }
     .pricing-card::before { content: ''; position: absolute; top: 0; left: 0; right: 0; height: 3px; background: currentColor; border-radius: var(--r-xl) var(--r-xl) 0 0; }
     .pricing-card.featured { background: var(--bg-3); border-color: var(--accent); box-shadow: 0 20px 60px rgba(0,224,204,.08); }
-    @media (min-width: 960px) { .pricing-card.featured { transform: scale(1.03); z-index: 1; } }
     .pricing-tag { display: inline-block; padding: 5px 12px; border-radius: 4px; font-size: 10px; font-weight: 700; letter-spacing: .12em; text-transform: uppercase; margin-bottom: 20px; background: rgba(255,255,255,.05); }
     .pricing-name { font-family: var(--f-display); font-weight: 800; font-size: 1.6rem; letter-spacing: -.025em; margin-bottom: 14px; }
     .pricing-price { font-family: var(--f-display); font-weight: 800; font-size: clamp(1.8rem, 3.5vw, 2.6rem); letter-spacing: -.04em; line-height: 1; }
@@ -394,13 +396,14 @@
 <div class="products-wrap section" id="productos">
   <div class="container">
     <div class="reveal">
-      <div class="eyebrow accent">Tres productos</div>
+      <div class="eyebrow accent">Cuatro servicios</div>
       <h2 style="font-size:clamp(2rem,5.5vw,3.6rem); margin-top:16px; letter-spacing:-.04em; margin-bottom:36px;">Elegí lo tuyo.</h2>
     </div>
     <div class="product-tabs reveal">
       <button class="product-tab on" data-tab="pack" style="color:var(--accent-ink); background:var(--accent); border-color:var(--accent);">Pack Digital</button>
       <button class="product-tab" data-tab="ads">Publicidad Meta</button>
       <button class="product-tab" data-tab="web">Página Web</button>
+      <button class="product-tab" data-tab="dir">Dirección Creativa</button>
     </div>
 
     <!-- Pack Digital -->
@@ -408,18 +411,16 @@
       <div class="reveal">
         <div class="product-tag" style="background:var(--accent-soft); color:var(--accent);">Mensual · recurrente</div>
         <h3 class="product-title">Pack Digital</h3>
-        <div class="product-price" style="color:var(--accent);">$400.000</div>
-        <div class="product-price-sub">por mes · sin permanencia</div>
         <p class="product-desc">Todo el contenido de tu mes, producido y listo para subir. 8 Reels, 8 Posts, 4 Stories, calendario y entrega en ZIP.</p>
-        <ul class="product-bullets" style="--arrow-c: var(--accent);">
-          <li style="--c:var(--accent)">8 Reels con audio voiceover</li>
-          <li style="--c:var(--accent)">8 Posts · 4 variantes</li>
-          <li style="--c:var(--accent)">4 Stories con CTA</li>
-          <li style="--c:var(--accent)">Calendario mensual</li>
-          <li style="--c:var(--accent)">Diseño exclusivo por zona</li>
-          <li style="--c:var(--accent)">Soporte por WhatsApp</li>
+        <ul class="product-bullets">
+          <li>8 Reels con audio voiceover</li>
+          <li>8 Posts · 4 variantes</li>
+          <li>4 Stories con CTA</li>
+          <li>Calendario mensual</li>
+          <li>Diseño exclusivo por zona</li>
+          <li>Soporte por WhatsApp</li>
         </ul>
-        <a href="https://wa.me/5491133613235?text=Hola%2C+quiero+el+Pack+Digital" target="_blank" class="btn btn-primary btn-lg">Empezar con Pack Digital →</a>
+        <a href="https://wa.me/5491133613235?text=Hola%2C+quiero+cotizar+el+Pack+Digital+%28reels%2C+posts+y+stories+mensuales%29" target="_blank" class="btn btn-primary btn-lg">Cotizar Pack Digital →</a>
       </div>
       <div class="product-phone reveal">
         <div class="phone" style="transform:rotate(-3deg)">
@@ -442,8 +443,6 @@
       <div class="reveal">
         <div class="product-tag" style="background:rgba(167,139,250,.12); color:var(--purple);">Add-on sobre el Pack</div>
         <h3 class="product-title">Publicidad Meta</h3>
-        <div class="product-price" style="color:var(--purple);">+$200.000</div>
-        <div class="product-price-sub">fee mensual · spend aparte</div>
         <p class="product-desc">Convertimos tus Reels y Posts en campañas. Segmentamos por zona, edad e intereses. Optimizamos semanalmente.</p>
         <ul class="product-bullets">
           <li style="--c:var(--purple)">Gestión completa Meta Ads</li>
@@ -476,8 +475,6 @@
       <div class="reveal">
         <div class="product-tag" style="background:rgba(96,165,250,.12); color:var(--blue);">Pago único · entrega 7 días</div>
         <h3 class="product-title">Página Web</h3>
-        <div class="product-price" style="color:var(--blue);">$300.000</div>
-        <div class="product-price-sub">pago único · el sitio es tuyo</div>
         <p class="product-desc">Sitio institucional mobile-first con Google Maps, formulario a tu WhatsApp y links a tus redes. Online en una semana.</p>
         <ul class="product-bullets">
           <li>Sitio institucional</li>
@@ -499,6 +496,38 @@
               <div class="handle">tu-negocio.ar</div>
               <div class="text">Online en 7 días hábiles 🌐</div>
             </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Dirección Creativa -->
+    <div class="product-detail" id="tab-dir">
+      <div class="reveal">
+        <div class="product-tag" style="background:rgba(245,158,11,.12); color:var(--gold);">Servicio completo · recurrente</div>
+        <h3 class="product-title">Dirección Creativa</h3>
+        <p class="product-desc">Me hago cargo de todo lo que necesita tu marca, día a día. Estrategia, contenido, publicidad y web. Vos enfocate en tu negocio.</p>
+        <ul class="product-bullets">
+          <li>Estrategia de contenido mensual</li>
+          <li>Reels, posts y stories</li>
+          <li>Gestión de campañas Meta</li>
+          <li>Página web incluida</li>
+          <li>Atención prioritaria 7 días</li>
+          <li>Reportes y optimización continua</li>
+        </ul>
+        <a href="https://wa.me/5491133613235?text=Hola%2C+quiero+cotizar+la+Direcci%C3%B3n+Creativa+%28servicio+completo%29" target="_blank" class="btn btn-lg" style="background:var(--gold); color:#0c0c0c;">Cotizar Dirección Creativa →</a>
+      </div>
+      <div class="product-phone reveal">
+        <div class="phone" style="transform:rotate(-3deg)">
+          <div class="phone-screen" style="background:linear-gradient(160deg,#2a1a00 0%,#0a0a0a 70%)" id="prod-dir-screen">
+            <div class="phone-notch"></div>
+            <div class="phone-reel-overlay"></div>
+            <div class="phone-reel-live"><span class="rdot" style="background:var(--gold)"></span> Dirección Creativa</div>
+            <div class="phone-reel-caption">
+              <div class="handle">@tu_marca</div>
+              <div class="text">Todo bajo control 🎯</div>
+            </div>
+            <div class="phone-progress"><div class="bar" style="background:var(--gold)"></div></div>
           </div>
         </div>
       </div>
@@ -548,8 +577,7 @@
       <div class="pricing-card" style="color:var(--purple);">
         <div class="pricing-tag">+ Add-on</div>
         <div class="pricing-name">Publicidad Meta</div>
-        <div class="pricing-price">+$200.000</div>
-        <div class="pricing-sub">por mes · sobre el Pack</div>
+        <div class="pricing-sub" style="border-bottom:1px solid var(--border); padding-bottom:22px; margin-bottom:22px;">Add-on mensual · spend aparte</div>
         <ul class="pricing-list">
           <li>Gestión Meta Ads</li>
           <li>Segmentación por zona</li>
@@ -557,13 +585,12 @@
           <li>Optimización semanal</li>
           <li>Reporte mensual</li>
         </ul>
-        <a href="https://wa.me/5491133613235?text=Quiero+agregar+Meta+Ads" target="_blank" class="btn" style="background:transparent; color:var(--purple); border:1px solid var(--purple); justify-content:center;">Consultar →</a>
+        <a href="https://wa.me/5491133613235?text=Quiero+agregar+Meta+Ads" target="_blank" class="btn" style="background:transparent; color:var(--purple); border:1px solid var(--purple); justify-content:center;">Cotizar →</a>
       </div>
       <div class="pricing-card featured" style="color:var(--accent);">
         <div class="pricing-tag">★ El más elegido</div>
         <div class="pricing-name">Pack Digital</div>
-        <div class="pricing-price">$400.000</div>
-        <div class="pricing-sub">por mes · sin permanencia</div>
+        <div class="pricing-sub" style="border-bottom:1px solid var(--border); padding-bottom:22px; margin-bottom:22px;">Mensual · sin permanencia</div>
         <ul class="pricing-list">
           <li>8 Reels + audio voiceover</li>
           <li>8 Posts · 4 variantes</li>
@@ -573,13 +600,12 @@
           <li>Diseño exclusivo por zona</li>
           <li>Soporte WhatsApp</li>
         </ul>
-        <a href="https://wa.me/5491133613235?text=Quiero+empezar+con+el+Pack+Digital" target="_blank" class="btn btn-primary btn-lg" style="justify-content:center;">Empezar →</a>
+        <a href="https://wa.me/5491133613235?text=Quiero+cotizar+el+Pack+Digital" target="_blank" class="btn btn-primary btn-lg" style="justify-content:center;">Cotizar →</a>
       </div>
       <div class="pricing-card" style="color:var(--blue);">
         <div class="pricing-tag">Pago único</div>
         <div class="pricing-name">Página Web</div>
-        <div class="pricing-price">$300.000</div>
-        <div class="pricing-sub">entrega 7 días hábiles</div>
+        <div class="pricing-sub" style="border-bottom:1px solid var(--border); padding-bottom:22px; margin-bottom:22px;">Entrega 7 días hábiles</div>
         <ul class="pricing-list">
           <li>Sitio institucional</li>
           <li>Mobile-first</li>
@@ -588,7 +614,21 @@
           <li>Links a redes</li>
           <li>Accesos entregados</li>
         </ul>
-        <a href="https://wa.me/5491133613235?text=Quiero+una+p%C3%A1gina+web" target="_blank" class="btn" style="background:transparent; color:var(--blue); border:1px solid var(--blue); justify-content:center;">Consultar →</a>
+        <a href="https://wa.me/5491133613235?text=Quiero+cotizar+una+p%C3%A1gina+web" target="_blank" class="btn" style="background:transparent; color:var(--blue); border:1px solid var(--blue); justify-content:center;">Cotizar →</a>
+      </div>
+      <div class="pricing-card" style="color:var(--gold);">
+        <div class="pricing-tag">Full service</div>
+        <div class="pricing-name">Dirección Creativa</div>
+        <div class="pricing-sub" style="border-bottom:1px solid var(--border); padding-bottom:22px; margin-bottom:22px;">Mensual · todo incluido</div>
+        <ul class="pricing-list">
+          <li>Estrategia mensual</li>
+          <li>Reels, posts y stories</li>
+          <li>Gestión Meta Ads</li>
+          <li>Página web incluida</li>
+          <li>Atención prioritaria</li>
+          <li>Reportes y optimización</li>
+        </ul>
+        <a href="https://wa.me/5491133613235?text=Quiero+cotizar+la+Direcci%C3%B3n+Creativa" target="_blank" class="btn" style="background:var(--gold); color:#0c0c0c; justify-content:center;">Cotizar →</a>
       </div>
     </div>
   </div>
@@ -688,24 +728,23 @@
   }
 
   const tiles = [
-    // ── REELS ──────────────────────────────────────────────────
+    // ── REELS: 1 Guillom, 1 Caso Legal, 1 Mir, 1 mitch ────────
     ...shuffle([
-      { cat:'reels', type:'video', src:'media/reels/La capacitación de hoy pt.1-1.mp4', title:'La capacitación de hoy',  sub:'mitch · TikTok' },
-      { cat:'reels', type:'video', src:'media/reels/A qué me dedico-1.mp4',             title:'¿A qué me dedico?',       sub:'mitch · TikTok' },
-      { cat:'reels', type:'video', src:'media/reels/cuanto gasto en herramientas.mp4',  title:'¿Cuánto gasto en tools?', sub:'mitch · TikTok' },
-      { cat:'reels', type:'video', src:'media/reels/segui.mp4',                         title:'Seguí entrenando',        sub:'Reel · cliente' },
-      { cat:'reels', type:'video', src:'media/reels/mas de 15 años.mp4',                title:'Más de 15 años',          sub:'Caso Legal · reel' },
-      { cat:'reels', type:'video', src:'media/reels/La Holando.mp4',                    title:'La Holando',              sub:'Reel · cliente' },
-      { cat:'reels', type:'video', src:'media/reels/Lolaut cámaras.mp4',                title:'Lolaut Cámaras',          sub:'Reel · cliente' },
-      { cat:'reels', type:'video', src:'media/reels/Pisco producciones.mp4',            title:'Pisco Producciones',      sub:'Reel · cliente' },
-      { cat:'reels', type:'video', src:'media/reels/Tablero reca ramos.mp4',            title:'Tablero Reca Ramos',      sub:'Reel · cliente' },
+      { cat:'reels', type:'video', src:'media/reels/Guillom ads marzo.mp4',             title:'Guillom',               sub:'Reel · cliente' },
+      { cat:'reels', type:'video', src:'media/reels/mas de 15 años.mp4',                title:'Más de 15 años',        sub:'Caso Legal · reel' },
+      { cat:'reels', type:'video', src:'media/reels/segui.mp4',                         title:'Seguí entrenando',      sub:'Mir · reel' },
+      { cat:'reels', type:'video', src:'media/reels/La capacitación de hoy pt.1-1.mp4', title:'La capacitación de hoy', sub:'mitch · TikTok' },
     ]),
-    // ── POSTS ──────────────────────────────────────────────────
-    { cat:'posts', type:'image', src:'media/posts/103_v1_tu-ups-te-da-una-falsa-sensacion-de-seguridad.png', title:'Tu UPS te da una falsa sensación', sub:'Caso Legal · post' },
-    { cat:'posts', type:'image', src:'media/posts/104_v1_te-dijeron-culpa-concurrente-y-creiste-que-pe.png',  title:'Te dijeron culpa concurrente',     sub:'Caso Legal · post' },
-    { cat:'posts', type:'image', src:'media/posts/Marcelo5.png', title:'Mir Soluciones', sub:'Post · cliente' },
-    { cat:'posts', type:'image', src:'media/posts/Tab_1_1.png',  title:'Template',       sub:'Post · template' },
-    // ── STORIES ────────────────────────────────────────────────
+    // ── POSTS: 1 Caso Legal, 1 Mir, 1 Guillom, repetir CL ──────
+    { cat:'posts', type:'image', src:'media/posts/103_v1_tu-ups-te-da-una-falsa-sensacion-de-seguridad.png', title:'Falsa sensación de seguridad', sub:'Caso Legal · post' },
+    { cat:'posts', type:'image', src:'media/posts/Marcelo5.png',                                             title:'Mir Soluciones',              sub:'Mir · post' },
+    { cat:'posts', type:'image', src:'media/posts/Tab_1_1.png',                                              title:'Template',                    sub:'Guillom · post' },
+    { cat:'posts', type:'image', src:'media/posts/104_v1_te-dijeron-culpa-concurrente-y-creiste-que-pe.png', title:'Culpa concurrente',           sub:'Caso Legal · post' },
+    // ── STORIES: 4 archivos reales ──────────────────────────────
+    { cat:'stories', type:'image', src:'media/stories/Histdiaria1.png',  title:'Historia diaria',  sub:'Story · cliente' },
+    { cat:'stories', type:'image', src:'media/stories/Mito3 2.png',      title:'Mito',             sub:'Story · cliente' },
+    { cat:'stories', type:'image', src:'media/stories/Reseña 5.png',     title:'Reseña',           sub:'Story · cliente' },
+    { cat:'stories', type:'image', src:'media/stories/his_tab_4.png',    title:'Historia',         sub:'Story · template' },
   ];
 
   // ══════════════════════════════════════════════════════════════
@@ -788,7 +827,7 @@
   });
 
   // ── Product tabs ─────────────────────────────────────────
-  const COLORS = { pack: 'var(--accent)', ads: 'var(--purple)', web: 'var(--blue)' };
+  const COLORS = { pack: 'var(--accent)', ads: 'var(--purple)', web: 'var(--blue)', dir: 'var(--gold)' };
   document.querySelectorAll('.product-tab').forEach(btn => {
     btn.addEventListener('click', () => {
       const tab = btn.dataset.tab;
