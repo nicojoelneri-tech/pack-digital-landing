@@ -1,1346 +1,742 @@
 <!DOCTYPE html>
-<html lang="es">
+<html lang="es" data-theme="dark">
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>mitch — Presencia digital para tu negocio</title>
-  <meta name="description" content="Contenido mensual para redes, publicidad en Meta y página web institucional para negocios locales. Sin complicaciones." />
+  <title>mitch — Contenido para negocios locales</title>
+  <meta name="description" content="Pack mensual de Reels, Posts y Stories producidos para tu negocio. Listo para subir, entregado por WhatsApp." />
   <link rel="preconnect" href="https://fonts.googleapis.com" />
-  <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;700&family=Syne:wght@700;800&display=swap" rel="stylesheet" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;400;500;600;700&family=Syne:wght@600;700;800&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet" />
   <style>
     *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
 
     :root {
       --bg: #0c0c0c;
-      --surface: #141414;
+      --bg-2: #141414;
+      --bg-3: #1a1a1a;
       --border: #222;
-      --accent: #00e0cc;
-      --accent-dim: rgba(0,224,204,.12);
+      --border-2: #2a2a2a;
       --text: #f0f0f0;
-      --muted: #666;
+      --muted: #aaa;
+      --muted-2: #666;
+      --accent: #00e0cc;
+      --accent-ink: #0c0c0c;
+      --accent-soft: rgba(0,224,204,.1);
+      --accent-border: rgba(0,224,204,.22);
+      --purple: #a78bfa;
+      --blue: #60a5fa;
       --green: #4ade80;
+      --f-display: 'Syne', sans-serif;
+      --f-body: 'Space Grotesk', sans-serif;
+      --f-mono: 'JetBrains Mono', monospace;
+      --container: 1240px;
+      --gutter: 20px;
+      --r-s: 6px; --r-m: 10px; --r-l: 14px; --r-xl: 20px; --r-pill: 999px;
     }
 
     html { scroll-behavior: smooth; }
-    body {
-      font-family: 'Space Grotesk', sans-serif;
-      background: var(--bg);
-      color: var(--text);
-      line-height: 1.6;
-      -webkit-font-smoothing: antialiased;
-    }
+    body { font-family: var(--f-body); background: var(--bg); color: var(--text); line-height: 1.55; -webkit-font-smoothing: antialiased; overflow-x: hidden; }
+    img, svg { max-width: 100%; display: block; }
+    button { font-family: inherit; cursor: pointer; border: none; background: none; color: inherit; }
+    a { color: inherit; text-decoration: none; }
+    ul { list-style: none; }
 
-    body::before {
-      content: '';
-      position: fixed;
-      inset: 0;
-      z-index: 0;
-      pointer-events: none;
-      background-image:
-        linear-gradient(rgba(0,224,204,.07) 1px, transparent 1px),
-        linear-gradient(90deg, rgba(0,224,204,.07) 1px, transparent 1px);
+    .container { max-width: var(--container); margin: 0 auto; padding: 0 var(--gutter); }
+    @media (min-width: 768px)  { :root { --gutter: 36px; } }
+    @media (min-width: 1100px) { :root { --gutter: 48px; } }
+
+    /* Primitives */
+    .eyebrow { font-size: 11px; font-weight: 700; letter-spacing: .14em; text-transform: uppercase; color: var(--muted-2); display: inline-flex; align-items: center; gap: 10px; }
+    .eyebrow::before { content: ''; display: inline-block; width: 18px; height: 1px; background: currentColor; }
+    .eyebrow.accent { color: var(--accent); }
+
+    h1, h2, h3 { font-family: var(--f-display); font-weight: 800; letter-spacing: -.035em; line-height: 1; }
+
+    .btn { display: inline-flex; align-items: center; gap: 8px; padding: 13px 24px; border-radius: var(--r-m); font-weight: 700; font-size: 14px; letter-spacing: -.005em; transition: opacity .15s, transform .15s; white-space: nowrap; }
+    .btn-primary { background: var(--accent); color: var(--accent-ink); }
+    .btn-primary:hover { opacity: .88; transform: translateY(-1px); }
+    .btn-ghost { background: transparent; color: var(--text); border: 1px solid var(--border-2); }
+    .btn-ghost:hover { background: var(--bg-2); }
+    .btn-lg { padding: 16px 30px; font-size: 15px; border-radius: var(--r-l); }
+    .btn-pill { border-radius: var(--r-pill); }
+
+    .pulse-dot { width: 7px; height: 7px; border-radius: 50%; background: var(--green); display: inline-block; animation: pulse 1.6s ease-in-out infinite; flex-shrink: 0; }
+    @keyframes pulse { 0%,100%{opacity:1} 50%{opacity:.3} }
+
+    .grid-bg {
+      position: absolute; inset: 0; z-index: 0; pointer-events: none;
+      background-image: linear-gradient(rgba(0,224,204,.06) 1px, transparent 1px), linear-gradient(90deg,rgba(0,224,204,.06) 1px, transparent 1px);
       background-size: 44px 44px;
-      -webkit-mask-image: linear-gradient(to right,
-        black 0%, black calc(50% - 590px),
-        transparent calc(50% - 540px), transparent calc(50% + 540px),
-        black calc(50% + 590px), black 100%);
-      mask-image: linear-gradient(to right,
-        black 0%, black calc(50% - 590px),
-        transparent calc(50% - 540px), transparent calc(50% + 540px),
-        black calc(50% + 590px), black 100%);
+      -webkit-mask-image: radial-gradient(ellipse at center, black 40%, transparent 75%);
+      mask-image: radial-gradient(ellipse at center, black 40%, transparent 75%);
     }
 
-    /* NAV */
-    nav {
-      padding: 1.25rem 2.5rem;
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-      position: sticky;
-      top: 0;
-      z-index: 50;
-      background: var(--bg);
-      border-bottom: 1px solid var(--border);
-    }
-    .logo-img { height: 80px; display: block; }
-    .nav-cta {
-      background: var(--accent);
-      color: #0c0c0c;
-      padding: .55rem 1.4rem;
-      border-radius: 6px;
-      text-decoration: none;
-      font-weight: 700;
-      font-size: .88rem;
-      letter-spacing: .01em;
-      transition: opacity .15s;
-    }
-    .nav-cta:hover { opacity: .85; }
+    .section { padding: 64px 0; position: relative; }
+    @media (min-width: 768px)  { .section { padding: 96px 0; } }
+    @media (min-width: 1100px) { .section { padding: 120px 0; } }
 
-    /* HERO */
-    .hero {
-      padding: 5rem 2.5rem 4rem;
-      max-width: 1100px;
-      margin: 0 auto;
-    }
-    .hero-label {
-      display: inline-flex;
-      align-items: center;
-      gap: .5rem;
-      color: var(--accent);
-      font-size: .8rem;
-      font-weight: 700;
-      letter-spacing: .12em;
-      text-transform: uppercase;
-      margin-bottom: 2rem;
-    }
-    .hero-label::before {
-      content: '';
-      display: block;
-      width: 24px;
-      height: 2px;
-      background: var(--accent);
-    }
-    h1 {
-      font-family: 'Syne', sans-serif;
-      font-size: clamp(2.8rem, 7vw, 5.5rem);
-      font-weight: 800;
-      line-height: 1.0;
-      color: var(--text);
-      letter-spacing: -.03em;
-      margin-bottom: 2rem;
-    }
-    h1 .highlight { color: var(--accent); display: block; }
-    .hero-bottom {
-      display: flex;
-      align-items: flex-end;
-      justify-content: space-between;
-      gap: 2rem;
-      flex-wrap: wrap;
-      padding-top: 3rem;
-      border-top: 1px solid var(--border);
-      margin-top: 3rem;
-    }
-    .hero-desc { color: var(--muted); font-size: 1.05rem; max-width: 500px; }
-    .cta-group {
-      display: flex;
-      gap: 1rem;
-      align-items: center;
-      flex-wrap: wrap;
-      margin-top: 2rem;
-    }
-    .btn-primary {
-      background: var(--accent);
-      color: #0c0c0c;
-      padding: .9rem 2.2rem;
-      border-radius: 8px;
-      text-decoration: none;
-      font-weight: 700;
-      font-size: 1rem;
-      letter-spacing: .01em;
-      transition: opacity .15s;
-      white-space: nowrap;
-    }
-    .btn-primary:hover { opacity: .85; }
-    .btn-ghost {
-      color: var(--muted);
-      text-decoration: none;
-      font-size: .9rem;
-      display: flex;
-      align-items: center;
-      gap: .4rem;
-      transition: color .15s;
-    }
-    .btn-ghost:hover { color: var(--text); }
+    .reveal { opacity: 0; transform: translateY(24px); transition: opacity .7s cubic-bezier(.2,.7,.3,1), transform .7s cubic-bezier(.2,.7,.3,1); }
+    .reveal.in { opacity: 1; transform: none; }
 
-    /* HERO IMAGE */
-    .hero-img-strip {
-      max-width: 1100px;
-      margin: 0 auto;
-      padding: 0 2.5rem 3rem;
-      display: grid;
-      grid-template-columns: 2fr 1fr;
-      gap: 1rem;
-      align-items: start;
-    }
-    .hero-img-main {
-      border-radius: 14px;
-      overflow: hidden;
-      position: relative;
-      height: 340px;
-    }
-    .hero-img-main img {
-      width: 100%; height: 100%;
-      object-fit: cover;
-      filter: brightness(.75);
-      display: block;
-    }
-    .hero-img-main .img-overlay {
-      position: absolute;
-      bottom: 0; left: 0; right: 0;
-      padding: 1.5rem;
-      background: linear-gradient(to top, rgba(0,0,0,.8) 0%, transparent 100%);
-    }
-    .img-stat {
-      font-family: 'Syne', sans-serif;
-      font-size: 2.2rem;
-      font-weight: 800;
-      color: var(--accent);
-      line-height: 1;
-    }
-    .img-stat-label { color: rgba(255,255,255,.6); font-size: .8rem; margin-top: .2rem; }
-    .hero-img-side { display: flex; flex-direction: column; gap: 1rem; }
-    .hero-img-side .img-card { border-radius: 14px; overflow: hidden; height: 162px; }
-    .hero-img-side .img-card img {
-      width: 100%; height: 100%;
-      object-fit: cover;
-      filter: brightness(.7);
-      display: block;
-      transition: filter .3s;
-    }
-    .hero-img-side .img-card:hover img { filter: brightness(.85); }
+    /* ── NAV ──────────────────────────────────────────── */
+    .nav { position: sticky; top: 0; z-index: 50; background: color-mix(in srgb, var(--bg) 82%, transparent); backdrop-filter: blur(14px); -webkit-backdrop-filter: blur(14px); border-bottom: 1px solid var(--border); }
+    .nav-inner { display: flex; justify-content: space-between; align-items: center; padding: 14px var(--gutter); max-width: var(--container); margin: 0 auto; }
+    .nav-logo { display: flex; align-items: center; gap: 10px; font-family: var(--f-display); font-weight: 800; font-size: 20px; letter-spacing: -.025em; }
+    .nav-logo-mark { width: 24px; height: 24px; background: var(--accent); border-radius: 6px; display: grid; place-items: center; color: var(--accent-ink); font-weight: 800; font-size: 14px; font-family: var(--f-display); line-height: 1; }
+    .nav-ctas { display: flex; gap: 10px; align-items: center; }
+    .nav-ctas .btn { padding: 9px 18px; font-size: 13px; }
+    .nav-ghost { display: none; }
+    @media (min-width: 640px) { .nav-ghost { display: inline-flex; } }
 
-    /* SERVICES OVERVIEW */
-    .services-overview {
-      max-width: 1100px;
-      margin: 0 auto;
-      padding: 0 2.5rem 5rem;
-    }
-    .services-label {
-      color: var(--muted);
-      font-size: .75rem;
-      font-weight: 700;
-      letter-spacing: .12em;
-      text-transform: uppercase;
-      margin-bottom: 1.25rem;
-    }
-    .services-grid {
-      display: grid;
-      grid-template-columns: repeat(3, 1fr);
-      gap: 1rem;
-    }
-    .service-card {
-      background: var(--surface);
-      border: 2px solid var(--border);
-      border-radius: 16px;
-      padding: 2rem;
-      cursor: pointer;
-      color: var(--text);
-      transition: border-color .2s, background .2s;
-      display: flex;
-      flex-direction: column;
-      gap: .75rem;
-      user-select: none;
-    }
-    .service-card:hover { border-color: #444; background: #1a1a1a; }
-    .service-card.active { border-color: var(--accent); background: rgba(0,224,204,.04); }
-    .service-card.active-purple { border-color: #a78bfa; background: rgba(139,92,246,.06); }
-    .service-card.active-blue { border-color: #60a5fa; background: rgba(59,130,246,.05); }
-    .service-tag {
-      display: inline-flex;
-      align-items: center;
-      gap: .35rem;
-      font-size: .68rem;
-      font-weight: 700;
-      letter-spacing: .1em;
-      text-transform: uppercase;
-      padding: .2rem .6rem;
-      border-radius: 4px;
-      width: fit-content;
-    }
-    .service-tag.main { background: var(--accent-dim); color: var(--accent); }
-    .service-tag.addon { background: rgba(139,92,246,.15); color: #a78bfa; }
-    .service-tag.once { background: rgba(59,130,246,.12); color: #60a5fa; }
-    .service-icon { font-size: 1.8rem; }
-    .service-card h3 {
-      font-family: 'Syne', sans-serif;
-      font-weight: 800;
-      font-size: 1.2rem;
-      color: var(--text);
-      letter-spacing: -.02em;
-    }
-    .service-card p { color: var(--muted); font-size: .88rem; flex: 1; }
-    .service-price {
-      font-family: 'Syne', sans-serif;
-      font-weight: 800;
-      font-size: 1.4rem;
-      color: var(--accent);
-      letter-spacing: -.03em;
-    }
-    .service-price-note { color: var(--muted); font-size: .75rem; margin-left: .25rem; }
-    [data-service] { transition: opacity .15s; }
-    [data-service].hidden { display: none; }
+    /* ── HERO ─────────────────────────────────────────── */
+    .hero { padding: 48px 0 72px; position: relative; overflow: hidden; }
+    @media (min-width: 960px) { .hero { padding: 80px 0 120px; } }
+    .hero .grid-bg { opacity: .65; }
+    .hero-inner { position: relative; z-index: 1; display: grid; gap: 48px; align-items: center; }
+    @media (min-width: 960px) { .hero-inner { grid-template-columns: 1.2fr 1fr; gap: 56px; } }
 
-    /* TICKER */
-    .ticker {
-      border-top: 1px solid var(--border);
-      border-bottom: 1px solid var(--border);
-      padding: .85rem 0;
-      overflow: hidden;
-      white-space: nowrap;
-      background: var(--bg);
-      position: relative;
-      z-index: 1;
-    }
-    .ticker-inner {
-      display: inline-flex;
-      gap: 3rem;
-      animation: scroll 20s linear infinite;
-      color: var(--muted);
-      font-size: .82rem;
-      font-weight: 500;
-      letter-spacing: .04em;
-      text-transform: uppercase;
-    }
-    .ticker-inner span { color: var(--accent); }
-    @keyframes scroll {
-      0% { transform: translateX(0); }
-      100% { transform: translateX(-50%); }
+    .hero-badge { display: inline-flex; align-items: center; gap: 10px; background: var(--accent-soft); border: 1px solid var(--accent-border); color: var(--accent); padding: 8px 14px; border-radius: var(--r-pill); font-size: 12px; font-weight: 600; letter-spacing: .04em; margin-bottom: 28px; }
+    .hero h1 { font-size: clamp(2.8rem, 7.5vw, 6rem); line-height: .94; letter-spacing: -.045em; margin-bottom: 26px; }
+    .hero h1 .grad { background: linear-gradient(90deg, var(--accent), #60ffe0); -webkit-background-clip: text; background-clip: text; -webkit-text-fill-color: transparent; }
+    .hero-sub { font-size: 17px; color: var(--muted); line-height: 1.55; max-width: 520px; margin-bottom: 36px; }
+    @media (min-width: 768px) { .hero-sub { font-size: 19px; } }
+    .hero-ctas { display: flex; gap: 12px; flex-wrap: wrap; align-items: center; margin-bottom: 40px; }
+    .hero-stats { display: grid; grid-template-columns: repeat(3,1fr); gap: 24px; padding-top: 28px; border-top: 1px solid var(--border); }
+    .hero-stats .k { font-family: var(--f-display); font-weight: 800; font-size: 1.6rem; letter-spacing: -.03em; }
+    .hero-stats .v { font-size: 12px; color: var(--muted-2); margin-top: 2px; }
+
+    /* ── PHONE STAGE ─────────────────────────────────── */
+    .phone-stage { position: relative; display: flex; justify-content: center; align-items: center; min-height: 480px; }
+    @media (min-width: 960px) { .phone-stage { min-height: 600px; } }
+
+    .phone { position: relative; width: 248px; height: 510px; border-radius: 40px; background: #000; padding: 9px; box-shadow: 0 40px 80px rgba(0,0,0,.6), 0 0 0 1.5px #1a1a1a inset; flex-shrink: 0; }
+    @media (min-width: 960px) { .phone { width: 288px; height: 590px; } }
+    .phone.sm { width: 200px; height: 412px; border-radius: 32px; }
+    .phone.xs { width: 176px; height: 362px; border-radius: 28px; }
+    .phone-screen { width: 100%; height: 100%; border-radius: 32px; overflow: hidden; background: #0a0a0a; position: relative; }
+    .phone.sm .phone-screen, .phone.xs .phone-screen { border-radius: 24px; }
+    .phone-notch { position: absolute; top: 10px; left: 50%; transform: translateX(-50%); width: 84px; height: 22px; background: #000; border-radius: 12px; z-index: 10; }
+    .phone.sm .phone-notch { width: 68px; height: 18px; }
+
+    .phone-reel { position: absolute; inset: 0; background-size: cover; background-position: center; transition: opacity .6s ease; }
+    .phone-reel-overlay { position: absolute; inset: 0; background: linear-gradient(180deg, rgba(0,0,0,.35) 0%, transparent 30%, transparent 50%, rgba(0,0,0,.88) 100%); z-index: 1; }
+    .phone-reel-live { position: absolute; top: 44px; left: 12px; z-index: 3; display: flex; align-items: center; gap: 6px; background: rgba(0,0,0,.4); padding: 3px 8px; border-radius: var(--r-pill); color: #fff; font-size: 9px; font-family: var(--f-mono); letter-spacing: .08em; font-weight: 700; }
+    .phone-reel-live .rdot { width: 5px; height: 5px; border-radius: 50%; background: #ff3b30; animation: pulse 1.4s ease-in-out infinite; }
+    .phone-reel-actions { position: absolute; right: 10px; bottom: 110px; z-index: 3; display: flex; flex-direction: column; gap: 16px; align-items: center; }
+    .phone-reel-actions .act { display: flex; flex-direction: column; align-items: center; gap: 2px; color: #fff; font-size: 9px; font-weight: 600; text-shadow: 0 1px 2px rgba(0,0,0,.6); }
+    .phone-reel-caption { position: absolute; left: 12px; right: 50px; bottom: 18px; z-index: 3; color: #fff; }
+    .phone-reel-caption .handle { font-size: 12px; font-weight: 700; margin-bottom: 4px; }
+    .phone-reel-caption .text { font-size: 11px; line-height: 1.4; opacity: .9; }
+    .phone-progress { position: absolute; bottom: 6px; left: 12px; right: 12px; height: 2px; background: rgba(255,255,255,.2); border-radius: 2px; overflow: hidden; z-index: 3; }
+    .phone-progress .bar { height: 100%; background: #fff; width: 0; animation: loadbar 3.5s linear infinite; }
+    @keyframes loadbar { from{width:0} to{width:100%} }
+
+    /* stacked phones layout */
+    .phone-stack { position: relative; height: 540px; }
+    @media (min-width: 960px) { .phone-stack { height: 640px; } }
+    .phone-stack .p-back-left  { position: absolute; top: 50px; left: 0; z-index: 1; transform: rotate(-7deg); }
+    .phone-stack .p-front      { position: absolute; top: 0;  left: 50%; transform: translateX(-50%) rotate(2deg); z-index: 3; }
+    .phone-stack .p-back-right { position: absolute; top: 60px; right: 0; z-index: 2; transform: rotate(9deg); }
+
+    @media (max-width: 959px) {
+      .phone-stack .p-back-left, .phone-stack .p-back-right { display: none; }
+      .phone-stack .p-front { left: 50%; transform: translateX(-50%) rotate(0deg); }
+      .phone-stack { height: 480px; }
     }
 
-    /* SECCIONES */
-    .section {
-      max-width: 1100px;
-      margin: 0 auto;
-      padding: 5rem 2.5rem;
-      border-top: 1px solid var(--border);
-    }
-    .section-label {
-      color: var(--muted);
-      font-size: .75rem;
-      font-weight: 700;
-      letter-spacing: .12em;
-      text-transform: uppercase;
-      margin-bottom: 3rem;
-    }
-    h2 {
-      font-family: 'Syne', sans-serif;
-      font-size: clamp(1.8rem, 4vw, 3rem);
-      font-weight: 800;
-      line-height: 1.1;
-      letter-spacing: -.03em;
-      color: var(--text);
-      margin-bottom: 3rem;
-    }
+    .float-badge { position: absolute; z-index: 10; background: var(--bg-2); border: 1px solid var(--border-2); border-radius: 12px; padding: 12px 16px; box-shadow: 0 14px 30px rgba(0,0,0,.4); animation: floatY 4s ease-in-out infinite; }
+    .float-badge.green { border-color: var(--green); }
+    .float-badge.teal { border-color: var(--accent); box-shadow: 0 14px 30px var(--accent-soft); animation-delay: -2s; }
+    .float-badge .lbl { font-family: var(--f-display); font-weight: 700; font-size: 10px; letter-spacing: .1em; text-transform: uppercase; margin-bottom: 4px; }
+    .float-badge .lbl.g { color: var(--green); }
+    .float-badge .lbl.t { color: var(--accent); }
+    .float-badge .val { font-size: 13px; font-weight: 600; white-space: nowrap; }
+    @keyframes floatY { 0%,100%{transform:translateY(0)} 50%{transform:translateY(-8px)} }
 
-    /* PASOS */
-    .steps { display: flex; flex-direction: column; gap: 0; }
-    .step-row {
-      display: grid;
-      grid-template-columns: 80px 1fr;
-      gap: 2rem;
-      padding: 2rem 0;
-      border-bottom: 1px solid var(--border);
-      align-items: start;
-    }
-    .step-row:first-child { border-top: 1px solid var(--border); }
-    .step-num {
-      font-family: 'Syne', sans-serif;
-      font-size: 3rem;
-      font-weight: 800;
-      color: var(--border);
-      line-height: 1;
-    }
-    .step-content h3 {
-      font-family: 'Syne', sans-serif;
-      font-size: 1.2rem;
-      font-weight: 700;
-      color: var(--text);
-      margin-bottom: .4rem;
-    }
-    .step-content p { color: var(--muted); font-size: .95rem; }
-    .step-tag {
-      display: inline-block;
-      background: var(--accent-dim);
-      color: var(--accent);
-      font-size: .7rem;
-      font-weight: 700;
-      letter-spacing: .08em;
-      text-transform: uppercase;
-      padding: .2rem .6rem;
-      border-radius: 4px;
-      margin-bottom: .5rem;
-    }
+    /* ── TICKER ──────────────────────────────────────── */
+    .ticker { border-top: 1px solid var(--border); border-bottom: 1px solid var(--border); padding: 14px 0; overflow: hidden; white-space: nowrap; background: var(--bg-2); }
+    .ticker-row { display: inline-flex; gap: 48px; animation: scrollX 38s linear infinite; font-family: var(--f-mono); font-size: 12px; color: var(--muted-2); }
+    .ticker-row em { color: var(--green); font-style: normal; }
+    @keyframes scrollX { from{transform:translateX(0)} to{transform:translateX(-50%)} }
 
-    /* INCLUYE */
-    .includes-grid {
-      display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-      gap: 1px;
-      background: var(--border);
-      border: 1px solid var(--border);
-      border-radius: 12px;
-      overflow: hidden;
-    }
-    .include-item {
-      background: var(--surface);
-      padding: 1.75rem;
-      transition: background .15s;
-    }
-    .include-item:hover { background: #1a1a1a; }
-    .include-icon { font-size: 1.6rem; margin-bottom: 1rem; display: block; }
-    .include-item strong { display: block; color: var(--text); font-size: 1rem; font-weight: 700; margin-bottom: .3rem; }
-    .include-item span { color: var(--muted); font-size: .87rem; }
+    /* ── SHOWCASE ────────────────────────────────────── */
+    .showcase-head { display: flex; flex-direction: column; gap: 20px; margin-bottom: 40px; }
+    @media (min-width: 768px) { .showcase-head { flex-direction: row; justify-content: space-between; align-items: flex-end; margin-bottom: 48px; } }
 
-    /* PRICING */
-    .pricing-wrap {
-      display: grid;
-      grid-template-columns: 1fr 1fr;
-      gap: 3rem;
-      align-items: start;
-    }
-    .pricing-left h2 { margin-bottom: 1rem; }
-    .pricing-left p { color: var(--muted); font-size: 1rem; margin-bottom: 1.25rem; }
-    .pricing-card {
-      background: var(--surface);
-      border: 1px solid var(--border);
-      border-radius: 16px;
-      padding: 2.5rem;
-      position: relative;
-      overflow: hidden;
-    }
-    .pricing-card.featured { border-color: var(--accent); background: rgba(0,224,204,.03); }
-    .pricing-card.addon-card { border-color: #3b2a6e; background: rgba(139,92,246,.04); }
-    .pricing-card.web-card { border-color: #1e3a5f; background: rgba(59,130,246,.04); }
-    .pricing-card::before {
-      content: '';
-      position: absolute;
-      top: 0; left: 0; right: 0;
-      height: 3px;
-      background: var(--border);
-    }
-    .pricing-card.featured::before { background: var(--accent); }
-    .pricing-card.addon-card::before { background: #a78bfa; }
-    .pricing-card.web-card::before { background: #60a5fa; }
-    .price-display { display: flex; align-items: baseline; gap: .4rem; margin-bottom: .25rem; }
-    .price-big {
-      font-family: 'Syne', sans-serif;
-      font-size: 3.5rem;
-      font-weight: 800;
-      color: var(--text);
-      letter-spacing: -.04em;
-    }
-    .price-sub { color: var(--muted); font-size: .85rem; margin-bottom: 2rem; }
-    .pricing-list {
-      list-style: none;
-      margin-bottom: 2rem;
-    }
-    .pricing-list li {
-      display: flex;
-      align-items: flex-start;
-      gap: .75rem;
-      padding: .65rem 0;
-      border-bottom: 1px solid var(--border);
-      font-size: .9rem;
-      color: var(--text);
-    }
-    .pricing-list li:last-child { border-bottom: none; }
-    .pricing-list li::before {
-      content: '→';
-      color: var(--accent);
-      font-weight: 700;
-      flex-shrink: 0;
-    }
-    .pricing-card.addon-card .pricing-list li::before { color: #a78bfa; }
-    .pricing-card.web-card .pricing-list li::before { color: #60a5fa; }
-    .badge-featured {
-      display: inline-flex;
-      align-items: center;
-      gap: .4rem;
-      background: var(--accent-dim);
-      color: var(--accent);
-      font-size: .7rem;
-      font-weight: 700;
-      letter-spacing: .08em;
-      text-transform: uppercase;
-      padding: .25rem .7rem;
-      border-radius: 999px;
-      margin-bottom: 1rem;
-    }
-    .available-dot {
-      width: 6px; height: 6px;
-      background: var(--green);
-      border-radius: 50%;
-      animation: pulse 1.5s ease-in-out infinite;
-    }
-    @keyframes pulse {
-      0%, 100% { opacity: 1; }
-      50% { opacity: .3; }
-    }
+    .chip-group { display: flex; gap: 4px; padding: 4px; background: var(--bg-2); border: 1px solid var(--border); border-radius: var(--r-pill); width: fit-content; }
+    .chip { padding: 8px 18px; border-radius: var(--r-pill); font-size: 13px; font-weight: 600; color: var(--muted); cursor: pointer; transition: background .15s, color .15s; }
+    .chip.on { background: var(--accent); color: var(--accent-ink); }
 
-    /* ADDS-ON BANNER */
-    .addon-banner {
-      border: 1px solid #2a2a2a;
-      border-radius: 12px;
-      padding: 1.75rem 2rem;
-      background: rgba(139,92,246,.06);
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
-      gap: 1.5rem;
-      flex-wrap: wrap;
-      margin-top: 3rem;
-    }
-    .addon-banner-left { display: flex; align-items: center; gap: 1.25rem; flex-wrap: wrap; }
-    .addon-tag {
-      font-size: .68rem;
-      font-weight: 700;
-      letter-spacing: .1em;
-      text-transform: uppercase;
-      color: #a78bfa;
-      background: rgba(139,92,246,.15);
-      padding: .2rem .6rem;
-      border-radius: 4px;
-    }
-    .addon-banner strong {
-      font-family: 'Syne', sans-serif;
-      font-size: 1.1rem;
-      font-weight: 800;
-      color: var(--text);
-    }
-    .addon-banner p { color: var(--muted); font-size: .87rem; }
-    .addon-price {
-      font-family: 'Syne', sans-serif;
-      font-size: 1.6rem;
-      font-weight: 800;
-      color: #a78bfa;
-      white-space: nowrap;
-    }
-    .addon-price span { font-size: .8rem; color: var(--muted); font-weight: 400; }
+    .feed-grid { display: grid; gap: 10px; grid-template-columns: repeat(2,1fr); }
+    @media (min-width: 640px)  { .feed-grid { grid-template-columns: repeat(3,1fr); gap: 12px; } }
+    @media (min-width: 960px)  { .feed-grid { grid-template-columns: repeat(4,1fr); gap: 14px; } }
 
-    /* FAQ */
-    .faq { display: flex; flex-direction: column; }
-    .faq-item {
-      padding: 1.5rem 0;
-      border-bottom: 1px solid var(--border);
-      display: grid;
-      grid-template-columns: 1fr 1fr;
-      gap: 2rem;
-    }
-    .faq-item:first-child { border-top: 1px solid var(--border); }
-    .faq-q {
-      font-family: 'Syne', sans-serif;
-      font-weight: 700;
-      font-size: 1rem;
-      color: var(--text);
-      letter-spacing: -.01em;
-    }
-    .faq-a { color: var(--muted); font-size: .92rem; }
+    .feed-tile { aspect-ratio: 9/16; background: var(--bg-2) center/cover no-repeat; border-radius: var(--r-l); overflow: hidden; position: relative; border: 1px solid var(--border); cursor: pointer; transition: transform .3s, border-color .2s; }
+    .feed-tile:hover { transform: translateY(-4px); border-color: var(--accent-border); }
+    .feed-tile::after { content: ''; position: absolute; inset: 0; background: linear-gradient(180deg, rgba(0,0,0,.25) 0%, rgba(0,0,0,0) 30%, rgba(0,0,0,0) 55%, rgba(0,0,0,.85) 100%); }
+    .feed-tile-cat { position: absolute; top: 10px; left: 10px; z-index: 2; font-size: 9px; font-family: var(--f-display); font-weight: 700; letter-spacing: .12em; text-transform: uppercase; color: #fff; background: rgba(0,0,0,.45); padding: 4px 8px; border-radius: 4px; backdrop-filter: blur(4px); }
+    .feed-tile-play { position: absolute; top: 10px; right: 10px; z-index: 2; color: #fff; opacity: .8; }
+    .feed-tile-body { position: absolute; bottom: 12px; left: 12px; right: 12px; z-index: 2; color: #fff; }
+    .feed-tile-title { font-family: var(--f-display); font-weight: 700; font-size: 15px; line-height: 1.15; letter-spacing: -.01em; margin-bottom: 3px; }
+    .feed-tile-sub { font-size: 11px; opacity: .7; }
 
-    /* CONTEXT STRIP */
-    .context-strip {
-      max-width: 1100px;
-      margin: 0 auto;
-      padding: 0 2.5rem 4rem;
-    }
-    .context-img {
-      width: 100%;
-      height: 280px;
-      border-radius: 14px;
-      overflow: hidden;
-      position: relative;
-    }
-    .context-img img {
-      width: 100%; height: 100%;
-      object-fit: cover;
-      filter: brightness(.6);
-    }
-    .context-img-text {
-      position: absolute;
-      top: 50%; left: 50%;
-      transform: translate(-50%, -50%);
-      text-align: center;
-      width: 100%;
-      padding: 0 2rem;
-    }
-    .context-img-text p {
-      font-family: 'Syne', sans-serif;
-      font-size: clamp(1.4rem, 3vw, 2.2rem);
-      font-weight: 800;
-      color: #fff;
-      letter-spacing: -.02em;
-      line-height: 1.2;
-    }
-    .context-img-text p span { color: var(--accent); }
+    /* ── PRODUCTS ────────────────────────────────────── */
+    .products-wrap { background: var(--bg-2); border-top: 1px solid var(--border); border-bottom: 1px solid var(--border); }
+    .product-tabs { display: flex; gap: 10px; flex-wrap: wrap; margin-bottom: 40px; }
+    .product-tab { padding: 10px 22px; border-radius: var(--r-m); font-size: 13px; font-weight: 700; color: var(--muted); border: 1px solid var(--border-2); cursor: pointer; transition: all .15s; }
 
-    /* CTA FINAL */
-    .cta-final {
-      border-top: 1px solid var(--border);
-      padding: 6rem 2.5rem;
-      max-width: 1100px;
-      margin: 0 auto;
-      display: grid;
-      grid-template-columns: 1fr auto;
-      gap: 3rem;
-      align-items: center;
-      position: relative;
-      overflow: hidden;
-    }
-    .cta-final h2 { font-size: clamp(2rem, 5vw, 3.5rem); margin-bottom: .5rem; }
-    .cta-final p { color: var(--muted); max-width: 480px; }
-    .cta-final-right { text-align: right; }
-    .available-badge {
-      display: inline-flex;
-      align-items: center;
-      gap: .5rem;
-      color: var(--green);
-      font-size: .8rem;
-      font-weight: 700;
-      letter-spacing: .06em;
-      text-transform: uppercase;
-      margin-bottom: 1rem;
-    }
-    .cta-bg-img { position: absolute; inset: 0; z-index: 0; }
-    .cta-bg-img img {
-      width: 100%; height: 100%;
-      object-fit: cover;
-      filter: brightness(.2) saturate(.3);
-    }
-    .cta-final > *:not(.cta-bg-img) { position: relative; z-index: 1; }
+    .product-detail { display: none; grid-template-columns: 1fr; gap: 40px; }
+    .product-detail.on { display: grid; }
+    @media (min-width: 960px) { .product-detail.on { grid-template-columns: 1.2fr 1fr; gap: 64px; align-items: center; } }
 
-    /* FOOTER */
-    footer { color: var(--muted); font-size: .82rem; }
-    .footer-row {
-      max-width: 1100px;
-      margin: 0 auto;
-      padding: 1.1rem 2.5rem;
-      border-top: 1px solid var(--border);
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-      gap: 1.5rem;
-      flex-wrap: wrap;
-    }
-    .footer-row-clients { border-bottom: 1px solid var(--border); }
-    .footer-row + .footer-row { border-top: none; }
-    footer a { color: var(--muted); text-decoration: none; }
-    footer a:hover { color: var(--text); }
-    .footer-social { display: flex; align-items: center; gap: 1.25rem; }
-    .footer-social a { display: flex; align-items: center; gap: .4rem; transition: color .15s; }
-    .footer-links { display: flex; align-items: center; gap: 1.5rem; }
-    .footer-clients { display: flex; align-items: center; gap: 2rem; flex-wrap: wrap; }
-    .footer-clients-label {
-      color: var(--muted);
-      font-size: .72rem;
-      font-weight: 700;
-      letter-spacing: .12em;
-      text-transform: uppercase;
-      white-space: nowrap;
-      flex-shrink: 0;
-    }
-    .footer-clients-logos { display: flex; align-items: center; gap: 2rem; }
-    .footer-clients-logos img {
-      height: 28px;
-      max-width: 110px;
-      object-fit: contain;
-      opacity: .5;
-      filter: brightness(1.2);
-      transition: opacity .2s;
-    }
-    .footer-clients-logos img:hover { opacity: .8; }
+    .product-tag { display: inline-block; padding: 5px 12px; border-radius: 4px; font-size: 11px; font-weight: 700; letter-spacing: .1em; text-transform: uppercase; margin-bottom: 20px; }
+    .product-title { font-size: clamp(2.4rem, 6vw, 4.2rem); margin-bottom: 12px; line-height: .95; }
+    .product-price { font-family: var(--f-display); font-weight: 800; font-size: clamp(2.6rem, 5.5vw, 3.6rem); letter-spacing: -.04em; line-height: 1; }
+    .product-price-sub { font-size: 13px; color: var(--muted-2); margin-top: 6px; margin-bottom: 28px; }
+    .product-desc { font-size: 16px; color: var(--muted); line-height: 1.55; margin-bottom: 28px; max-width: 480px; }
+    .product-bullets { display: grid; grid-template-columns: 1fr 1fr; gap: 10px 18px; margin-bottom: 32px; }
+    @media (max-width: 640px) { .product-bullets { grid-template-columns: 1fr; } }
+    .product-bullets li { font-size: 13.5px; display: flex; gap: 10px; align-items: start; }
+    .product-bullets li::before { content: '→'; flex-shrink: 0; color: var(--accent); }
+    #tab-ads .product-bullets li::before  { color: var(--purple); }
+    #tab-web .product-bullets li::before  { color: var(--blue); }
 
-    /* GALERÍA */
-    .gallery-section { padding: 5rem 0; overflow: hidden; border-top: 1px solid var(--border); }
-    .gallery-section .section-label { padding: 0 clamp(1.25rem, 5vw, 5rem); }
-    .gallery-section h2 { padding: 0 clamp(1.25rem, 5vw, 5rem); margin-bottom: 2.5rem; }
-    .gallery-track-wrap { position: relative; overflow: hidden; }
-    .gallery-track-wrap::before,
-    .gallery-track-wrap::after {
-      content: '';
-      position: absolute;
-      top: 0; bottom: 0;
-      width: 80px;
-      z-index: 2;
-      pointer-events: none;
-    }
-    .gallery-track-wrap::before { left: 0; background: linear-gradient(to right, #0a0a0a, transparent); }
-    .gallery-track-wrap::after  { right: 0; background: linear-gradient(to left, #0a0a0a, transparent); }
-    .gallery-track {
-      display: flex;
-      gap: 1.25rem;
-      padding: 0 clamp(1.25rem, 5vw, 5rem) 1.5rem;
-      overflow-x: auto;
-      scroll-snap-type: x mandatory;
-      -webkit-overflow-scrolling: touch;
-      scrollbar-width: none;
-    }
-    .gallery-track::-webkit-scrollbar { display: none; }
-    .gallery-card {
-      flex: 0 0 auto;
-      scroll-snap-align: start;
-      border-radius: 12px;
-      overflow: hidden;
-      border: 1px solid rgba(255,255,255,.08);
-      background: #111;
-    }
-    .gallery-card.post  { width: 220px; height: 275px; }
-    .gallery-card.story { width: 155px; height: 275px; }
-    .gallery-card img { width: 100%; height: 100%; object-fit: cover; display: block; }
-    .gallery-track.dragging { cursor: grabbing; user-select: none; }
+    .product-phone { display: flex; justify-content: center; }
 
-    /* WA FLOAT */
-    .wa-float {
-      position: fixed;
-      bottom: 1.5rem; right: 1.5rem;
-      background: #25d366;
-      color: #fff;
-      width: 54px; height: 54px;
-      border-radius: 50%;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      font-size: 1.5rem;
-      text-decoration: none;
-      box-shadow: 0 4px 24px rgba(37,211,102,.35);
-      z-index: 100;
-      transition: transform .2s;
-    }
-    .wa-float:hover { transform: scale(1.1); }
+    /* ── PROCESS ─────────────────────────────────────── */
+    .process-grid { display: grid; gap: 16px; grid-template-columns: 1fr; }
+    @media (min-width: 768px) { .process-grid { grid-template-columns: repeat(3,1fr); gap: 20px; } }
+    .process-card { background: var(--bg-2); border: 1px solid var(--border); border-radius: var(--r-xl); padding: 32px; min-height: 260px; display: flex; flex-direction: column; gap: 14px; transition: border-color .2s, transform .3s; }
+    .process-card:hover { border-color: var(--accent-border); transform: translateY(-4px); }
+    .process-num { font-family: var(--f-display); font-weight: 800; font-size: 3.8rem; color: var(--accent); letter-spacing: -.04em; line-height: 1; }
+    .process-tag { display: inline-block; background: var(--accent-soft); color: var(--accent); font-size: 10px; font-weight: 700; letter-spacing: .1em; text-transform: uppercase; padding: 4px 10px; border-radius: var(--r-pill); width: fit-content; }
+    .process-card h3 { font-family: var(--f-display); font-weight: 700; font-size: 1.3rem; letter-spacing: -.02em; }
+    .process-card p { color: var(--muted); font-size: 14px; line-height: 1.5; }
 
-    /* RESPONSIVE */
-    @media (max-width: 768px) {
-      nav { padding: 1rem 1.25rem; }
-      .hero { padding: 3rem 1.25rem 2.5rem; }
-      h1 { font-size: clamp(2.2rem, 10vw, 3rem); margin-bottom: 1.5rem; }
-      .hero-bottom { flex-direction: column; align-items: flex-start; padding-top: 2rem; margin-top: 2rem; gap: 1.5rem; }
-      .hero-desc { max-width: 100%; font-size: .95rem; }
-      .cta-group { flex-direction: column; align-items: flex-start; gap: .75rem; }
-      .btn-primary { width: 100%; text-align: center; padding: .9rem 1.5rem; }
-      .hero-img-strip { grid-template-columns: 1fr; padding: 0 1.25rem 2rem; gap: .75rem; }
-      .hero-img-main { height: 220px; }
-      .hero-img-side { flex-direction: row; }
-      .hero-img-side .img-card { height: 120px; flex: 1; }
-      .services-overview { padding: 0 1.25rem 3rem; }
-      .services-grid { grid-template-columns: 1fr; }
-      .section { padding: 3rem 1.25rem; }
-      h2 { font-size: clamp(1.5rem, 7vw, 2rem); margin-bottom: 2rem; }
-      .step-row { grid-template-columns: 50px 1fr; gap: 1rem; padding: 1.5rem 0; }
-      .step-num { font-size: 2rem; }
-      .includes-grid { grid-template-columns: 1fr; }
-      .include-item { padding: 1.25rem; }
-      .pricing-cols { grid-template-columns: 1fr; }
-      .pricing-wrap { grid-template-columns: 1fr; gap: 2rem; }
-      .pricing-card { padding: 1.75rem 1.25rem; }
-      .price-big { font-size: 2.4rem; }
-      .faq-item { grid-template-columns: 1fr; gap: .5rem; }
-      .context-strip { padding: 0 1.25rem 3rem; }
-      .context-img { height: 200px; }
-      .cta-final { grid-template-columns: 1fr; padding: 4rem 1.25rem; gap: 2rem; }
-      .cta-final h2 { font-size: clamp(1.7rem, 7vw, 2.2rem); }
-      .cta-final-right { text-align: left; }
-      .footer-row { padding: 1rem 1.25rem; justify-content: center; gap: 1rem; }
-      .footer-row-clients { flex-direction: column; align-items: center; text-align: center; }
-      .footer-social { justify-content: center; }
-      .footer-links { justify-content: center; }
-      body::before { display: none; }
-      .addon-banner { flex-direction: column; align-items: flex-start; }
-      .gallery-card.post  { width: 170px; height: 213px; }
-      .gallery-card.story { width: 120px; height: 213px; }
-    }
+    /* ── PRICING ─────────────────────────────────────── */
+    .pricing-grid { display: grid; gap: 16px; max-width: 1100px; margin: 0 auto; }
+    @media (min-width: 960px) { .pricing-grid { grid-template-columns: 1fr 1.15fr 1fr; align-items: stretch; } }
+    .pricing-card { background: var(--bg-2); border: 1px solid var(--border); border-radius: var(--r-xl); padding: 32px; position: relative; overflow: hidden; display: flex; flex-direction: column; }
+    .pricing-card::before { content: ''; position: absolute; top: 0; left: 0; right: 0; height: 3px; background: currentColor; }
+    .pricing-card.featured { background: var(--bg-3); border-color: var(--accent); box-shadow: 0 20px 60px rgba(0,224,204,.08); }
+    @media (min-width: 960px) { .pricing-card.featured { transform: scale(1.03); z-index: 1; } }
+    .pricing-tag { display: inline-block; padding: 5px 12px; border-radius: 4px; font-size: 10px; font-weight: 700; letter-spacing: .12em; text-transform: uppercase; margin-bottom: 20px; background: rgba(255,255,255,.05); }
+    .pricing-name { font-family: var(--f-display); font-weight: 800; font-size: 1.6rem; letter-spacing: -.025em; margin-bottom: 14px; }
+    .pricing-price { font-family: var(--f-display); font-weight: 800; font-size: 2.6rem; letter-spacing: -.04em; line-height: 1; }
+    .pricing-card.featured .pricing-price { font-size: 3.2rem; }
+    .pricing-sub { font-size: 12px; color: var(--muted-2); margin-top: 8px; padding-bottom: 22px; margin-bottom: 22px; border-bottom: 1px solid var(--border); }
+    .pricing-list { display: grid; gap: 4px; margin-bottom: 28px; flex: 1; }
+    .pricing-list li { font-size: 13.5px; padding: 6px 0; display: flex; gap: 10px; align-items: start; }
+    .pricing-list li::before { content: '→'; flex-shrink: 0; }
+
+    /* ── FAQ ─────────────────────────────────────────── */
+    .faq-wrap { max-width: 820px; margin: 0 auto; }
+    .faq-item { background: var(--bg-2); border: 1px solid var(--border); border-radius: var(--r-l); padding: 22px 26px; margin-bottom: 10px; cursor: pointer; transition: border-color .2s; }
+    .faq-item:hover, .faq-item.open { border-color: var(--accent-border); }
+    .faq-head { display: flex; justify-content: space-between; align-items: center; gap: 20px; }
+    .faq-q { font-family: var(--f-display); font-weight: 700; font-size: 16px; letter-spacing: -.015em; line-height: 1.3; }
+    .faq-toggle { font-size: 22px; color: var(--accent); line-height: 1; flex-shrink: 0; }
+    .faq-a { color: var(--muted); font-size: 14.5px; line-height: 1.6; margin-top: 14px; display: none; }
+    .faq-item.open .faq-a { display: block; }
+
+    /* ── CTA FINAL ───────────────────────────────────── */
+    .cta-final { text-align: center; position: relative; overflow: hidden; border-top: 1px solid var(--border); }
+    .cta-final h2 { font-size: clamp(2.6rem, 7vw, 5.2rem); letter-spacing: -.04em; line-height: .95; margin-bottom: 32px; }
+    .cta-final h2 .grad { background: linear-gradient(90deg, var(--accent), #60ffe0); -webkit-background-clip: text; background-clip: text; -webkit-text-fill-color: transparent; }
+    .cta-note { font-size: 13px; color: var(--muted-2); margin-top: 16px; }
+
+    /* ── FOOTER ──────────────────────────────────────── */
+    .footer { border-top: 1px solid var(--border); padding: 28px var(--gutter); font-size: 12px; color: var(--muted-2); }
+    .footer-inner { max-width: var(--container); margin: 0 auto; display: flex; flex-wrap: wrap; gap: 14px; justify-content: space-between; align-items: center; }
+
+    /* ── WA FLOAT ────────────────────────────────────── */
+    .wa-float { position: fixed; bottom: 22px; right: 22px; z-index: 40; width: 56px; height: 56px; border-radius: 50%; background: #25d366; display: grid; place-items: center; color: #fff; box-shadow: 0 8px 28px rgba(37,211,102,.4); transition: transform .2s; }
+    .wa-float:hover { transform: scale(1.08); }
+
+    /* ── Reel BGs ────────────────────────────────────── */
+    .reel-vet   { background: linear-gradient(160deg,#0c2a1a 0%,#0a0a0a 70%); }
+    .reel-odont { background: linear-gradient(160deg,#1a2a3a 0%,#0a0a0a 70%); }
+    .reel-gym   { background: linear-gradient(160deg,#1a1a3a 0%,#0a0a0a 70%); }
+    .reel-resto { background: linear-gradient(160deg,#2a1a0a 0%,#0a0a0a 70%); }
+    .reel-jur   { background: linear-gradient(160deg,#1a0a2a 0%,#0a0a0a 70%); }
   </style>
 </head>
 <body>
 
-<nav>
-  <img src="img/mitch_logo.png" alt="mitch" class="logo-img" />
-  <a href="https://wa.me/5491133613235?text=Hola%2C+vi+la+web+de+mitch+y+quiero+saber+m%C3%A1s" class="nav-cta" target="_blank">Hablar →</a>
+<!-- ── NAV ──────────────────────────────────────────────── -->
+<nav class="nav">
+  <div class="nav-inner">
+    <a href="#" class="nav-logo">
+      <div class="nav-logo-mark">m</div>
+      [mitch]
+    </a>
+    <div class="nav-ctas">
+      <a href="#showcase" class="btn btn-ghost btn-pill nav-ghost">Ver muestras</a>
+      <a href="https://wa.me/5491133613235?text=Hola%2C+quiero+saber+m%C3%A1s+sobre+el+Pack+Digital" target="_blank" class="btn btn-primary btn-pill">Hablar →</a>
+    </div>
+  </div>
 </nav>
 
-<!-- HERO -->
-<div class="hero">
-  <div class="hero-label">Presencia digital para negocios locales</div>
-  <h1>
-    Tu negocio donde
-    <span class="highlight">tus clientes<br>te buscan.</span>
-  </h1>
-  <div class="hero-bottom">
-    <div>
-      <p class="hero-desc">Contenido mensual para tus redes, publicidad en Instagram y Facebook, o página web institucional. Elegís lo que necesita tu negocio ahora.</p>
-      <div class="cta-group">
-        <a href="#servicios" class="btn-primary">Ver servicios ↓</a>
-        <a href="https://wa.me/5491133613235?text=Hola%2C+vi+la+web+de+mitch+y+tengo+una+consulta" class="btn-ghost" target="_blank">Consultar por WhatsApp →</a>
+<!-- ── HERO ─────────────────────────────────────────────── -->
+<section class="hero">
+  <div class="grid-bg"></div>
+  <div class="container">
+    <div class="hero-inner">
+      <div class="reveal">
+        <div class="hero-badge">
+          <span class="pulse-dot"></span>
+          Aceptando 3 nuevos negocios en Argentina
+        </div>
+        <h1>Reels, posts y stories<br><span class="grad">producidos para vos.</span></h1>
+        <p class="hero-sub">Un pack mensual de contenido listo para subir. Te lo entregamos por WhatsApp. Vos lo publicás. Simple.</p>
+        <div class="hero-ctas">
+          <a href="https://wa.me/5491133613235?text=Hola%2C+quiero+empezar+con+el+Pack+Digital" target="_blank" class="btn btn-primary btn-lg">Hablar por WhatsApp →</a>
+          <a href="#showcase" class="btn btn-ghost btn-lg">Ver muestras ↓</a>
+        </div>
+        <div class="hero-stats">
+          <div><div class="k">20</div><div class="v">piezas al mes</div></div>
+          <div><div class="k">48 hs</div><div class="v">primera entrega</div></div>
+          <div><div class="k">1/zona</div><div class="v">exclusivo por rubro</div></div>
+        </div>
+      </div>
+
+      <!-- Phone stack -->
+      <div class="phone-stage reveal">
+        <div class="phone-stack">
+          <div class="p-back-left">
+            <div class="phone xs">
+              <div class="phone-screen reel-jur">
+                <div class="phone-notch"></div>
+                <div class="phone-reel-overlay"></div>
+                <div class="phone-reel-live"><span class="rdot"></span> Reel #05</div>
+                <div class="phone-reel-caption">
+                  <div class="handle">@estudio_velez</div>
+                  <div class="text">3 consejos antes de firmar 📋</div>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="p-front">
+            <div class="phone">
+              <div class="phone-screen reel-vet">
+                <div class="phone-notch"></div>
+                <div class="phone-reel-overlay"></div>
+                <div class="phone-reel-live"><span class="rdot"></span> Reel #03</div>
+                <div class="phone-reel-actions">
+                  <div class="act"><svg width="18" height="18" viewBox="0 0 24 24" fill="white"><path d="M12 21.35l-1.45-1.32C5.4 15.36 2 12.28 2 8.5 2 5.42 4.42 3 7.5 3c1.74 0 3.41.81 4.5 2.09C13.09 3.81 14.76 3 16.5 3 19.58 3 22 5.42 22 8.5c0 3.78-3.4 6.86-8.55 11.54L12 21.35z"/></svg><span>14.3K</span></div>
+                  <div class="act"><svg width="18" height="18" viewBox="0 0 24 24" fill="white"><path d="M20 2H4c-1.1 0-2 .9-2 2v18l4-4h14c1.1 0 2-.9 2-2V4c0-1.1-.9-2-2-2z"/></svg><span>382</span></div>
+                  <div class="act"><svg width="18" height="18" viewBox="0 0 24 24" fill="white"><path d="M2.01 21L23 12 2.01 3 2 10l15 2-15 2z"/></svg><span>Compartir</span></div>
+                </div>
+                <div class="phone-reel-caption">
+                  <div class="handle">@clinicadelparque</div>
+                  <div class="text">El proceso, en 30 segundos 🦷</div>
+                </div>
+                <div class="phone-progress"><div class="bar"></div></div>
+              </div>
+            </div>
+          </div>
+          <div class="p-back-right">
+            <div class="phone xs">
+              <div class="phone-screen reel-resto">
+                <div class="phone-notch"></div>
+                <div class="phone-reel-overlay"></div>
+                <div class="phone-reel-live"><span class="rdot"></span> Reel #01</div>
+                <div class="phone-reel-caption">
+                  <div class="handle">@parrilla_don_jose</div>
+                  <div class="text">Reservás hoy 🍖</div>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="float-badge green" style="top:16px; right:8px;">
+            <div class="lbl g">● EN VIVO</div>
+            <div class="val">Producido esta semana</div>
+          </div>
+          <div class="float-badge teal" style="bottom:40px; left:0;">
+            <div class="lbl t">+34% ALCANCE</div>
+            <div class="val">Clínica del Parque, mes 2</div>
+          </div>
+        </div>
       </div>
     </div>
-    <div>
-      <div style="font-family:'Syne',sans-serif;font-size:.75rem;font-weight:700;letter-spacing:.1em;text-transform:uppercase;color:var(--muted);margin-bottom:.75rem;">Desde</div>
-      <div style="font-family:'Syne',sans-serif;font-size:clamp(2.4rem,5vw,3.8rem);font-weight:800;color:var(--text);letter-spacing:-.04em;line-height:1;">$400.000</div>
-      <div style="color:var(--muted);font-size:.85rem;margin-top:.3rem;">por mes · sin permanencia</div>
-    </div>
   </div>
-</div>
+</section>
 
-<!-- HERO IMAGES -->
-<div class="hero-img-strip">
-  <div class="hero-img-main">
-    <img src="https://images.unsplash.com/photo-1556742049-0cfed4f6a45d?auto=format&fit=crop&w=900&q=80" alt="Negocio local" loading="lazy" />
-    <div class="img-overlay">
-      <div class="img-stat">+2.000</div>
-      <div class="img-stat-label">negocios locales en Argentina sin presencia digital activa</div>
-    </div>
-  </div>
-  <div class="hero-img-side">
-    <div class="img-card">
-      <img src="https://images.unsplash.com/photo-1563986768609-322da13575f3?auto=format&fit=crop&w=400&q=80" alt="Producción de contenido" loading="lazy" />
-    </div>
-    <div class="img-card">
-      <img src="https://images.unsplash.com/photo-1512941937669-90a1b58e7e9c?auto=format&fit=crop&w=400&q=80" alt="Redes sociales" loading="lazy" />
-    </div>
-  </div>
-</div>
-
-<!-- SERVICES OVERVIEW -->
-<div class="services-overview" id="servicios">
-  <div class="services-label">¿Qué necesita tu negocio?</div>
-  <div class="services-grid">
-
-    <div class="service-card active" data-pick="pack" onclick="selectService('pack')">
-      <div class="service-tag main">★ El más elegido</div>
-      <div class="service-icon">🎬</div>
-      <h3>Pack Digital</h3>
-      <p>Reels con audio, posts, stories y calendario. Todo producido y entregado cada mes.</p>
-      <div>
-        <span class="service-price">$400.000</span>
-        <span class="service-price-note">/ mes</span>
-      </div>
-    </div>
-
-    <div class="service-card" data-pick="ads" onclick="selectService('ads')">
-      <div class="service-tag addon">+ Add-on</div>
-      <div class="service-icon">📣</div>
-      <h3>Publicidad en Meta</h3>
-      <p>Gestionamos tu publicidad en Instagram y Facebook para que llegues a clientes nuevos.</p>
-      <div>
-        <span class="service-price" style="color:#a78bfa;">+$200.000</span>
-        <span class="service-price-note">/ mes</span>
-      </div>
-    </div>
-
-    <div class="service-card" data-pick="web" onclick="selectService('web')">
-      <div class="service-tag once">Pago único</div>
-      <div class="service-icon">🌐</div>
-      <h3>Página Web</h3>
-      <p>Sitio institucional online en 7 días. Contacto, ubicación, servicios y redes. Tuyo para siempre.</p>
-      <div>
-        <span class="service-price" style="color:#60a5fa;">$300.000</span>
-        <span class="service-price-note">pago único</span>
-      </div>
-    </div>
-
-  </div>
-</div>
-
-<!-- TICKER -->
+<!-- ── TICKER ────────────────────────────────────────────── -->
 <div class="ticker">
-  <div class="ticker-inner">
-    <span>●</span> Estudios jurídicos &nbsp;&nbsp; <span>●</span> Clínicas y consultorios &nbsp;&nbsp; <span>●</span> Odontólogos &nbsp;&nbsp; <span>●</span> Inmobiliarias &nbsp;&nbsp; <span>●</span> Restaurantes &nbsp;&nbsp; <span>●</span> Gimnasios &nbsp;&nbsp; <span>●</span> Estudios contables &nbsp;&nbsp; <span>●</span> Veterinarias &nbsp;&nbsp; <span>●</span> Estudios jurídicos &nbsp;&nbsp; <span>●</span> Clínicas y consultorios &nbsp;&nbsp; <span>●</span> Odontólogos &nbsp;&nbsp; <span>●</span> Inmobiliarias &nbsp;&nbsp; <span>●</span> Restaurantes &nbsp;&nbsp; <span>●</span> Gimnasios &nbsp;&nbsp; <span>●</span> Estudios contables &nbsp;&nbsp; <span>●</span> Veterinarias &nbsp;&nbsp;
+  <div class="ticker-row" id="ticker-row"></div>
+</div>
+
+<!-- ── SHOWCASE ──────────────────────────────────────────── -->
+<section class="section" id="showcase">
+  <div class="container">
+    <div class="showcase-head reveal">
+      <div>
+        <div class="eyebrow accent">Muestras recientes</div>
+        <h2 style="font-size:clamp(2rem,5.5vw,3.6rem); margin-top:16px; letter-spacing:-.04em;">Esto es<br>lo que recibís.</h2>
+      </div>
+      <div class="chip-group">
+        <button class="chip on" data-filter="todos">Todos</button>
+        <button class="chip" data-filter="reels">Reels</button>
+        <button class="chip" data-filter="posts">Posts</button>
+        <button class="chip" data-filter="stories">Stories</button>
+      </div>
+    </div>
+    <div class="feed-grid" id="feed-grid"></div>
+  </div>
+</section>
+
+<!-- ── PRODUCTS ──────────────────────────────────────────── -->
+<div class="products-wrap section" id="productos">
+  <div class="container">
+    <div class="reveal">
+      <div class="eyebrow accent">Tres productos</div>
+      <h2 style="font-size:clamp(2rem,5.5vw,3.6rem); margin-top:16px; letter-spacing:-.04em; margin-bottom:36px;">Elegí lo tuyo.</h2>
+    </div>
+    <div class="product-tabs reveal">
+      <button class="product-tab on" data-tab="pack" style="color:var(--accent-ink); background:var(--accent); border-color:var(--accent);">Pack Digital</button>
+      <button class="product-tab" data-tab="ads">Publicidad Meta</button>
+      <button class="product-tab" data-tab="web">Página Web</button>
+    </div>
+
+    <!-- Pack Digital -->
+    <div class="product-detail on" id="tab-pack">
+      <div class="reveal">
+        <div class="product-tag" style="background:var(--accent-soft); color:var(--accent);">Mensual · recurrente</div>
+        <h3 class="product-title">Pack Digital</h3>
+        <div class="product-price" style="color:var(--accent);">$400.000</div>
+        <div class="product-price-sub">por mes · sin permanencia</div>
+        <p class="product-desc">Todo el contenido de tu mes, producido y listo para subir. 8 Reels, 8 Posts, 4 Stories, calendario y entrega en ZIP.</p>
+        <ul class="product-bullets" style="--arrow-c: var(--accent);">
+          <li style="--c:var(--accent)">8 Reels con audio voiceover</li>
+          <li style="--c:var(--accent)">8 Posts · 4 variantes</li>
+          <li style="--c:var(--accent)">4 Stories con CTA</li>
+          <li style="--c:var(--accent)">Calendario mensual</li>
+          <li style="--c:var(--accent)">Diseño exclusivo por zona</li>
+          <li style="--c:var(--accent)">Soporte por WhatsApp</li>
+        </ul>
+        <a href="https://wa.me/5491133613235?text=Hola%2C+quiero+el+Pack+Digital" target="_blank" class="btn btn-primary btn-lg">Empezar con Pack Digital →</a>
+      </div>
+      <div class="product-phone reveal">
+        <div class="phone" style="transform:rotate(-3deg)">
+          <div class="phone-screen reel-vet">
+            <div class="phone-notch"></div>
+            <div class="phone-reel-overlay"></div>
+            <div class="phone-reel-live"><span class="rdot"></span> Reel Pack</div>
+            <div class="phone-reel-caption">
+              <div class="handle">@tu_negocio</div>
+              <div class="text">Contenido mensual listo 📦</div>
+            </div>
+            <div class="phone-progress"><div class="bar"></div></div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Meta Ads -->
+    <div class="product-detail" id="tab-ads">
+      <div class="reveal">
+        <div class="product-tag" style="background:rgba(167,139,250,.12); color:var(--purple);">Add-on sobre el Pack</div>
+        <h3 class="product-title">Publicidad Meta</h3>
+        <div class="product-price" style="color:var(--purple);">+$200.000</div>
+        <div class="product-price-sub">fee mensual · spend aparte</div>
+        <p class="product-desc">Convertimos tus Reels y Posts en campañas. Segmentamos por zona, edad e intereses. Optimizamos semanalmente.</p>
+        <ul class="product-bullets">
+          <li style="--c:var(--purple)">Gestión completa Meta Ads</li>
+          <li style="--c:var(--purple)">Creativos del Pack</li>
+          <li style="--c:var(--purple)">Segmentación por zona</li>
+          <li style="--c:var(--purple)">Optimización semanal</li>
+          <li style="--c:var(--purple)">Reporte mensual</li>
+          <li style="--c:var(--purple)">Tu presupuesto, decidís vos</li>
+        </ul>
+        <a href="https://wa.me/5491133613235?text=Hola%2C+me+interesa+agregar+Publicidad+Meta" target="_blank" class="btn btn-lg" style="background:var(--purple); color:#0c0c0c;">Consultar Meta Ads →</a>
+      </div>
+      <div class="product-phone reveal">
+        <div class="phone" style="transform:rotate(-3deg)">
+          <div class="phone-screen reel-jur">
+            <div class="phone-notch"></div>
+            <div class="phone-reel-overlay"></div>
+            <div class="phone-reel-live"><span class="rdot" style="background:var(--purple)"></span> Ad activo</div>
+            <div class="phone-reel-caption">
+              <div class="handle">@tu_negocio</div>
+              <div class="text">Campaña corriendo 🎯</div>
+            </div>
+            <div class="phone-progress"><div class="bar" style="background:var(--purple)"></div></div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Web -->
+    <div class="product-detail" id="tab-web">
+      <div class="reveal">
+        <div class="product-tag" style="background:rgba(96,165,250,.12); color:var(--blue);">Pago único · entrega 7 días</div>
+        <h3 class="product-title">Página Web</h3>
+        <div class="product-price" style="color:var(--blue);">$300.000</div>
+        <div class="product-price-sub">pago único · el sitio es tuyo</div>
+        <p class="product-desc">Sitio institucional mobile-first con Google Maps, formulario a tu WhatsApp y links a tus redes. Online en una semana.</p>
+        <ul class="product-bullets">
+          <li>Sitio institucional</li>
+          <li>Mobile-first</li>
+          <li>Google Maps + reseñas</li>
+          <li>Form → WhatsApp</li>
+          <li>Links a tus redes</li>
+          <li>Accesos entregados</li>
+        </ul>
+        <a href="https://wa.me/5491133613235?text=Hola%2C+quiero+una+p%C3%A1gina+web" target="_blank" class="btn btn-lg" style="background:transparent; color:var(--blue); border:1px solid var(--blue);">Consultar Página Web →</a>
+      </div>
+      <div class="product-phone reveal">
+        <div class="phone" style="transform:rotate(-3deg)">
+          <div class="phone-screen reel-gym">
+            <div class="phone-notch"></div>
+            <div class="phone-reel-overlay"></div>
+            <div class="phone-reel-live"><span class="rdot" style="background:var(--blue)"></span> Sitio web</div>
+            <div class="phone-reel-caption">
+              <div class="handle">tu-negocio.ar</div>
+              <div class="text">Online en 7 días hábiles 🌐</div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
   </div>
 </div>
 
-
-<!-- ══════════════════════════════
-     PACK DIGITAL
-     ══════════════════════════════ -->
-<div data-service="pack">
-
-  <div class="section">
-    <div class="section-label">Cómo funciona</div>
-    <h2>Tres pasos.<br>Sin reuniones eternas.</h2>
-    <div class="steps">
-      <div class="step-row">
-        <div class="step-num">01</div>
-        <div class="step-content">
-          <div class="step-tag">Una sola vez</div>
-          <h3>Nos contás de tu negocio</h3>
-          <p>Un brief simple: qué vendés, a quién le hablás, qué tono querés. Diez minutos por WhatsApp.</p>
-        </div>
+<!-- ── PROCESS ────────────────────────────────────────────── -->
+<section class="section">
+  <div class="container">
+    <div class="reveal" style="margin-bottom:56px;">
+      <div class="eyebrow accent">Cómo funciona</div>
+      <h2 style="font-size:clamp(2rem,5.5vw,3.6rem); margin-top:16px; letter-spacing:-.04em; max-width:700px;">Sin reuniones eternas.<br>Tres pasos.</h2>
+    </div>
+    <div class="process-grid">
+      <div class="process-card reveal">
+        <div class="process-num">01</div>
+        <div class="process-tag">10 min · por WhatsApp</div>
+        <h3>Contanos de tu negocio</h3>
+        <p>Qué vendés, a quién le hablás, qué tono querés. Un brief simple por mensaje.</p>
       </div>
-      <div class="step-row">
-        <div class="step-num">02</div>
-        <div class="step-content">
-          <div class="step-tag">En 48 horas</div>
-          <h3>Producimos todo, pensado para vos</h3>
-          <p>Guiones, voces en off, diseño de imágenes y copy. Todo adaptado a la identidad y el tono de tu negocio.</p>
-        </div>
+      <div class="process-card reveal">
+        <div class="process-num">02</div>
+        <div class="process-tag">48 hs · nosotros</div>
+        <h3>Producimos todo</h3>
+        <p>Guiones, voces en off, diseño y copy. Adaptado a tu identidad y tu rubro.</p>
       </div>
-      <div class="step-row">
-        <div class="step-num">03</div>
-        <div class="step-content">
-          <div class="step-tag">Cuando lo necesitás</div>
-          <h3>Recibís el pack completo por WhatsApp</h3>
-          <p>Contenido organizado, calendario de publicación y guía de instrucciones. Vos subís cada pieza cuando querés.</p>
-        </div>
+      <div class="process-card reveal">
+        <div class="process-num">03</div>
+        <div class="process-tag">Cuando quieras</div>
+        <h3>Recibís el pack</h3>
+        <p>Un ZIP por WhatsApp con todo organizado, nombrado y con el calendario del mes.</p>
       </div>
     </div>
   </div>
+</section>
 
-  <div class="section">
-    <div class="section-label">El pack incluye</div>
-    <h2>Todo lo que tu negocio<br>necesita cada mes.</h2>
-    <div class="includes-grid">
-      <div class="include-item">
-        <span class="include-icon">🎬</span>
-        <strong>8 Reels con audio</strong>
-        <span>Guion de 5 beats, voz en off generada y copy del post. Listos para subir.</span>
-      </div>
-      <div class="include-item">
-        <span class="include-icon">🖼</span>
-        <strong>8 Posts con copy</strong>
-        <span>4 variantes de diseño por post y texto pensado para tu rubro, tu voz y tu audiencia.</span>
-      </div>
-      <div class="include-item">
-        <span class="include-icon">📲</span>
-        <strong>4 Stories del mes</strong>
-        <span>Diseñadas en 4 variantes con CTAs concretos: WhatsApp, consulta, promo del mes.</span>
-      </div>
-      <div class="include-item">
-        <span class="include-icon">📅</span>
-        <strong>Calendario de publicación</strong>
-        <span>Cronograma visual del mes: qué publicar y cuándo para mantener ritmo constante.</span>
-      </div>
-      <div class="include-item">
-        <span class="include-icon">📦</span>
-        <strong>Entrega en ZIP lista para usar</strong>
-        <span>Todo empaquetado con instrucciones claras. Sin buscar archivos.</span>
-      </div>
-      <div class="include-item">
-        <span class="include-icon">🎯</span>
-        <strong>Diseño exclusivo por cliente</strong>
-        <span>Templates únicos para tu negocio. Nadie más de tu rubro en tu zona tiene el mismo diseño.</span>
-      </div>
+<!-- ── PRICING ────────────────────────────────────────────── -->
+<section class="section" style="border-top:1px solid var(--border);" id="precios">
+  <div class="container">
+    <div class="reveal" style="text-align:center; max-width:720px; margin:0 auto 56px;">
+      <div class="eyebrow accent" style="justify-content:center;">Precios</div>
+      <h2 style="font-size:clamp(2rem,5.5vw,3.6rem); letter-spacing:-.04em; margin-top:16px; margin-bottom:16px;">Todo adentro. Sin sorpresas.</h2>
+      <p style="font-size:16px; color:var(--muted-2);">Pesos argentinos. Sin permanencia. Cupos limitados por zona y rubro.</p>
     </div>
-  </div>
-
-  <!-- GALERÍA -->
-  <div class="gallery-section">
-    <div class="section-label">Ejemplos reales</div>
-    <h2>Así se ve el contenido<br>que entregamos.</h2>
-    <div class="gallery-track-wrap">
-      <div class="gallery-track">
-        <div class="gallery-card post"><img src="muestras/juridico_p01.png" alt="Post estudio jurídico" loading="lazy" /></div>
-        <div class="gallery-card story"><img src="muestras/juridico_s01.png" alt="Story estudio jurídico" loading="lazy" /></div>
-        <div class="gallery-card post"><img src="muestras/juridico_p02.png" alt="Post estudio jurídico 2" loading="lazy" /></div>
-        <div class="gallery-card post"><img src="muestras/gimnasio_p01.png" alt="Post gimnasio" loading="lazy" /></div>
-        <div class="gallery-card story"><img src="muestras/gimnasio_s01.png" alt="Story gimnasio" loading="lazy" /></div>
-        <div class="gallery-card post"><img src="muestras/gimnasio_p02.png" alt="Post gimnasio 2" loading="lazy" /></div>
-        <div class="gallery-card post"><img src="muestras/juridico_p03.png" alt="Post estudio jurídico 3" loading="lazy" /></div>
-        <div class="gallery-card story"><img src="muestras/juridico_s02.png" alt="Story estudio jurídico 2" loading="lazy" /></div>
-        <div class="gallery-card post"><img src="muestras/gimnasio_p03.png" alt="Post gimnasio 3" loading="lazy" /></div>
-        <div class="gallery-card story"><img src="muestras/gimnasio_s02.png" alt="Story gimnasio 2" loading="lazy" /></div>
-        <div class="gallery-card post"><img src="muestras/juridico_p04.png" alt="Post estudio jurídico 4" loading="lazy" /></div>
-        <div class="gallery-card post"><img src="muestras/gimnasio_p04.png" alt="Post gimnasio 4" loading="lazy" /></div>
-      </div>
-    </div>
-  </div>
-
-  <!-- PRECIO PACK -->
-  <div class="section">
-    <div class="section-label">Precio</div>
-    <div class="pricing-wrap">
-      <div class="pricing-left">
-        <h2>Un precio.<br>Todo adentro.</h2>
-        <p>Sin extras ocultos ni sorpresas. Lo que ves es lo que pagás cada mes.</p>
-        <p style="color:var(--muted);font-size:.88rem;">Cupos limitados por zona y rubro — trabajamos con un solo negocio de cada tipo en cada ciudad para que tu contenido sea exclusivo.</p>
-      </div>
-      <div class="pricing-card featured">
-        <div class="badge-featured"><span class="available-dot"></span> Sin permanencia</div>
-        <div class="price-display"><span class="price-big">$400.000</span></div>
-        <div class="price-sub">pesos argentinos · por mes</div>
+    <div class="pricing-grid reveal">
+      <div class="pricing-card" style="color:var(--purple);">
+        <div class="pricing-tag">+ Add-on</div>
+        <div class="pricing-name">Publicidad Meta</div>
+        <div class="pricing-price">+$200.000</div>
+        <div class="pricing-sub">por mes · sobre el Pack</div>
         <ul class="pricing-list">
-          <li>8 Reels con guion + audio voiceover</li>
-          <li>8 Posts (4 variantes de diseño + copy)</li>
-          <li>4 Stories (4 variantes + CTA)</li>
-          <li>Calendario de publicación mensual</li>
-          <li>Entrega en ZIP lista para usar</li>
-          <li>Diseño exclusivo para tu rubro y zona</li>
-          <li>Soporte por WhatsApp</li>
+          <li>Gestión Meta Ads</li>
+          <li>Segmentación por zona</li>
+          <li>Creativos del Pack</li>
+          <li>Optimización semanal</li>
+          <li>Reporte mensual</li>
         </ul>
-        <a href="https://wa.me/5491133613235?text=Hola%2C+quiero+el+Pack+Digital+de+mitch" class="btn-primary" target="_blank" style="display:block;text-align:center;width:100%;">
-          Empezar → WhatsApp
-        </a>
+        <a href="https://wa.me/5491133613235?text=Quiero+agregar+Meta+Ads" target="_blank" class="btn" style="background:transparent; color:var(--purple); border:1px solid var(--purple); justify-content:center;">Consultar →</a>
+      </div>
+      <div class="pricing-card featured" style="color:var(--accent);">
+        <div class="pricing-tag">★ El más elegido</div>
+        <div class="pricing-name">Pack Digital</div>
+        <div class="pricing-price">$400.000</div>
+        <div class="pricing-sub">por mes · sin permanencia</div>
+        <ul class="pricing-list">
+          <li>8 Reels + audio voiceover</li>
+          <li>8 Posts · 4 variantes</li>
+          <li>4 Stories · 4 variantes</li>
+          <li>Calendario mensual</li>
+          <li>Entrega en ZIP</li>
+          <li>Diseño exclusivo por zona</li>
+          <li>Soporte WhatsApp</li>
+        </ul>
+        <a href="https://wa.me/5491133613235?text=Quiero+empezar+con+el+Pack+Digital" target="_blank" class="btn btn-primary btn-lg" style="justify-content:center;">Empezar →</a>
+      </div>
+      <div class="pricing-card" style="color:var(--blue);">
+        <div class="pricing-tag">Pago único</div>
+        <div class="pricing-name">Página Web</div>
+        <div class="pricing-price">$300.000</div>
+        <div class="pricing-sub">entrega 7 días hábiles</div>
+        <ul class="pricing-list">
+          <li>Sitio institucional</li>
+          <li>Mobile-first</li>
+          <li>Google Maps</li>
+          <li>Form → WhatsApp</li>
+          <li>Links a redes</li>
+          <li>Accesos entregados</li>
+        </ul>
+        <a href="https://wa.me/5491133613235?text=Quiero+una+p%C3%A1gina+web" target="_blank" class="btn" style="background:transparent; color:var(--blue); border:1px solid var(--blue); justify-content:center;">Consultar →</a>
       </div>
     </div>
   </div>
+</section>
 
-  <!-- FAQ PACK -->
-  <div class="section">
-    <div class="section-label">Preguntas frecuentes</div>
-    <h2>Lo que siempre<br>nos preguntan.</h2>
-    <div class="faq">
-      <div class="faq-item">
-        <div class="faq-q">¿Necesito saber de redes para usar esto?</div>
+<!-- ── FAQ ────────────────────────────────────────────────── -->
+<section class="section" style="border-top:1px solid var(--border);">
+  <div class="container">
+    <div class="reveal" style="text-align:center; margin-bottom:48px;">
+      <div class="eyebrow accent" style="justify-content:center;">Preguntas</div>
+      <h2 style="font-size:clamp(2rem,5vw,3.2rem); margin-top:16px; letter-spacing:-.04em;">Lo que siempre nos preguntan.</h2>
+    </div>
+    <div class="faq-wrap">
+      <div class="faq-item reveal">
+        <div class="faq-head"><h4 class="faq-q">¿Necesito saber de redes para usar esto?</h4><span class="faq-toggle">+</span></div>
         <div class="faq-a">No. Te mandamos todo listo para subir: audio, imagen diseñada, texto copiable. El calendario te dice qué publicar cada día.</div>
       </div>
-      <div class="faq-item">
-        <div class="faq-q">¿Ustedes publican el contenido?</div>
+      <div class="faq-item reveal">
+        <div class="faq-head"><h4 class="faq-q">¿Ustedes publican el contenido?</h4><span class="faq-toggle">+</span></div>
         <div class="faq-a">No. Te entregamos el material y vos lo subís. El control de tu perfil es tuyo — no dependés de nadie.</div>
       </div>
-      <div class="faq-item">
-        <div class="faq-q">¿Cuánto tiempo me lleva a mí?</div>
-        <div class="faq-a">El brief inicial son 10 minutos. Después revisás el pack del mes y le das OK. No más de 20 minutos por mes de tu tiempo.</div>
+      <div class="faq-item reveal">
+        <div class="faq-head"><h4 class="faq-q">¿Cuánto tiempo me lleva a mí?</h4><span class="faq-toggle">+</span></div>
+        <div class="faq-a">El brief inicial son 10 minutos. Después revisás el pack del mes y le das OK. No más de 20 minutos por mes de tu parte.</div>
       </div>
-      <div class="faq-item">
-        <div class="faq-q">¿Cómo es el pago?</div>
+      <div class="faq-item reveal">
+        <div class="faq-head"><h4 class="faq-q">¿Cómo es el pago?</h4><span class="faq-toggle">+</span></div>
         <div class="faq-a">50% al arrancar y 50% antes de que entreguemos el contenido. Solo por transferencia bancaria.</div>
       </div>
-    </div>
-  </div>
-
-</div><!-- /pack -->
-
-
-<!-- ══════════════════════════════
-     META ADS
-     ══════════════════════════════ -->
-<div data-service="ads" class="hidden">
-
-  <div class="section">
-    <div class="section-label">Cómo funciona</div>
-    <h2>Tus contenidos,<br>amplificados.</h2>
-    <div class="steps">
-      <div class="step-row">
-        <div class="step-num">01</div>
-        <div class="step-content">
-          <div class="step-tag">Setup inicial</div>
-          <h3>Conectamos tu cuenta de Meta Ads</h3>
-          <p>Te damos acceso al Business Manager, configuramos la cuenta y definimos juntos el presupuesto mensual de publicidad.</p>
-        </div>
-      </div>
-      <div class="step-row">
-        <div class="step-num">02</div>
-        <div class="step-content">
-          <div class="step-tag">Cada mes</div>
-          <h3>Convertimos tu contenido en anuncios</h3>
-          <p>Las imágenes y reels del Pack Digital se usan directamente como creativos. Segmentamos por zona, edad e intereses del cliente ideal de tu negocio.</p>
-        </div>
-      </div>
-      <div class="step-row">
-        <div class="step-num">03</div>
-        <div class="step-content">
-          <div class="step-tag">Seguimiento semanal</div>
-          <h3>Optimizamos lo que funciona</h3>
-          <p>Revisamos el rendimiento cada semana, pausamos lo que no convierte y escalamos lo que sí. A fin de mes recibís un reporte con los resultados.</p>
-        </div>
+      <div class="faq-item reveal">
+        <div class="faq-head"><h4 class="faq-q">¿Funciona para mi rubro?</h4><span class="faq-toggle">+</span></div>
+        <div class="faq-a">Trabajamos con veterinarias, odontologías, gimnasios, restaurantes, clínicas y estudios jurídicos, entre otros. Si tenés fotos o videos de tu negocio, podemos producir contenido de calidad.</div>
       </div>
     </div>
   </div>
+</section>
 
-  <div class="section">
-    <div class="section-label">Qué incluye</div>
-    <h2>Publicidad que trabaja<br>mientras vos atendés.</h2>
-    <div class="includes-grid">
-      <div class="include-item">
-        <span class="include-icon">⚙️</span>
-        <strong>Gestión completa de Meta Ads</strong>
-        <span>Nos encargamos de toda la cuenta: creación, segmentación y optimización de campañas.</span>
+<!-- ── CTA FINAL ──────────────────────────────────────────── -->
+<section class="section cta-final">
+  <div class="grid-bg"></div>
+  <div class="container" style="position:relative; z-index:1;">
+    <div class="reveal">
+      <div style="display:inline-flex; align-items:center; gap:10px; color:var(--green); font-size:12px; font-weight:700; letter-spacing:.14em; text-transform:uppercase; margin-bottom:28px;">
+        <span class="pulse-dot"></span>3 cupos disponibles en Argentina
       </div>
-      <div class="include-item">
-        <span class="include-icon">🎯</span>
-        <strong>Segmentación por zona e intereses</strong>
-        <span>Los anuncios le aparecen a gente de tu barrio o ciudad, con el perfil exacto de tu cliente ideal.</span>
-      </div>
-      <div class="include-item">
-        <span class="include-icon">🖼</span>
-        <strong>Creativos del Pack Digital</strong>
-        <span>Usamos el contenido que ya produjimos. No hay que diseñar nada extra ni pagar más por los creativos.</span>
-      </div>
-      <div class="include-item">
-        <span class="include-icon">📊</span>
-        <strong>Reporte mensual de resultados</strong>
-        <span>Alcance, clics, conversaciones generadas y costo por resultado. Todo en un resumen claro.</span>
-      </div>
-      <div class="include-item">
-        <span class="include-icon">💰</span>
-        <strong>Presupuesto decidido por vos</strong>
-        <span>Vos definís cuánto invertís en publicidad. El fee de gestión es fijo, independiente del spend.</span>
-      </div>
-      <div class="include-item">
-        <span class="include-icon">🔁</span>
-        <strong>Optimización semanal</strong>
-        <span>No seteamos y olvidamos. Ajustamos las campañas cada semana para mejorar los resultados.</span>
-      </div>
+      <h2>Tu próximo mes,<br><span class="grad">ya producido.</span></h2>
+      <a href="https://wa.me/5491133613235?text=Hola%2C+quiero+empezar+con+el+Pack+Digital" target="_blank" class="btn btn-primary btn-lg" style="margin-top:8px;">Hablar por WhatsApp →</a>
+      <div class="cta-note">Te respondemos en menos de 1 hora laboral.</div>
     </div>
   </div>
+</section>
 
-  <!-- PRECIO ADS -->
-  <div class="section">
-    <div class="section-label">Precio</div>
-    <div class="pricing-wrap">
-      <div class="pricing-left">
-        <h2>Add-on al<br>Pack Digital.</h2>
-        <p>La publicidad en Meta se suma al Pack Digital. Los contenidos ya están producidos — solo hay que ponerlos a trabajar.</p>
-        <p style="color:var(--muted);font-size:.88rem;">El presupuesto que invertís en anuncios (lo que le pagás a Meta) va aparte y es decidido por vos. El fee cubre exclusivamente la gestión.</p>
-      </div>
-      <div class="pricing-card addon-card">
-        <div class="badge-featured" style="background:rgba(139,92,246,.15);color:#a78bfa;">+ Se suma al Pack Digital</div>
-        <div class="price-display"><span class="price-big">+$200.000</span></div>
-        <div class="price-sub">pesos argentinos · por mes</div>
-        <ul class="pricing-list">
-          <li>Gestión completa de Meta Ads</li>
-          <li>Campañas con los creativos del Pack</li>
-          <li>Segmentación por zona, edad e intereses</li>
-          <li>Optimización semanal</li>
-          <li>Reporte mensual de alcance y resultados</li>
-          <li>Presupuesto de anuncios decidido por vos</li>
-        </ul>
-        <a href="https://wa.me/5491133613235?text=Hola%2C+me+interesa+sumar+publicidad+en+Meta" class="btn-primary" target="_blank" style="display:block;text-align:center;width:100%;background:#a78bfa;color:#0c0c0c;">
-          Consultar → WhatsApp
-        </a>
-      </div>
-    </div>
-  </div>
-
-  <div class="section">
-    <div class="section-label">Preguntas frecuentes</div>
-    <h2>Lo que siempre<br>nos preguntan.</h2>
-    <div class="faq">
-      <div class="faq-item">
-        <div class="faq-q">¿Necesito tener el Pack Digital para sumar esto?</div>
-        <div class="faq-a">Sí. El add-on de publicidad funciona sobre el Pack Digital porque usamos el contenido que producimos cada mes como material de los anuncios.</div>
-      </div>
-      <div class="faq-item">
-        <div class="faq-q">¿Cuánto tengo que invertir en anuncios?</div>
-        <div class="faq-a">Lo decidís vos. Recomendamos un mínimo de $50.000/mes en ads para ver resultados concretos, pero no es obligatorio. El fee de gestión es fijo independientemente del monto.</div>
-      </div>
-      <div class="faq-item">
-        <div class="faq-q">¿Cómo sé si está funcionando?</div>
-        <div class="faq-a">A fin de mes te mandamos un reporte con alcance, clics, conversaciones generadas por WhatsApp y costo por resultado. Todo traducido a términos simples.</div>
-      </div>
-      <div class="faq-item">
-        <div class="faq-q">¿Necesito cuenta de empresa en Instagram?</div>
-        <div class="faq-a">Sí. Para publicar anuncios en Instagram tu cuenta tiene que estar configurada como cuenta profesional (Business o Creator). Te ayudamos con el proceso si todavía no lo hiciste.</div>
-      </div>
-    </div>
-  </div>
-
-</div><!-- /ads -->
-
-
-<!-- ══════════════════════════════
-     PÁGINA WEB
-     ══════════════════════════════ -->
-<div data-service="web" class="hidden">
-
-  <div class="section">
-    <div class="section-label">Cómo funciona</div>
-    <h2>De cero a online<br>en una semana.</h2>
-    <div class="steps">
-      <div class="step-row">
-        <div class="step-num">01</div>
-        <div class="step-content">
-          <div class="step-tag">Día 1</div>
-          <h3>Nos contás de tu negocio</h3>
-          <p>Logo, fotos, descripción, datos de contacto. Si no tenés algo, te ayudamos a resolverlo. No necesitás saber nada de tecnología.</p>
-        </div>
-      </div>
-      <div class="step-row">
-        <div class="step-num">02</div>
-        <div class="step-content">
-          <div class="step-tag">En 5 días hábiles</div>
-          <h3>Construimos y te mostramos el sitio</h3>
-          <p>Diseñamos tu página, configuramos el formulario de contacto e integramos Google Maps y tus redes. Te mostramos todo antes de publicar.</p>
-        </div>
-      </div>
-      <div class="step-row">
-        <div class="step-num">03</div>
-        <div class="step-content">
-          <div class="step-tag">Día 7</div>
-          <h3>Tu sitio está online</h3>
-          <p>Publicamos con tu dominio o te recomendamos uno. El sitio es tuyo — te entregamos todos los accesos.</p>
-        </div>
-      </div>
-    </div>
-  </div>
-
-  <div class="section">
-    <div class="section-label">Qué incluye</div>
-    <h2>Todo lo que un negocio<br>local necesita online.</h2>
-    <div class="includes-grid">
-      <div class="include-item">
-        <span class="include-icon">🏠</span>
-        <strong>Sitio institucional completo</strong>
-        <span>Inicio, sobre el negocio, servicios y contacto. Diseño limpio y adaptado a tu identidad.</span>
-      </div>
-      <div class="include-item">
-        <span class="include-icon">📱</span>
-        <strong>100% adaptado a celular</strong>
-        <span>El sitio se ve perfecto en cualquier dispositivo. Hoy la mayoría de tus clientes te busca desde el teléfono.</span>
-      </div>
-      <div class="include-item">
-        <span class="include-icon">📍</span>
-        <strong>Mapa e integración con Google</strong>
-        <span>Ubicación con Google Maps integrada. Tus clientes llegan sin perderse.</span>
-      </div>
-      <div class="include-item">
-        <span class="include-icon">📬</span>
-        <strong>Formulario de contacto</strong>
-        <span>Los mensajes del sitio llegan directo a tu WhatsApp. Sin perder ningún cliente.</span>
-      </div>
-      <div class="include-item">
-        <span class="include-icon">🔗</span>
-        <strong>Links a tus redes</strong>
-        <span>Instagram, Facebook, TikTok — lo que uses. Todo conectado para que el cliente pueda seguirte.</span>
-      </div>
-      <div class="include-item">
-        <span class="include-icon">⚡</span>
-        <strong>Rápido y sin complicaciones</strong>
-        <span>Sin login ni base de datos. Un sitio que funciona y no da problemas.</span>
-      </div>
-    </div>
-  </div>
-
-  <!-- PRECIO WEB -->
-  <div class="section">
-    <div class="section-label">Precio</div>
-    <div class="pricing-wrap">
-      <div class="pricing-left">
-        <h2>Pago único.<br>Sitio tuyo para siempre.</h2>
-        <p>Sin cuotas mensuales ni sorpresas. Pagás una vez y el sitio queda en tu poder con todos los accesos.</p>
-        <p style="color:var(--muted);font-size:.88rem;">¿Necesitás algo más complejo — tienda online, reservas, login? Consultanos por separado, lo cotizamos sin compromiso.</p>
-      </div>
-      <div class="pricing-card web-card">
-        <div class="badge-featured" style="background:rgba(59,130,246,.12);color:#60a5fa;">Entrega en 7 días hábiles</div>
-        <div class="price-display"><span class="price-big">$300.000</span></div>
-        <div class="price-sub">pesos argentinos · pago único</div>
-        <ul class="pricing-list">
-          <li>Sitio institucional completo</li>
-          <li>Diseño mobile-first</li>
-          <li>Google Maps + reseñas integradas</li>
-          <li>Formulario de contacto a WhatsApp</li>
-          <li>Links a redes sociales</li>
-          <li>Online en 7 días hábiles</li>
-          <li>Accesos y código fuente entregados</li>
-        </ul>
-        <a href="https://wa.me/5491133613235?text=Hola%2C+quiero+una+p%C3%A1gina+web+con+mitch" class="btn-primary" target="_blank" style="display:block;text-align:center;width:100%;background:#60a5fa;color:#0c0c0c;">
-          Consultar → WhatsApp
-        </a>
-      </div>
-    </div>
-  </div>
-
-  <div class="section">
-    <div class="section-label">Preguntas frecuentes</div>
-    <h2>Lo que siempre<br>nos preguntan.</h2>
-    <div class="faq">
-      <div class="faq-item">
-        <div class="faq-q">¿Necesito tener dominio propio?</div>
-        <div class="faq-a">No es obligatorio. Si ya tenés uno, lo usamos. Si no, te recomendamos uno acorde a tu negocio — el costo del dominio es aparte y muy bajo.</div>
-      </div>
-      <div class="faq-item">
-        <div class="faq-q">¿El hosting está incluido?</div>
-        <div class="faq-a">El sitio se publica en una plataforma sin costo mensual. Si en el futuro necesitás hosting dedicado, te avisamos y lo coordinamos.</div>
-      </div>
-      <div class="faq-item">
-        <div class="faq-q">¿Puedo pedir cambios después?</div>
-        <div class="faq-a">Sí, dentro del proceso de entrega incluimos ajustes. Cambios posteriores se cotizan por separado según lo que necesites.</div>
-      </div>
-      <div class="faq-item">
-        <div class="faq-q">¿Qué necesito tener para arrancar?</div>
-        <div class="faq-a">Logo, fotos del negocio y tus datos de contacto. Si no tenés fotos, usamos imágenes de stock acordes a tu rubro.</div>
-      </div>
-    </div>
-  </div>
-
-</div><!-- /web -->
-
-<!-- CONTEXT STRIP (compartido) -->
-<div class="context-strip">
-  <div class="context-img">
-    <img src="https://images.unsplash.com/photo-1497366216548-37526070297c?auto=format&fit=crop&w=1200&q=80" alt="Equipo trabajando" loading="lazy" />
-    <div class="context-img-text">
-      <p>Vos te enfocás en tu negocio.<br><span>Nosotros nos encargamos del resto.</span></p>
-    </div>
-  </div>
-</div>
-
-
-<!-- CTA FINAL -->
-<div class="cta-final">
-  <div class="cta-bg-img">
-    <img src="https://images.unsplash.com/photo-1600880292203-757bb62b4baf?auto=format&fit=crop&w=1400&q=80" alt="" loading="lazy" />
-  </div>
-  <div>
-    <h2>¿Tu negocio<br>tiene lugar?</h2>
-    <p>Cupos limitados por zona. Escribinos y te contamos si hay disponibilidad para tu rubro.</p>
-  </div>
-  <div class="cta-final-right">
-    <div class="available-badge">
-      <span class="available-dot"></span>
-      Lugares disponibles
-    </div>
-    <br>
-    <a href="https://wa.me/5491133613235?text=Hola%2C+vi+la+web+de+mitch+y+quiero+consultar+disponibilidad" class="btn-primary" target="_blank">
-      Hablar por WhatsApp →
-    </a>
-  </div>
-</div>
-
-<footer>
-  <div class="footer-row footer-row-clients">
-    <span class="footer-clients-label">Ya trabajan con nosotros</span>
-    <div class="footer-clients-logos">
-      <img src="img/caso_legal_logo.png" alt="Caso Legal" />
-      <img src="img/MIR_logo.png" alt="Mir Soluciones" />
-    </div>
-  </div>
-  <div class="footer-row">
-    <span>[mitch] · Buenos Aires, Argentina</span>
-    <div class="footer-social">
-      <a href="https://www.instagram.com/od.mitch/" target="_blank" rel="noopener">
-        <svg width="15" height="15" viewBox="0 0 24 24" fill="currentColor"><path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zm0-2.163c-3.259 0-3.667.014-4.947.072-4.358.2-6.78 2.618-6.98 6.98-.059 1.281-.073 1.689-.073 4.948 0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98-1.281-.059-1.69-.073-4.949-.073zm0 5.838c-3.403 0-6.162 2.759-6.162 6.162s2.759 6.163 6.162 6.163 6.162-2.759 6.162-6.163c0-3.403-2.759-6.162-6.162-6.162zm0 10.162c-2.209 0-4-1.79-4-4 0-2.209 1.791-4 4-4s4 1.791 4 4c0 2.21-1.791 4-4 4zm6.406-11.845c-.796 0-1.441.645-1.441 1.44s.645 1.44 1.441 1.44c.795 0 1.439-.645 1.439-1.44s-.644-1.44-1.439-1.44z"/></svg>
-        Instagram
-      </a>
-      <a href="https://www.tiktok.com/@od.mitch" target="_blank" rel="noopener">
-        <svg width="15" height="15" viewBox="0 0 24 24" fill="currentColor"><path d="M19.59 6.69a4.83 4.83 0 01-3.77-4.25V2h-3.45v13.67a2.89 2.89 0 01-2.88 2.5 2.89 2.89 0 01-2.89-2.89 2.89 2.89 0 012.89-2.89c.28 0 .54.04.79.1V9.01a6.27 6.27 0 00-.79-.05 6.34 6.34 0 00-6.34 6.34 6.34 6.34 0 006.34 6.34 6.34 6.34 0 006.33-6.34V8.69a8.2 8.2 0 004.79 1.53V6.77a4.85 4.85 0 01-1.02-.08z"/></svg>
-        TikTok
-      </a>
-    </div>
-    <div class="footer-links">
-      <a href="mailto:hola@packdigital.ar">hola@packdigital.ar</a>
-      <a href="#legales" id="legales" title="Los servicios son prestados por [mitch], operador digital independiente, Buenos Aires, Argentina. Precios en ARS, sujetos a actualización.">Legales</a>
-    </div>
+<!-- ── FOOTER ─────────────────────────────────────────────── -->
+<footer class="footer">
+  <div class="footer-inner">
+    <span>[mitch] — Buenos Aires, AR</span>
+    <span>+54 9 11 3361-3235</span>
+    <span>© 2026 mitch</span>
   </div>
 </footer>
 
-<a href="https://wa.me/5491133613235?text=Hola%2C+vi+la+web+de+mitch+y+quiero+saber+m%C3%A1s" class="wa-float" target="_blank" title="Hablar por WhatsApp">💬</a>
+<!-- WhatsApp flotante -->
+<a href="https://wa.me/5491133613235?text=Hola%2C+quiero+saber+m%C3%A1s" target="_blank" class="wa-float" aria-label="WhatsApp">
+  <svg width="26" height="26" viewBox="0 0 24 24" fill="white"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>
+</a>
 
 <script>
-  // Gallery drag scroll
-  document.querySelectorAll('.gallery-track').forEach(function(track) {
-    var isDown = false, startX, scrollLeft;
-    track.addEventListener('mousedown', function(e) {
-      isDown = true; track.classList.add('dragging');
-      startX = e.pageX - track.offsetLeft; scrollLeft = track.scrollLeft;
+  // ── Ticker ──────────────────────────────────────────────
+  const tickerItems = [
+    'Veterinaria — Córdoba', 'Odontología — Rosario', 'Gym — Mendoza',
+    'Restaurante — Mar del Plata', 'Clínica — Tucumán', 'Estudio jurídico — Salta',
+    'Veterinaria — Bariloche', 'Odontología — La Plata', 'Gym — Neuquén',
+    'Restaurante — Bahía Blanca', 'Clínica — Paraná', 'Veterinaria — Rafaela',
+  ];
+  const row = document.getElementById('ticker-row');
+  const all = [...tickerItems, ...tickerItems, ...tickerItems];
+  row.innerHTML = all.map(x => `<span><em>●</em> ${x}</span>`).join('');
+
+  // ── Feed grid ────────────────────────────────────────────
+  const tiles = [
+    {cat:'reels', bg:'reel-odont', title:'El proceso, en 30s', sub:'Odonto · 22s'},
+    {cat:'posts', bg:'reel-jur',   title:'5 señales de alerta', sub:'Estudio · carrusel'},
+    {cat:'reels', bg:'reel-vet',   title:'Primer turno gratis', sub:'Veterinaria · 18s'},
+    {cat:'stories', bg:'reel-gym', title:'Reservá hoy', sub:'CTA WhatsApp'},
+    {cat:'posts', bg:'reel-resto', title:'El menú del día', sub:'Restaurante'},
+    {cat:'reels', bg:'reel-odont', title:'Antes / después', sub:'Testimonial · 15s'},
+    {cat:'stories', bg:'reel-jur', title:'Horarios de atención', sub:'Info'},
+    {cat:'posts', bg:'reel-vet',   title:'Cuidados del verano', sub:'Edu · carrusel'},
+    {cat:'reels', bg:'reel-gym',   title:'Rutina de 5 min', sub:'Fitness · 20s'},
+    {cat:'posts', bg:'reel-resto', title:'Historia del local', sub:'Institucional'},
+    {cat:'reels', bg:'reel-jur',   title:'Tus derechos como inquilino', sub:'Edu · 18s'},
+    {cat:'stories', bg:'reel-odont', title:'Nuevo turno disponible', sub:'Update'},
+  ];
+
+  const grid = document.getElementById('feed-grid');
+  function renderTiles(filter) {
+    const filtered = filter === 'todos' ? tiles : tiles.filter(t => t.cat === filter);
+    grid.innerHTML = filtered.map(t => `
+      <div class="feed-tile ${t.bg}" data-cat="${t.cat}">
+        <div class="feed-tile-cat">${t.cat}</div>
+        ${t.cat === 'reels' ? '<div class="feed-tile-play"><svg width="18" height="18" viewBox="0 0 24 24" fill="white"><path d="M8 5v14l11-7z"/></svg></div>' : ''}
+        <div class="feed-tile-body"><div class="feed-tile-title">${t.title}</div><div class="feed-tile-sub">${t.sub}</div></div>
+      </div>
+    `).join('');
+  }
+  renderTiles('todos');
+
+  document.querySelectorAll('.chip').forEach(btn => {
+    btn.addEventListener('click', () => {
+      document.querySelectorAll('.chip').forEach(b => b.classList.remove('on'));
+      btn.classList.add('on');
+      renderTiles(btn.dataset.filter);
     });
-    track.addEventListener('mouseleave', function() { isDown = false; track.classList.remove('dragging'); });
-    track.addEventListener('mouseup',    function() { isDown = false; track.classList.remove('dragging'); });
-    track.addEventListener('mousemove',  function(e) {
-      if (!isDown) return; e.preventDefault();
-      track.scrollLeft = scrollLeft - (e.pageX - track.offsetLeft - startX) * 1.5;
-    });
-    track.addEventListener('wheel', function(e) {
-      if (Math.abs(e.deltaX) > Math.abs(e.deltaY)) return;
-      e.preventDefault(); track.scrollLeft += e.deltaY * 1.5;
-    }, { passive: false });
   });
 
-  // Service toggle
-  var activeClasses = { pack: 'active', ads: 'active-purple', web: 'active-blue' };
+  // ── Product tabs ─────────────────────────────────────────
+  const COLORS = { pack: 'var(--accent)', ads: 'var(--purple)', web: 'var(--blue)' };
+  document.querySelectorAll('.product-tab').forEach(btn => {
+    btn.addEventListener('click', () => {
+      const tab = btn.dataset.tab;
+      document.querySelectorAll('.product-tab').forEach(b => {
+        b.classList.remove('on');
+        b.style.cssText = '';
+      });
+      btn.classList.add('on');
+      btn.style.cssText = `color:var(--accent-ink); background:${COLORS[tab]}; border-color:${COLORS[tab]};`;
+      document.querySelectorAll('.product-detail').forEach(d => d.classList.remove('on'));
+      document.getElementById('tab-' + tab).classList.add('on');
+    });
+  });
 
-  function selectService(service) {
-    // Update selector cards
-    document.querySelectorAll('.service-card').forEach(function(card) {
-      card.classList.remove('active', 'active-purple', 'active-blue');
-      if (card.dataset.pick === service) {
-        card.classList.add(activeClasses[service]);
+  // ── FAQ ──────────────────────────────────────────────────
+  document.querySelectorAll('.faq-item').forEach(item => {
+    item.querySelector('.faq-head').addEventListener('click', () => {
+      const isOpen = item.classList.contains('open');
+      document.querySelectorAll('.faq-item').forEach(i => {
+        i.classList.remove('open');
+        i.querySelector('.faq-toggle').textContent = '+';
+      });
+      if (!isOpen) {
+        item.classList.add('open');
+        item.querySelector('.faq-toggle').textContent = '−';
       }
     });
-    // Show/hide sections
-    document.querySelectorAll('[data-service]').forEach(function(el) {
-      el.classList.toggle('hidden', el.dataset.service !== service);
-    });
-    // Scroll al ticker (justo debajo del selector)
-    document.querySelector('.ticker').scrollIntoView({ behavior: 'smooth', block: 'start' });
-  }
-</script>
+  });
 
+  // ── Scroll reveal ────────────────────────────────────────
+  const observer = new IntersectionObserver(entries => {
+    entries.forEach(e => { if (e.isIntersecting) { e.target.classList.add('in'); observer.unobserve(e.target); } });
+  }, { threshold: 0.1 });
+  document.querySelectorAll('.reveal').forEach(el => observer.observe(el));
+</script>
 </body>
 </html>
