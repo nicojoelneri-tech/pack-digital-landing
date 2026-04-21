@@ -120,6 +120,7 @@
     .phone.sm .phone-notch { width: 68px; height: 18px; }
 
     .phone-reel { position: absolute; inset: 0; background-size: cover; background-position: center; transition: opacity .6s ease; }
+    .phone-video { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; display: block; }
     .phone-reel-overlay { position: absolute; inset: 0; background: linear-gradient(180deg, rgba(0,0,0,.35) 0%, transparent 30%, transparent 50%, rgba(0,0,0,.88) 100%); z-index: 1; }
     .phone-reel-live { position: absolute; top: 44px; left: 12px; z-index: 3; display: flex; align-items: center; gap: 6px; background: rgba(0,0,0,.4); padding: 3px 8px; border-radius: var(--r-pill); color: #fff; font-size: 9px; font-family: var(--f-mono); letter-spacing: .08em; font-weight: 700; }
     .phone-reel-live .rdot { width: 5px; height: 5px; border-radius: 50%; background: #ff3b30; animation: pulse 1.4s ease-in-out infinite; }
@@ -173,9 +174,11 @@
     @media (min-width: 640px)  { .feed-grid { grid-template-columns: repeat(3,1fr); gap: 12px; } }
     @media (min-width: 960px)  { .feed-grid { grid-template-columns: repeat(4,1fr); gap: 14px; } }
 
-    .feed-tile { aspect-ratio: 9/16; background: var(--bg-2) center/cover no-repeat; border-radius: var(--r-l); overflow: hidden; position: relative; border: 1px solid var(--border); cursor: pointer; transition: transform .3s, border-color .2s; }
+    .feed-tile { aspect-ratio: 9/16; background: var(--bg-2); border-radius: var(--r-l); overflow: hidden; position: relative; border: 1px solid var(--border); cursor: pointer; transition: transform .3s, border-color .2s; }
     .feed-tile:hover { transform: translateY(-4px); border-color: var(--accent-border); }
-    .feed-tile::after { content: ''; position: absolute; inset: 0; background: linear-gradient(180deg, rgba(0,0,0,.25) 0%, rgba(0,0,0,0) 30%, rgba(0,0,0,0) 55%, rgba(0,0,0,.85) 100%); }
+    .feed-tile::after { content: ''; position: absolute; inset: 0; background: linear-gradient(180deg, rgba(0,0,0,.25) 0%, rgba(0,0,0,0) 30%, rgba(0,0,0,0) 55%, rgba(0,0,0,.85) 100%); pointer-events: none; }
+    .tile-media { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; display: block; }
+    .tile-bg { position: absolute; inset: 0; }
     .feed-tile-cat { position: absolute; top: 10px; left: 10px; z-index: 2; font-size: 9px; font-family: var(--f-display); font-weight: 700; letter-spacing: .12em; text-transform: uppercase; color: #fff; background: rgba(0,0,0,.45); padding: 4px 8px; border-radius: 4px; backdrop-filter: blur(4px); }
     .feed-tile-play { position: absolute; top: 10px; right: 10px; z-index: 2; color: #fff; opacity: .8; }
     .feed-tile-body { position: absolute; bottom: 12px; left: 12px; right: 12px; z-index: 2; color: #fff; }
@@ -306,7 +309,7 @@
         <div class="phone-stack">
           <div class="p-back-left">
             <div class="phone xs">
-              <div class="phone-screen reel-jur">
+              <div class="phone-screen reel-jur" id="phone-left-screen">
                 <div class="phone-notch"></div>
                 <div class="phone-reel-overlay"></div>
                 <div class="phone-reel-live"><span class="rdot"></span> Reel #05</div>
@@ -319,7 +322,7 @@
           </div>
           <div class="p-front">
             <div class="phone">
-              <div class="phone-screen reel-vet">
+              <div class="phone-screen reel-vet" id="phone-front-screen">
                 <div class="phone-notch"></div>
                 <div class="phone-reel-overlay"></div>
                 <div class="phone-reel-live"><span class="rdot"></span> Reel #03</div>
@@ -338,7 +341,7 @@
           </div>
           <div class="p-back-right">
             <div class="phone xs">
-              <div class="phone-screen reel-resto">
+              <div class="phone-screen reel-resto" id="phone-right-screen">
                 <div class="phone-notch"></div>
                 <div class="phone-reel-overlay"></div>
                 <div class="phone-reel-live"><span class="rdot"></span> Reel #01</div>
@@ -653,6 +656,43 @@
 </a>
 
 <script>
+  // ══════════════════════════════════════════════════════════════
+  // MEDIA CONFIG — editá acá para agregar contenido real
+  // ══════════════════════════════════════════════════════════════
+
+  // Iphones del hero — poné rutas a .mp4 o null para mantener gradiente
+  const HERO_PHONES = {
+    front: null,        // ej: 'media/reels/mitch-demo.mp4'
+    backLeft: null,     // ej: 'media/reels/caso-legal-1.mp4'
+    backRight: null,    // ej: 'media/reels/mir-1.mp4'
+  };
+
+  // Feed de muestras
+  // type: 'video' → .mp4 en media/reels/
+  // type: 'image' → .jpg/.png en media/posts/ o media/stories/
+  // src: null → usa gradiente de color como placeholder
+  const tiles = [
+    // ── REELS (.mp4 sin audio, 9:16) ───────────────────────────
+    { cat:'reels', type:'video',  src: null, bg:'reel-odont', title:'El proceso, en 30s',           sub:'Odonto · 22s' },
+    { cat:'reels', type:'video',  src: null, bg:'reel-vet',   title:'Primer turno gratis',           sub:'Veterinaria · 18s' },
+    { cat:'reels', type:'video',  src: null, bg:'reel-gym',   title:'Rutina de 5 min',               sub:'Fitness · 20s' },
+    { cat:'reels', type:'video',  src: null, bg:'reel-jur',   title:'Tus derechos como inquilino',   sub:'Edu · 18s' },
+    { cat:'reels', type:'video',  src: null, bg:'reel-odont', title:'Antes / después',               sub:'Testimonial · 15s' },
+    { cat:'reels', type:'video',  src: null, bg:'reel-resto', title:'El menú del día en 15s',        sub:'Restaurante' },
+    // ── POSTS (.jpg o .png, cuadrado o 4:5) ────────────────────
+    { cat:'posts', type:'image',  src: null, bg:'reel-jur',   title:'5 señales de alerta',           sub:'Estudio · carrusel' },
+    { cat:'posts', type:'image',  src: null, bg:'reel-resto', title:'Historia del local',            sub:'Institucional' },
+    { cat:'posts', type:'image',  src: null, bg:'reel-vet',   title:'Cuidados del verano',           sub:'Edu · carrusel' },
+    { cat:'posts', type:'image',  src: null, bg:'reel-gym',   title:'Transformación del mes',        sub:'Testimonial' },
+    // ── STORIES (.jpg o .png, 9:16) ────────────────────────────
+    { cat:'stories', type:'image', src: null, bg:'reel-gym',  title:'Reservá hoy',                  sub:'CTA WhatsApp' },
+    { cat:'stories', type:'image', src: null, bg:'reel-jur',  title:'Horarios de atención',          sub:'Info' },
+    { cat:'stories', type:'image', src: null, bg:'reel-odont', title:'Nuevo turno disponible',       sub:'Update' },
+    { cat:'stories', type:'image', src: null, bg:'reel-vet',  title:'Nuevo paciente del día',        sub:'Behind the scenes' },
+  ];
+
+  // ══════════════════════════════════════════════════════════════
+
   // ── Ticker ──────────────────────────────────────────────
   const tickerItems = [
     'Veterinaria — Córdoba', 'Odontología — Rosario', 'Gym — Mendoza',
@@ -664,32 +704,40 @@
   const all = [...tickerItems, ...tickerItems, ...tickerItems];
   row.innerHTML = all.map(x => `<span><em>●</em> ${x}</span>`).join('');
 
-  // ── Feed grid ────────────────────────────────────────────
-  const tiles = [
-    {cat:'reels', bg:'reel-odont', title:'El proceso, en 30s', sub:'Odonto · 22s'},
-    {cat:'posts', bg:'reel-jur',   title:'5 señales de alerta', sub:'Estudio · carrusel'},
-    {cat:'reels', bg:'reel-vet',   title:'Primer turno gratis', sub:'Veterinaria · 18s'},
-    {cat:'stories', bg:'reel-gym', title:'Reservá hoy', sub:'CTA WhatsApp'},
-    {cat:'posts', bg:'reel-resto', title:'El menú del día', sub:'Restaurante'},
-    {cat:'reels', bg:'reel-odont', title:'Antes / después', sub:'Testimonial · 15s'},
-    {cat:'stories', bg:'reel-jur', title:'Horarios de atención', sub:'Info'},
-    {cat:'posts', bg:'reel-vet',   title:'Cuidados del verano', sub:'Edu · carrusel'},
-    {cat:'reels', bg:'reel-gym',   title:'Rutina de 5 min', sub:'Fitness · 20s'},
-    {cat:'posts', bg:'reel-resto', title:'Historia del local', sub:'Institucional'},
-    {cat:'reels', bg:'reel-jur',   title:'Tus derechos como inquilino', sub:'Edu · 18s'},
-    {cat:'stories', bg:'reel-odont', title:'Nuevo turno disponible', sub:'Update'},
-  ];
+  // ── Hero phones ─────────────────────────────────────────
+  function mountPhoneVideo(screenEl, src) {
+    if (!src) return;
+    const vid = document.createElement('video');
+    vid.className = 'phone-video';
+    vid.autoplay = true; vid.muted = true; vid.loop = true; vid.playsInline = true;
+    vid.innerHTML = `<source src="${src}" type="video/mp4">`;
+    screenEl.insertBefore(vid, screenEl.firstChild);
+  }
+  if (HERO_PHONES.front)     mountPhoneVideo(document.getElementById('phone-front-screen'), HERO_PHONES.front);
+  if (HERO_PHONES.backLeft)  mountPhoneVideo(document.getElementById('phone-left-screen'), HERO_PHONES.backLeft);
+  if (HERO_PHONES.backRight) mountPhoneVideo(document.getElementById('phone-right-screen'), HERO_PHONES.backRight);
 
+  // ── Feed grid ────────────────────────────────────────────
   const grid = document.getElementById('feed-grid');
   function renderTiles(filter) {
     const filtered = filter === 'todos' ? tiles : tiles.filter(t => t.cat === filter);
-    grid.innerHTML = filtered.map(t => `
-      <div class="feed-tile ${t.bg}" data-cat="${t.cat}">
-        <div class="feed-tile-cat">${t.cat}</div>
-        ${t.cat === 'reels' ? '<div class="feed-tile-play"><svg width="18" height="18" viewBox="0 0 24 24" fill="white"><path d="M8 5v14l11-7z"/></svg></div>' : ''}
-        <div class="feed-tile-body"><div class="feed-tile-title">${t.title}</div><div class="feed-tile-sub">${t.sub}</div></div>
-      </div>
-    `).join('');
+    grid.innerHTML = filtered.map(t => {
+      let media = '';
+      if (t.src && t.type === 'video') {
+        media = `<video class="tile-media" autoplay muted loop playsinline><source src="${t.src}" type="video/mp4"></video>`;
+      } else if (t.src && t.type === 'image') {
+        media = `<img class="tile-media" src="${t.src}" alt="${t.title}" loading="lazy">`;
+      } else {
+        media = `<div class="tile-bg ${t.bg}"></div>`;
+      }
+      return `
+        <div class="feed-tile" data-cat="${t.cat}">
+          ${media}
+          <div class="feed-tile-cat">${t.cat}</div>
+          ${t.cat === 'reels' ? '<div class="feed-tile-play"><svg width="18" height="18" viewBox="0 0 24 24" fill="white"><path d="M8 5v14l11-7z"/></svg></div>' : ''}
+          <div class="feed-tile-body"><div class="feed-tile-title">${t.title}</div><div class="feed-tile-sub">${t.sub}</div></div>
+        </div>`;
+    }).join('');
   }
   renderTiles('todos');
 
