@@ -220,18 +220,21 @@
     }
     .service-card {
       background: var(--surface);
-      border: 1px solid var(--border);
+      border: 2px solid var(--border);
       border-radius: 16px;
       padding: 2rem;
-      text-decoration: none;
+      cursor: pointer;
       color: var(--text);
       transition: border-color .2s, background .2s;
       display: flex;
       flex-direction: column;
       gap: .75rem;
+      user-select: none;
     }
     .service-card:hover { border-color: #444; background: #1a1a1a; }
-    .service-card.featured { border-color: var(--accent); background: rgba(0,224,204,.04); }
+    .service-card.active { border-color: var(--accent); background: rgba(0,224,204,.04); }
+    .service-card.active-purple { border-color: #a78bfa; background: rgba(139,92,246,.06); }
+    .service-card.active-blue { border-color: #60a5fa; background: rgba(59,130,246,.05); }
     .service-tag {
       display: inline-flex;
       align-items: center;
@@ -264,6 +267,8 @@
       letter-spacing: -.03em;
     }
     .service-price-note { color: var(--muted); font-size: .75rem; margin-left: .25rem; }
+    [data-service] { transition: opacity .15s; }
+    [data-service].hidden { display: none; }
 
     /* TICKER */
     .ticker {
@@ -377,26 +382,25 @@
     .include-item span { color: var(--muted); font-size: .87rem; }
 
     /* PRICING */
-    .pricing-cols {
+    .pricing-wrap {
       display: grid;
-      grid-template-columns: repeat(3, 1fr);
-      gap: 1rem;
+      grid-template-columns: 1fr 1fr;
+      gap: 3rem;
       align-items: start;
     }
+    .pricing-left h2 { margin-bottom: 1rem; }
+    .pricing-left p { color: var(--muted); font-size: 1rem; margin-bottom: 1.25rem; }
     .pricing-card {
       background: var(--surface);
       border: 1px solid var(--border);
       border-radius: 16px;
-      padding: 2rem;
+      padding: 2.5rem;
       position: relative;
       overflow: hidden;
-      display: flex;
-      flex-direction: column;
     }
-    .pricing-card.featured {
-      border-color: var(--accent);
-      background: rgba(0,224,204,.03);
-    }
+    .pricing-card.featured { border-color: var(--accent); background: rgba(0,224,204,.03); }
+    .pricing-card.addon-card { border-color: #3b2a6e; background: rgba(139,92,246,.04); }
+    .pricing-card.web-card { border-color: #1e3a5f; background: rgba(59,130,246,.04); }
     .pricing-card::before {
       content: '';
       position: absolute;
@@ -407,39 +411,26 @@
     .pricing-card.featured::before { background: var(--accent); }
     .pricing-card.addon-card::before { background: #a78bfa; }
     .pricing-card.web-card::before { background: #60a5fa; }
-    .pricing-name {
-      font-family: 'Syne', sans-serif;
-      font-weight: 800;
-      font-size: 1rem;
-      letter-spacing: .04em;
-      text-transform: uppercase;
-      margin-bottom: 1.25rem;
-    }
-    .pricing-card.featured .pricing-name { color: var(--accent); }
-    .pricing-card.addon-card .pricing-name { color: #a78bfa; }
-    .pricing-card.web-card .pricing-name { color: #60a5fa; }
     .price-display { display: flex; align-items: baseline; gap: .4rem; margin-bottom: .25rem; }
     .price-big {
       font-family: 'Syne', sans-serif;
-      font-size: 2.8rem;
+      font-size: 3.5rem;
       font-weight: 800;
       color: var(--text);
       letter-spacing: -.04em;
     }
-    .price-currency { color: var(--muted); font-size: 1rem; }
-    .price-sub { color: var(--muted); font-size: .82rem; margin-bottom: 1.75rem; }
+    .price-sub { color: var(--muted); font-size: .85rem; margin-bottom: 2rem; }
     .pricing-list {
       list-style: none;
       margin-bottom: 2rem;
-      flex: 1;
     }
     .pricing-list li {
       display: flex;
       align-items: flex-start;
       gap: .75rem;
-      padding: .6rem 0;
+      padding: .65rem 0;
       border-bottom: 1px solid var(--border);
-      font-size: .88rem;
+      font-size: .9rem;
       color: var(--text);
     }
     .pricing-list li:last-child { border-bottom: none; }
@@ -448,7 +439,6 @@
       color: var(--accent);
       font-weight: 700;
       flex-shrink: 0;
-      margin-top: .05rem;
     }
     .pricing-card.addon-card .pricing-list li::before { color: #a78bfa; }
     .pricing-card.web-card .pricing-list li::before { color: #60a5fa; }
@@ -728,6 +718,7 @@
       .includes-grid { grid-template-columns: 1fr; }
       .include-item { padding: 1.25rem; }
       .pricing-cols { grid-template-columns: 1fr; }
+      .pricing-wrap { grid-template-columns: 1fr; gap: 2rem; }
       .pricing-card { padding: 1.75rem 1.25rem; }
       .price-big { font-size: 2.4rem; }
       .faq-item { grid-template-columns: 1fr; gap: .5rem; }
@@ -801,29 +792,29 @@
   <div class="services-label">¿Qué necesita tu negocio?</div>
   <div class="services-grid">
 
-    <a href="#pack-digital" class="service-card featured">
+    <div class="service-card active" data-pick="pack" onclick="selectService('pack')">
       <div class="service-tag main">★ El más elegido</div>
       <div class="service-icon">🎬</div>
       <h3>Pack Digital</h3>
-      <p>Reels con audio, posts, stories y calendario de publicación. Todo producido y entregado cada mes.</p>
+      <p>Reels con audio, posts, stories y calendario. Todo producido y entregado cada mes.</p>
       <div>
         <span class="service-price">$400.000</span>
         <span class="service-price-note">/ mes</span>
       </div>
-    </a>
+    </div>
 
-    <a href="#meta-ads" class="service-card">
+    <div class="service-card" data-pick="ads" onclick="selectService('ads')">
       <div class="service-tag addon">+ Add-on</div>
       <div class="service-icon">📣</div>
       <h3>Publicidad en Meta</h3>
-      <p>Gestionamos tu publicidad en Instagram y Facebook para que tu contenido llegue a clientes nuevos.</p>
+      <p>Gestionamos tu publicidad en Instagram y Facebook para que llegues a clientes nuevos.</p>
       <div>
         <span class="service-price" style="color:#a78bfa;">+$200.000</span>
         <span class="service-price-note">/ mes</span>
       </div>
-    </a>
+    </div>
 
-    <a href="#pagina-web" class="service-card">
+    <div class="service-card" data-pick="web" onclick="selectService('web')">
       <div class="service-tag once">Pago único</div>
       <div class="service-icon">🌐</div>
       <h3>Página Web</h3>
@@ -832,7 +823,7 @@
         <span class="service-price" style="color:#60a5fa;">$300.000</span>
         <span class="service-price-note">pago único</span>
       </div>
-    </a>
+    </div>
 
   </div>
 </div>
@@ -848,8 +839,7 @@
 <!-- ══════════════════════════════
      PACK DIGITAL
      ══════════════════════════════ -->
-
-<div id="pack-digital">
+<div data-service="pack">
 
   <div class="section">
     <div class="section-label">Cómo funciona</div>
@@ -882,14 +872,14 @@
     </div>
   </div>
 
-  <div class="section" id="que-incluye">
+  <div class="section">
     <div class="section-label">El pack incluye</div>
     <h2>Todo lo que tu negocio<br>necesita cada mes.</h2>
     <div class="includes-grid">
       <div class="include-item">
         <span class="include-icon">🎬</span>
         <strong>8 Reels con audio</strong>
-        <span>Guion de 5 beats, voz en off generada y copy del post incluido. Listos para subir.</span>
+        <span>Guion de 5 beats, voz en off generada y copy del post. Listos para subir.</span>
       </div>
       <div class="include-item">
         <span class="include-icon">🖼</span>
@@ -904,195 +894,359 @@
       <div class="include-item">
         <span class="include-icon">📅</span>
         <strong>Calendario de publicación</strong>
-        <span>Cronograma visual de todo el mes: qué publicar y cuándo para mantener ritmo constante.</span>
+        <span>Cronograma visual del mes: qué publicar y cuándo para mantener ritmo constante.</span>
       </div>
       <div class="include-item">
         <span class="include-icon">📦</span>
         <strong>Entrega en ZIP lista para usar</strong>
-        <span>Todo empaquetado en una carpeta ordenada con instrucciones claras. Sin buscar archivos.</span>
+        <span>Todo empaquetado con instrucciones claras. Sin buscar archivos.</span>
       </div>
       <div class="include-item">
         <span class="include-icon">🎯</span>
         <strong>Diseño exclusivo por cliente</strong>
-        <span>Templates únicos para tu negocio. Ningún otro cliente de tu rubro en tu zona usa el mismo diseño.</span>
+        <span>Templates únicos para tu negocio. Nadie más de tu rubro en tu zona tiene el mismo diseño.</span>
       </div>
     </div>
   </div>
 
-</div>
-
-<!-- GALERÍA MUESTRAS -->
-<div class="gallery-section">
-  <div class="section-label">Ejemplos reales</div>
-  <h2>Así se ve el contenido<br>que entregamos.</h2>
-  <div class="gallery-track-wrap">
-    <div class="gallery-track">
-      <div class="gallery-card post">
-        <img src="muestras/juridico_p01.png" alt="Post estudio jurídico" loading="lazy" />
-      </div>
-      <div class="gallery-card story">
-        <img src="muestras/juridico_s01.png" alt="Story estudio jurídico" loading="lazy" />
-      </div>
-      <div class="gallery-card post">
-        <img src="muestras/juridico_p02.png" alt="Post estudio jurídico 2" loading="lazy" />
-      </div>
-      <div class="gallery-card post">
-        <img src="muestras/gimnasio_p01.png" alt="Post gimnasio" loading="lazy" />
-      </div>
-      <div class="gallery-card story">
-        <img src="muestras/gimnasio_s01.png" alt="Story gimnasio" loading="lazy" />
-      </div>
-      <div class="gallery-card post">
-        <img src="muestras/gimnasio_p02.png" alt="Post gimnasio 2" loading="lazy" />
-      </div>
-      <div class="gallery-card post">
-        <img src="muestras/juridico_p03.png" alt="Post estudio jurídico 3" loading="lazy" />
-      </div>
-      <div class="gallery-card story">
-        <img src="muestras/juridico_s02.png" alt="Story estudio jurídico 2" loading="lazy" />
-      </div>
-      <div class="gallery-card post">
-        <img src="muestras/gimnasio_p03.png" alt="Post gimnasio 3" loading="lazy" />
-      </div>
-      <div class="gallery-card story">
-        <img src="muestras/gimnasio_s02.png" alt="Story gimnasio 2" loading="lazy" />
-      </div>
-      <div class="gallery-card post">
-        <img src="muestras/juridico_p04.png" alt="Post estudio jurídico 4" loading="lazy" />
-      </div>
-      <div class="gallery-card post">
-        <img src="muestras/gimnasio_p04.png" alt="Post gimnasio 4" loading="lazy" />
+  <!-- GALERÍA -->
+  <div class="gallery-section">
+    <div class="section-label">Ejemplos reales</div>
+    <h2>Así se ve el contenido<br>que entregamos.</h2>
+    <div class="gallery-track-wrap">
+      <div class="gallery-track">
+        <div class="gallery-card post"><img src="muestras/juridico_p01.png" alt="Post estudio jurídico" loading="lazy" /></div>
+        <div class="gallery-card story"><img src="muestras/juridico_s01.png" alt="Story estudio jurídico" loading="lazy" /></div>
+        <div class="gallery-card post"><img src="muestras/juridico_p02.png" alt="Post estudio jurídico 2" loading="lazy" /></div>
+        <div class="gallery-card post"><img src="muestras/gimnasio_p01.png" alt="Post gimnasio" loading="lazy" /></div>
+        <div class="gallery-card story"><img src="muestras/gimnasio_s01.png" alt="Story gimnasio" loading="lazy" /></div>
+        <div class="gallery-card post"><img src="muestras/gimnasio_p02.png" alt="Post gimnasio 2" loading="lazy" /></div>
+        <div class="gallery-card post"><img src="muestras/juridico_p03.png" alt="Post estudio jurídico 3" loading="lazy" /></div>
+        <div class="gallery-card story"><img src="muestras/juridico_s02.png" alt="Story estudio jurídico 2" loading="lazy" /></div>
+        <div class="gallery-card post"><img src="muestras/gimnasio_p03.png" alt="Post gimnasio 3" loading="lazy" /></div>
+        <div class="gallery-card story"><img src="muestras/gimnasio_s02.png" alt="Story gimnasio 2" loading="lazy" /></div>
+        <div class="gallery-card post"><img src="muestras/juridico_p04.png" alt="Post estudio jurídico 4" loading="lazy" /></div>
+        <div class="gallery-card post"><img src="muestras/gimnasio_p04.png" alt="Post gimnasio 4" loading="lazy" /></div>
       </div>
     </div>
   </div>
-</div>
+
+  <!-- PRECIO PACK -->
+  <div class="section">
+    <div class="section-label">Precio</div>
+    <div class="pricing-wrap">
+      <div class="pricing-left">
+        <h2>Un precio.<br>Todo adentro.</h2>
+        <p>Sin extras ocultos ni sorpresas. Lo que ves es lo que pagás cada mes.</p>
+        <p style="color:var(--muted);font-size:.88rem;">Cupos limitados por zona y rubro — trabajamos con un solo negocio de cada tipo en cada ciudad para que tu contenido sea exclusivo.</p>
+      </div>
+      <div class="pricing-card featured">
+        <div class="badge-featured"><span class="available-dot"></span> Sin permanencia</div>
+        <div class="price-display"><span class="price-big">$400.000</span></div>
+        <div class="price-sub">pesos argentinos · por mes</div>
+        <ul class="pricing-list">
+          <li>8 Reels con guion + audio voiceover</li>
+          <li>8 Posts (4 variantes de diseño + copy)</li>
+          <li>4 Stories (4 variantes + CTA)</li>
+          <li>Calendario de publicación mensual</li>
+          <li>Entrega en ZIP lista para usar</li>
+          <li>Diseño exclusivo para tu rubro y zona</li>
+          <li>Soporte por WhatsApp</li>
+        </ul>
+        <a href="https://wa.me/5491133613235?text=Hola%2C+quiero+el+Pack+Digital+de+mitch" class="btn-primary" target="_blank" style="display:block;text-align:center;width:100%;">
+          Empezar → WhatsApp
+        </a>
+      </div>
+    </div>
+  </div>
+
+  <!-- FAQ PACK -->
+  <div class="section">
+    <div class="section-label">Preguntas frecuentes</div>
+    <h2>Lo que siempre<br>nos preguntan.</h2>
+    <div class="faq">
+      <div class="faq-item">
+        <div class="faq-q">¿Necesito saber de redes para usar esto?</div>
+        <div class="faq-a">No. Te mandamos todo listo para subir: audio, imagen diseñada, texto copiable. El calendario te dice qué publicar cada día.</div>
+      </div>
+      <div class="faq-item">
+        <div class="faq-q">¿Ustedes publican el contenido?</div>
+        <div class="faq-a">No. Te entregamos el material y vos lo subís. El control de tu perfil es tuyo — no dependés de nadie.</div>
+      </div>
+      <div class="faq-item">
+        <div class="faq-q">¿Cuánto tiempo me lleva a mí?</div>
+        <div class="faq-a">El brief inicial son 10 minutos. Después revisás el pack del mes y le das OK. No más de 20 minutos por mes de tu tiempo.</div>
+      </div>
+      <div class="faq-item">
+        <div class="faq-q">¿Cómo es el pago?</div>
+        <div class="faq-a">50% al arrancar y 50% antes de que entreguemos el contenido. Solo por transferencia bancaria.</div>
+      </div>
+    </div>
+  </div>
+
+</div><!-- /pack -->
 
 
 <!-- ══════════════════════════════
-     PRICING
+     META ADS
      ══════════════════════════════ -->
+<div data-service="ads" class="hidden">
 
-<div class="section">
-  <div class="section-label">Precios</div>
-  <h2>Elegís el nivel<br>que necesita tu negocio.</h2>
-
-  <div class="pricing-cols">
-
-    <!-- Pack Digital -->
-    <div class="pricing-card featured" id="pack-digital-precio">
-      <div class="badge-featured"><span class="available-dot"></span> Más elegido</div>
-      <div class="pricing-name">Pack Digital</div>
-      <div class="price-display">
-        <span class="price-big">$400.000</span>
+  <div class="section">
+    <div class="section-label">Cómo funciona</div>
+    <h2>Tus contenidos,<br>amplificados.</h2>
+    <div class="steps">
+      <div class="step-row">
+        <div class="step-num">01</div>
+        <div class="step-content">
+          <div class="step-tag">Setup inicial</div>
+          <h3>Conectamos tu cuenta de Meta Ads</h3>
+          <p>Te damos acceso al Business Manager, configuramos la cuenta y definimos juntos el presupuesto mensual de publicidad.</p>
+        </div>
       </div>
-      <div class="price-sub">pesos argentinos · por mes · sin permanencia</div>
-      <ul class="pricing-list">
-        <li>8 Reels con guion + audio voiceover</li>
-        <li>8 Posts (4 variantes de diseño + copy)</li>
-        <li>4 Stories (4 variantes + CTA)</li>
-        <li>Calendario de publicación mensual</li>
-        <li>Entrega en ZIP lista para usar</li>
-        <li>Diseño exclusivo para tu rubro y zona</li>
-        <li>Soporte por WhatsApp</li>
-      </ul>
-      <a href="https://wa.me/5491133613235?text=Hola%2C+quiero+el+Pack+Digital+de+mitch" class="btn-primary" target="_blank" style="display:block;text-align:center;width:100%;">
-        Empezar → WhatsApp
-      </a>
-    </div>
-
-    <!-- Meta Ads -->
-    <div class="pricing-card addon-card" id="meta-ads">
-      <div class="pricing-name">Publicidad en Meta</div>
-      <div class="price-display">
-        <span class="price-big" style="color:var(--text);">+$200.000</span>
+      <div class="step-row">
+        <div class="step-num">02</div>
+        <div class="step-content">
+          <div class="step-tag">Cada mes</div>
+          <h3>Convertimos tu contenido en anuncios</h3>
+          <p>Las imágenes y reels del Pack Digital se usan directamente como creativos. Segmentamos por zona, edad e intereses del cliente ideal de tu negocio.</p>
+        </div>
       </div>
-      <div class="price-sub">add-on · se suma al Pack Digital</div>
-      <ul class="pricing-list">
-        <li>Gestión de tu cuenta de Meta Ads</li>
-        <li>Creación de campañas con tus propios contenidos</li>
-        <li>Segmentación por zona, edad e intereses</li>
-        <li>Optimización semanal de resultados</li>
-        <li>Reporte mensual de alcance y conversiones</li>
-        <li>Vos definís el presupuesto de publicidad</li>
-      </ul>
-      <a href="https://wa.me/5491133613235?text=Hola%2C+me+interesa+sumar+publicidad+en+Meta+al+pack" class="btn-primary" target="_blank" style="display:block;text-align:center;width:100%;background:#a78bfa;color:#0c0c0c;">
-        Consultar → WhatsApp
-      </a>
-    </div>
-
-    <!-- Página Web -->
-    <div class="pricing-card web-card" id="pagina-web">
-      <div class="pricing-name">Página Web</div>
-      <div class="price-display">
-        <span class="price-big" style="color:var(--text);">$300.000</span>
+      <div class="step-row">
+        <div class="step-num">03</div>
+        <div class="step-content">
+          <div class="step-tag">Seguimiento semanal</div>
+          <h3>Optimizamos lo que funciona</h3>
+          <p>Revisamos el rendimiento cada semana, pausamos lo que no convierte y escalamos lo que sí. A fin de mes recibís un reporte con los resultados.</p>
+        </div>
       </div>
-      <div class="price-sub">pago único · tuya para siempre</div>
-      <ul class="pricing-list">
-        <li>Sitio institucional completo</li>
-        <li>Diseño adaptado a tu identidad</li>
-        <li>100% mobile-first</li>
-        <li>Mapa + integración Google</li>
-        <li>Formulario de contacto a WhatsApp</li>
-        <li>Online en 7 días hábiles</li>
-        <li>Accesos y código fuente entregados</li>
-      </ul>
-      <a href="https://wa.me/5491133613235?text=Hola%2C+quiero+una+p%C3%A1gina+web+con+mitch" class="btn-primary" target="_blank" style="display:block;text-align:center;width:100%;background:#60a5fa;color:#0c0c0c;">
-        Consultar → WhatsApp
-      </a>
     </div>
-
   </div>
 
-  <!-- Nota exclusividad -->
-  <p style="color:var(--muted);font-size:.87rem;margin-top:2rem;text-align:center;">
-    Cupos limitados por zona y rubro — trabajamos con un solo negocio de cada tipo en cada ciudad para que tu contenido sea exclusivo.
-  </p>
+  <div class="section">
+    <div class="section-label">Qué incluye</div>
+    <h2>Publicidad que trabaja<br>mientras vos atendés.</h2>
+    <div class="includes-grid">
+      <div class="include-item">
+        <span class="include-icon">⚙️</span>
+        <strong>Gestión completa de Meta Ads</strong>
+        <span>Nos encargamos de toda la cuenta: creación, segmentación y optimización de campañas.</span>
+      </div>
+      <div class="include-item">
+        <span class="include-icon">🎯</span>
+        <strong>Segmentación por zona e intereses</strong>
+        <span>Los anuncios le aparecen a gente de tu barrio o ciudad, con el perfil exacto de tu cliente ideal.</span>
+      </div>
+      <div class="include-item">
+        <span class="include-icon">🖼</span>
+        <strong>Creativos del Pack Digital</strong>
+        <span>Usamos el contenido que ya produjimos. No hay que diseñar nada extra ni pagar más por los creativos.</span>
+      </div>
+      <div class="include-item">
+        <span class="include-icon">📊</span>
+        <strong>Reporte mensual de resultados</strong>
+        <span>Alcance, clics, conversaciones generadas y costo por resultado. Todo en un resumen claro.</span>
+      </div>
+      <div class="include-item">
+        <span class="include-icon">💰</span>
+        <strong>Presupuesto decidido por vos</strong>
+        <span>Vos definís cuánto invertís en publicidad. El fee de gestión es fijo, independiente del spend.</span>
+      </div>
+      <div class="include-item">
+        <span class="include-icon">🔁</span>
+        <strong>Optimización semanal</strong>
+        <span>No seteamos y olvidamos. Ajustamos las campañas cada semana para mejorar los resultados.</span>
+      </div>
+    </div>
+  </div>
 
-</div>
+  <!-- PRECIO ADS -->
+  <div class="section">
+    <div class="section-label">Precio</div>
+    <div class="pricing-wrap">
+      <div class="pricing-left">
+        <h2>Add-on al<br>Pack Digital.</h2>
+        <p>La publicidad en Meta se suma al Pack Digital. Los contenidos ya están producidos — solo hay que ponerlos a trabajar.</p>
+        <p style="color:var(--muted);font-size:.88rem;">El presupuesto que invertís en anuncios (lo que le pagás a Meta) va aparte y es decidido por vos. El fee cubre exclusivamente la gestión.</p>
+      </div>
+      <div class="pricing-card addon-card">
+        <div class="badge-featured" style="background:rgba(139,92,246,.15);color:#a78bfa;">+ Se suma al Pack Digital</div>
+        <div class="price-display"><span class="price-big">+$200.000</span></div>
+        <div class="price-sub">pesos argentinos · por mes</div>
+        <ul class="pricing-list">
+          <li>Gestión completa de Meta Ads</li>
+          <li>Campañas con los creativos del Pack</li>
+          <li>Segmentación por zona, edad e intereses</li>
+          <li>Optimización semanal</li>
+          <li>Reporte mensual de alcance y resultados</li>
+          <li>Presupuesto de anuncios decidido por vos</li>
+        </ul>
+        <a href="https://wa.me/5491133613235?text=Hola%2C+me+interesa+sumar+publicidad+en+Meta" class="btn-primary" target="_blank" style="display:block;text-align:center;width:100%;background:#a78bfa;color:#0c0c0c;">
+          Consultar → WhatsApp
+        </a>
+      </div>
+    </div>
+  </div>
 
-<!-- CONTEXT STRIP -->
+  <div class="section">
+    <div class="section-label">Preguntas frecuentes</div>
+    <h2>Lo que siempre<br>nos preguntan.</h2>
+    <div class="faq">
+      <div class="faq-item">
+        <div class="faq-q">¿Necesito tener el Pack Digital para sumar esto?</div>
+        <div class="faq-a">Sí. El add-on de publicidad funciona sobre el Pack Digital porque usamos el contenido que producimos cada mes como material de los anuncios.</div>
+      </div>
+      <div class="faq-item">
+        <div class="faq-q">¿Cuánto tengo que invertir en anuncios?</div>
+        <div class="faq-a">Lo decidís vos. Recomendamos un mínimo de $50.000/mes en ads para ver resultados concretos, pero no es obligatorio. El fee de gestión es fijo independientemente del monto.</div>
+      </div>
+      <div class="faq-item">
+        <div class="faq-q">¿Cómo sé si está funcionando?</div>
+        <div class="faq-a">A fin de mes te mandamos un reporte con alcance, clics, conversaciones generadas por WhatsApp y costo por resultado. Todo traducido a términos simples.</div>
+      </div>
+      <div class="faq-item">
+        <div class="faq-q">¿Necesito cuenta de empresa en Instagram?</div>
+        <div class="faq-a">Sí. Para publicar anuncios en Instagram tu cuenta tiene que estar configurada como cuenta profesional (Business o Creator). Te ayudamos con el proceso si todavía no lo hiciste.</div>
+      </div>
+    </div>
+  </div>
+
+</div><!-- /ads -->
+
+
+<!-- ══════════════════════════════
+     PÁGINA WEB
+     ══════════════════════════════ -->
+<div data-service="web" class="hidden">
+
+  <div class="section">
+    <div class="section-label">Cómo funciona</div>
+    <h2>De cero a online<br>en una semana.</h2>
+    <div class="steps">
+      <div class="step-row">
+        <div class="step-num">01</div>
+        <div class="step-content">
+          <div class="step-tag">Día 1</div>
+          <h3>Nos contás de tu negocio</h3>
+          <p>Logo, fotos, descripción, datos de contacto. Si no tenés algo, te ayudamos a resolverlo. No necesitás saber nada de tecnología.</p>
+        </div>
+      </div>
+      <div class="step-row">
+        <div class="step-num">02</div>
+        <div class="step-content">
+          <div class="step-tag">En 5 días hábiles</div>
+          <h3>Construimos y te mostramos el sitio</h3>
+          <p>Diseñamos tu página, configuramos el formulario de contacto e integramos Google Maps y tus redes. Te mostramos todo antes de publicar.</p>
+        </div>
+      </div>
+      <div class="step-row">
+        <div class="step-num">03</div>
+        <div class="step-content">
+          <div class="step-tag">Día 7</div>
+          <h3>Tu sitio está online</h3>
+          <p>Publicamos con tu dominio o te recomendamos uno. El sitio es tuyo — te entregamos todos los accesos.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="section">
+    <div class="section-label">Qué incluye</div>
+    <h2>Todo lo que un negocio<br>local necesita online.</h2>
+    <div class="includes-grid">
+      <div class="include-item">
+        <span class="include-icon">🏠</span>
+        <strong>Sitio institucional completo</strong>
+        <span>Inicio, sobre el negocio, servicios y contacto. Diseño limpio y adaptado a tu identidad.</span>
+      </div>
+      <div class="include-item">
+        <span class="include-icon">📱</span>
+        <strong>100% adaptado a celular</strong>
+        <span>El sitio se ve perfecto en cualquier dispositivo. Hoy la mayoría de tus clientes te busca desde el teléfono.</span>
+      </div>
+      <div class="include-item">
+        <span class="include-icon">📍</span>
+        <strong>Mapa e integración con Google</strong>
+        <span>Ubicación con Google Maps integrada. Tus clientes llegan sin perderse.</span>
+      </div>
+      <div class="include-item">
+        <span class="include-icon">📬</span>
+        <strong>Formulario de contacto</strong>
+        <span>Los mensajes del sitio llegan directo a tu WhatsApp. Sin perder ningún cliente.</span>
+      </div>
+      <div class="include-item">
+        <span class="include-icon">🔗</span>
+        <strong>Links a tus redes</strong>
+        <span>Instagram, Facebook, TikTok — lo que uses. Todo conectado para que el cliente pueda seguirte.</span>
+      </div>
+      <div class="include-item">
+        <span class="include-icon">⚡</span>
+        <strong>Rápido y sin complicaciones</strong>
+        <span>Sin login ni base de datos. Un sitio que funciona y no da problemas.</span>
+      </div>
+    </div>
+  </div>
+
+  <!-- PRECIO WEB -->
+  <div class="section">
+    <div class="section-label">Precio</div>
+    <div class="pricing-wrap">
+      <div class="pricing-left">
+        <h2>Pago único.<br>Sitio tuyo para siempre.</h2>
+        <p>Sin cuotas mensuales ni sorpresas. Pagás una vez y el sitio queda en tu poder con todos los accesos.</p>
+        <p style="color:var(--muted);font-size:.88rem;">¿Necesitás algo más complejo — tienda online, reservas, login? Consultanos por separado, lo cotizamos sin compromiso.</p>
+      </div>
+      <div class="pricing-card web-card">
+        <div class="badge-featured" style="background:rgba(59,130,246,.12);color:#60a5fa;">Entrega en 7 días hábiles</div>
+        <div class="price-display"><span class="price-big">$300.000</span></div>
+        <div class="price-sub">pesos argentinos · pago único</div>
+        <ul class="pricing-list">
+          <li>Sitio institucional completo</li>
+          <li>Diseño mobile-first</li>
+          <li>Google Maps + reseñas integradas</li>
+          <li>Formulario de contacto a WhatsApp</li>
+          <li>Links a redes sociales</li>
+          <li>Online en 7 días hábiles</li>
+          <li>Accesos y código fuente entregados</li>
+        </ul>
+        <a href="https://wa.me/5491133613235?text=Hola%2C+quiero+una+p%C3%A1gina+web+con+mitch" class="btn-primary" target="_blank" style="display:block;text-align:center;width:100%;background:#60a5fa;color:#0c0c0c;">
+          Consultar → WhatsApp
+        </a>
+      </div>
+    </div>
+  </div>
+
+  <div class="section">
+    <div class="section-label">Preguntas frecuentes</div>
+    <h2>Lo que siempre<br>nos preguntan.</h2>
+    <div class="faq">
+      <div class="faq-item">
+        <div class="faq-q">¿Necesito tener dominio propio?</div>
+        <div class="faq-a">No es obligatorio. Si ya tenés uno, lo usamos. Si no, te recomendamos uno acorde a tu negocio — el costo del dominio es aparte y muy bajo.</div>
+      </div>
+      <div class="faq-item">
+        <div class="faq-q">¿El hosting está incluido?</div>
+        <div class="faq-a">El sitio se publica en una plataforma sin costo mensual. Si en el futuro necesitás hosting dedicado, te avisamos y lo coordinamos.</div>
+      </div>
+      <div class="faq-item">
+        <div class="faq-q">¿Puedo pedir cambios después?</div>
+        <div class="faq-a">Sí, dentro del proceso de entrega incluimos ajustes. Cambios posteriores se cotizan por separado según lo que necesites.</div>
+      </div>
+      <div class="faq-item">
+        <div class="faq-q">¿Qué necesito tener para arrancar?</div>
+        <div class="faq-a">Logo, fotos del negocio y tus datos de contacto. Si no tenés fotos, usamos imágenes de stock acordes a tu rubro.</div>
+      </div>
+    </div>
+  </div>
+
+</div><!-- /web -->
+
+<!-- CONTEXT STRIP (compartido) -->
 <div class="context-strip">
   <div class="context-img">
     <img src="https://images.unsplash.com/photo-1497366216548-37526070297c?auto=format&fit=crop&w=1200&q=80" alt="Equipo trabajando" loading="lazy" />
     <div class="context-img-text">
       <p>Vos te enfocás en tu negocio.<br><span>Nosotros nos encargamos del resto.</span></p>
-    </div>
-  </div>
-</div>
-
-
-<!-- FAQ -->
-<div class="section">
-  <div class="section-label">Preguntas frecuentes</div>
-  <h2>Lo que siempre<br>nos preguntan.</h2>
-  <div class="faq">
-    <div class="faq-item">
-      <div class="faq-q">¿Necesito saber de redes para usar esto?</div>
-      <div class="faq-a">No. Te mandamos todo listo para subir: audio, imagen diseñada, texto copiable. Solo tocás "publicar" cuando quieras. El calendario te dice exactamente qué subir cada día.</div>
-    </div>
-    <div class="faq-item">
-      <div class="faq-q">¿Ustedes publican el contenido?</div>
-      <div class="faq-a">No, salvo que sumes el add-on de publicidad. Con el Pack Digital te entregamos el material y vos lo subís. Preferimos que el control de tu perfil sea tuyo.</div>
-    </div>
-    <div class="faq-item">
-      <div class="faq-q">¿Cuánto tiempo me lleva a mí?</div>
-      <div class="faq-a">El brief inicial son 10 minutos. Después revisás el pack del mes y le das OK. No más de 20 minutos por mes de tu tiempo.</div>
-    </div>
-    <div class="faq-item">
-      <div class="faq-q">¿Qué es el add-on de publicidad?</div>
-      <div class="faq-a">Es un servicio que se suma al Pack Digital. Tomamos los contenidos que ya produjimos y los usamos como anuncios en Instagram y Facebook, apuntando a gente nueva en tu zona. Vos ponés el presupuesto de anuncios, nosotros lo gestionamos.</div>
-    </div>
-    <div class="faq-item">
-      <div class="faq-q">¿Cómo es el pago?</div>
-      <div class="faq-a">50% al arrancar y 50% antes de que entreguemos el contenido. Solo por transferencia bancaria.</div>
-    </div>
-    <div class="faq-item">
-      <div class="faq-q">¿Trabajan con cualquier negocio?</div>
-      <div class="faq-a">Principalmente negocios locales: estudios jurídicos, clínicas, odontólogos, inmobiliarias, restaurantes, gimnasios, veterinarias y más. Un solo negocio por rubro por ciudad — si hay lugar para el tuyo, te avisamos.</div>
-    </div>
-    <div class="faq-item">
-      <div class="faq-q">¿La página web tiene costo mensual?</div>
-      <div class="faq-a">No. Es un pago único. El sitio se publica en una plataforma sin costo mensual y los accesos quedan en tu poder. Si después necesitás cambios, se cotizan por separado.</div>
     </div>
   </div>
 </div>
@@ -1149,6 +1303,7 @@
 <a href="https://wa.me/5491133613235?text=Hola%2C+vi+la+web+de+mitch+y+quiero+saber+m%C3%A1s" class="wa-float" target="_blank" title="Hablar por WhatsApp">💬</a>
 
 <script>
+  // Gallery drag scroll
   document.querySelectorAll('.gallery-track').forEach(function(track) {
     var isDown = false, startX, scrollLeft;
     track.addEventListener('mousedown', function(e) {
@@ -1166,6 +1321,25 @@
       e.preventDefault(); track.scrollLeft += e.deltaY * 1.5;
     }, { passive: false });
   });
+
+  // Service toggle
+  var activeClasses = { pack: 'active', ads: 'active-purple', web: 'active-blue' };
+
+  function selectService(service) {
+    // Update selector cards
+    document.querySelectorAll('.service-card').forEach(function(card) {
+      card.classList.remove('active', 'active-purple', 'active-blue');
+      if (card.dataset.pick === service) {
+        card.classList.add(activeClasses[service]);
+      }
+    });
+    // Show/hide sections
+    document.querySelectorAll('[data-service]').forEach(function(el) {
+      el.classList.toggle('hidden', el.dataset.service !== service);
+    });
+    // Scroll al ticker (justo debajo del selector)
+    document.querySelector('.ticker').scrollIntoView({ behavior: 'smooth', block: 'start' });
+  }
 </script>
 
 </body>
